@@ -1,5 +1,5 @@
 ﻿using DiplomkaBartozel.Base;
-using DiplomkaBartozel.Base.Data;
+using Data.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;

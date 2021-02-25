@@ -1,6 +1,6 @@
-﻿using DiplomkaBartozel.Base;
-using DiplomkaBartozel.Base.Data;
-using DiplomkaBartozel.Base.Enum;
+﻿using Data.Data;
+using Data.Enum;
+using DiplomkaBartozel.Base;
 using DiplomkaBartozel.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ namespace DiplomkaBartozel.RRT
         protected Random rand;
         protected Position root;
         protected Position goal;
-        private List<IObservable<>> observables;
+        private List<IObservable<LinePosition>> observables;
 
         public event EventHandler PathIsAvailable;
         public event EventHandler PathIsBlocked;

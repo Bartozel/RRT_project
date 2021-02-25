@@ -1,11 +1,10 @@
-﻿using DiplomkaBartozel.Base;
-using DiplomkaBartozel.Base.Data;
+﻿using Data.Data;
+using DiplomkaBartozel.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace DiplomkaBartozel.Interfaces
 {

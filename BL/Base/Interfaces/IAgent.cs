@@ -1,5 +1,5 @@
-﻿using DiplomkaBartozel.Base;
-using DiplomkaBartozel.Base.Enum;
+﻿using Data.Data;
+using DiplomkaBartozel.Base;
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;

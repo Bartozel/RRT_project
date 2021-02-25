@@ -1,11 +1,12 @@
-﻿using RBush;
+﻿using Data.Data;
+using RBush;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DiplomkaBartozel.Base
+namespace Data
 {
     public static class Extensions
     {

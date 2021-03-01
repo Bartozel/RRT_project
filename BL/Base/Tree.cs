@@ -31,27 +31,27 @@ namespace DiplomkaBartozel.Base
 
         public void BulkInsert(IEnumerable<Node> nodes)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Clear(Node node)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void ClearAll()
         {
-            throw new NotImplementedException();
+           
         }
 
         public IEnumerable<Node> GetAllNodes()
         {
-            throw new NotImplementedException();
+           
         }
 
         public IEnumerable<Node> Search(SearchArea area)
         {
-            throw new NotImplementedException();
+           
         }
     }
 

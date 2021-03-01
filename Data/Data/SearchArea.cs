@@ -45,17 +45,14 @@ namespace Data.Data
 
         public static SearchArea GetNodeArea(Position position)
         {
-            throw new NotImplementedException();
         }
 
         public static SearchArea GetNodeNearArea(Position position)
         {
-            throw new NotImplementedException();
         }
 
         private static SearchArea GetNodeArea(Position position, int dist)
         {
-            throw new NotImplementedException();
         }
     }
 }

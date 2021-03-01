@@ -13,9 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApp1\Data.csproj" />
+    <ProjectReference Include="..\BL\BL.csproj" />
+    <ProjectReference Include="..\Data\Data.csproj" />
     <ProjectReference Include="..\DUI\DUI.csproj" />
-    <ProjectReference Include="..\SearAlg\SearAlg.csproj" />
   </ItemGroup>
 
 </Project>

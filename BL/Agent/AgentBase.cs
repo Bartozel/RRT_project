@@ -7,14 +7,14 @@ using System.Drawing.Drawing2D;
 
 namespace DiplomkaBartozel.Base.Agent
 {
-    abstract class AgentBase : IAgent
+    abstract class AgentBase
     {
         public bool IsMooving => isMooving;
         private bool isMooving;
 
-        public Position GoalCoordinates { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public Position RootCoordinates { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Velocity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Position GoalCoordinates { get; set; }
+        public Position RootCoordinates { get; set; }
+        public int Velocity { get; set; }
 
         public AgentBase(Position rootCoordinates, Position goalCoordinates, int velocity)
         {
@@ -24,11 +24,6 @@ namespace DiplomkaBartozel.Base.Agent
             this.isMooving = false;
         }
 
-        public abstract void GenerateSearch();
-  
-        public void Move()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract void Move();
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Data.Enum
 {
-    enum SearchState
+    public enum SearchState
     {
         Stopped = 0,
         Running = 1,

@@ -3,7 +3,7 @@ using System;
 
 namespace Data.Data
 {
-    class Node : SearchArea, ISpatialData, IComparable<Node>, IEquatable<Node>
+    public class Node : SearchArea, ISpatialData, IComparable<Node>, IEquatable<Node>
     {
         public ref readonly Envelope Envelope => ref envelope;
         private readonly Envelope envelope;

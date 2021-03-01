@@ -31,17 +31,14 @@ namespace DiplomkaBartozel.RRT
 
         private Node Transform(Position pseudoPosition)
         {
-            throw new NotImplementedException();
         }
 
         private Position GetPseudoPosition(double dist, int width)
         {
-            throw new NotImplementedException();
         }
 
         private int GetPathWidth()
         {
-            throw new NotImplementedException();
         }
     }
 

@@ -16,6 +16,5 @@ namespace DiplomkaBartozel.Interfaces
         void ClearAll();
         IEnumerable<Node> Search(SearchArea area);
         IEnumerable<Node> GetAllNodes();
-        int NodeSum { get; }
     }
 }

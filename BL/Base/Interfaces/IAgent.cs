@@ -14,9 +14,7 @@ namespace DiplomkaBartozel.Interfaces
     {
         Position GoalCoordinates { get; set; }
         Position RootCoordinates { get; set; }
-        int Velocity { get; set; }
 
         void GenerateSearch();
-        void Move();
     }
 }

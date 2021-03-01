@@ -11,11 +11,12 @@ namespace DiplomkaBartozel.Base.Agent
     {
         public AgentObstacle(Position rootCoordinates, Position goalCoordinates, int velocity) : base(rootCoordinates, goalCoordinates, velocity)
         {
+
         }
 
-        public override void GenerateSearch()
+        public override void Move()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

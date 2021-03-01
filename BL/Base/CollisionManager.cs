@@ -12,17 +12,17 @@ namespace DiplomkaBartozel.Base
     {
         public bool IsInCollisionStaticObstacles(SearchArea position)
         {
-            throw new NotImplementedException();
+            
         }
 
         public bool IsPathBetweenPointsFree(Position p1, Position p2)
         {
-            throw new NotImplementedException();
+            
         }
 
         public bool IsInCollisionDynamicObstacles(SearchArea position)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

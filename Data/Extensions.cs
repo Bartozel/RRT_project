@@ -28,5 +28,13 @@ namespace Data
 
             return new Envelope(area.MinX, area.MinY, area.MaxX, area.MaxY);
         }
+
+        public static bool Intersect(this SearchArea sa1, SearchArea sa2)
+        {
+            if (sa1.MaxX > sa2.MinX && sa1.MinX < sa2.MaxX && sa1.MaxY > sa2.MinY && sa1.MinY < sa2.MinY)
+                return true;
+
+            return false;
+        }
     }
 }

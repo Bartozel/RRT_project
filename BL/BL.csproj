@@ -6,12 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApp1\Data.csproj" />
+    <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="RBush">
-      <HintPath>..\PLÁNOVÁNÍ CESTY V REÁLNÉM ČASE\packages\RBush.2.0.46\lib\netstandard1.2\RBush.dll</HintPath>
+      <HintPath>..\..\..\..\Skola\dip prace\Projekt\RRT_project\packages\RBush.2.0.46\lib\netstandard1.2\RBush.dll</HintPath>
     </Reference>
   </ItemGroup>
 

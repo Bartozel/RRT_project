@@ -16,17 +16,17 @@ namespace DiplomkaBartozel.RRT
         protected Random rand;
         protected Position root;
         protected Position goal;
-        private List<IObservable<LinePosition>> observables;
+        private List<IObservable<TreeLine>> observables;
 
         public event EventHandler PathIsAvailable;
         public event EventHandler PathIsBlocked;
 
         public SearchState SearchState { get; set; }
-        public List<Node> SpanningTree => throw new NotImplementedException();
+        public List<Node> SpanningTree { get; }
 
-        List<Node> ISearchEngine_RRT.SpanningTree => throw new NotImplementedException();
+        List<Node> ISearchEngine_RRT.SpanningTree { get; }
 
-        public bool PathExist => throw new NotImplementedException();
+        public bool PathExist { get; }
 
         public BaseSearchEngine(Position root, Position goal)
         {
@@ -129,7 +129,6 @@ namespace DiplomkaBartozel.RRT
 
         protected int CalculateNumberOfSamples()
         {
-            throw new NotImplementedException();
         }
 
         public void StartSearch()
@@ -141,22 +140,18 @@ namespace DiplomkaBartozel.RRT
 
         public void StopSearch()
         {
-            throw new NotImplementedException();
         }
 
         public void RestartSearch()
         {
-            throw new NotImplementedException();
         }
 
         public List<Node> PathToGoal()
         {
-            throw new NotImplementedException();
         }
 
         public void ChangeRoot()
         {
-            throw new NotImplementedException();
         }
     }
 }

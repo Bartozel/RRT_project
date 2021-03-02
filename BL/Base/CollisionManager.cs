@@ -1,5 +1,7 @@
-﻿using Data.Data;
+﻿using Data;
+using Data.Data;
 using DiplomkaBartozel.Interfaces;
+using DiplomkaBartozel.Map;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,19 @@ namespace DiplomkaBartozel.Base
 {
     class CollisionManager
     {
-        public bool IsInCollisionStaticObstacles(SearchArea position)
+        public bool IsCollisionWithStaticObstacles(SearchArea sa)
         {
-            
+            bool res = false;
+            foreach(var obstacle in )
+            {
+                if (obstacle.Intersect(sa))
+                {
+                    res = true;
+                    break;
+                }
+            }
+
+            return res;
         }
 
         public bool IsPathBetweenPointsFree(Position p1, Position p2)

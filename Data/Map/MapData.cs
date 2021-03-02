@@ -1,14 +1,7 @@
-﻿using DiplomkaBartozel.Base;
-using DiplomkaBartozel.Base.Agent;
-using System;
+﻿
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DiplomkaBartozel.Map
+namespace Data.Map
 {
     public static class MapData
     {

@@ -17,7 +17,7 @@ namespace Data
 
         public static Envelope GetNewEnvelope(this Position position)
         {
-            var area = SearchArea.GetNodeArea(position);
+            var area = SearchArea.GetSearchArea(position);
             return new Envelope(area.MinX, area.MinY, area.MaxX, area.MaxY);
         }
 

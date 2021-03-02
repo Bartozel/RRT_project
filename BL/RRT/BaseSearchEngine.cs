@@ -40,7 +40,7 @@ namespace DiplomkaBartozel.RRT
 
         protected virtual Node GenerateNewNode()
         {
-            var n = new Node(rand.Next(GlobalConfig.WidthOfSearchArea), rand.Next(GlobalConfig.HeighOfSearchArea));
+            var n = new Node(rand.Next(GlobalConfig.WidthOfSearchWindow), rand.Next(GlobalConfig.HeighOfSearchWindow));
             return n;
         }
 
@@ -53,9 +53,9 @@ namespace DiplomkaBartozel.RRT
         protected Node Steer(Node newNode, Node closestNode)
         {
             var dist = Distance(closestNode, newNode);
-            if (dist > GlobalConfig.maxDist)
+            if (dist > GlobalConfig.MaxDist)
             {
-                double shift = GlobalConfig.maxDist / dist;
+                double shift = GlobalConfig.MaxDist / dist;
                 var newXCoordinate = (1 - shift) * closestNode.MaxX + shift * newNode.MaxX;
                 var newYCoordinate = (1 - shift) * closestNode.MaxY + shift * newNode.MaxY;
                 var n = new Node(newXCoordinate.AsInt(), newYCoordinate.AsInt());
@@ -68,7 +68,7 @@ namespace DiplomkaBartozel.RRT
 
         protected Node FindClosestNode(Position position)
         {
-            int apend = GlobalConfig.maxDist;
+            int apend = GlobalConfig.MaxDist;
             Node returnPoint = null;
 
             while (true)

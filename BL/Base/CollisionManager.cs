@@ -1,5 +1,7 @@
 ﻿using Data;
 using Data.Data;
+using Data.Map;
+using DiplomkaBartozel.Base.Agent;
 using DiplomkaBartozel.Interfaces;
 using DiplomkaBartozel.Map;
 using System;
@@ -12,10 +14,10 @@ namespace DiplomkaBartozel.Base
 {
     class CollisionManager
     {
-        public bool IsCollisionWithStaticObstacles(SearchArea sa)
+        public bool IsCollisionStaticObstacles(SearchArea sa)
         {
             bool res = false;
-            foreach(var obstacle in )
+            foreach(var obstacle in MapManager.StaticObstales)
             {
                 if (obstacle.Intersect(sa))
                 {
@@ -32,9 +34,18 @@ namespace DiplomkaBartozel.Base
             
         }
 
-        public bool IsInCollisionDynamicObstacles(SearchArea position)
+        public bool IsCollisionDynamicObstacles(SearchArea sa)
         {
-            
+            bool res = false;
+            foreach (var agent in AgentManager.AgentObstacles)
+            {
+                if (agent.Intersect(sa))
+                {
+                    res = true;
+                    break;
+                }
+            }
+            return res;
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Drawing.Drawing2D;
 
 namespace DiplomkaBartozel.Base.Agent
 {
-    abstract class AgentBase
+    abstract class AgentBase : SearchArea
     {
         public bool IsMooving => isMooving;
         private bool isMooving;
@@ -16,7 +16,7 @@ namespace DiplomkaBartozel.Base.Agent
         public Position RootCoordinates { get; set; }
         public int Velocity { get; set; }
 
-        public AgentBase(Position rootCoordinates, Position goalCoordinates, int velocity)
+        public AgentBase(Position rootCoordinates, Position goalCoordinates, int velocity) : base(rootCoordinates)
         {
             GoalCoordinates = goalCoordinates;
             RootCoordinates = rootCoordinates;

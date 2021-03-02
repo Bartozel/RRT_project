@@ -1,4 +1,6 @@
-﻿using Data.Data;
+﻿using BL.Base;
+using Data;
+using Data.Data;
 using Data.Enum;
 using DiplomkaBartozel.Base;
 using DiplomkaBartozel.Interfaces;
@@ -47,23 +49,20 @@ namespace DiplomkaBartozel.RRT
         /// <summary>
         /// Calculate new position of newNode if new node is too far from closest node.
         /// </summary>
-        /// <param name="newNode">nove</param>
+        /// <param name="node">nove</param>
         /// <param name="closestNode"></param>
         /// <returns></returns>
-        protected Node Steer(Node newNode, Node closestNode)
+        protected Node Steer(Node node, Node closestNode)
         {
-            var dist = Distance(closestNode, newNode);
+            var dist = Misc.Distance(closestNode, node);
             if (dist > GlobalConfig.MaxDist)
             {
-                double shift = GlobalConfig.MaxDist / dist;
-                var newXCoordinate = (1 - shift) * closestNode.MaxX + shift * newNode.MaxX;
-                var newYCoordinate = (1 - shift) * closestNode.MaxY + shift * newNode.MaxY;
-                var n = new Node(newXCoordinate.AsInt(), newYCoordinate.AsInt());
-
+                (int newX, int newY) = Misc.CalculateCloserPosition(closestNode, node, dist, GlobalConfig.MaxDist);
+                var n = new Node(newX, newY);
                 return n;
             }
             else
-                return newNode;
+                return node;
         }
 
         protected Node FindClosestNode(Position position)
@@ -79,7 +78,7 @@ namespace DiplomkaBartozel.RRT
                     double shotestDist = double.MaxValue;
                     foreach (Node node in list)
                     {
-                        var x = Distance(position, node);
+                        var x = Misc.Distance(position, node);
                         if (x < shotestDist)
                         {
                             returnPoint = node;
@@ -97,7 +96,7 @@ namespace DiplomkaBartozel.RRT
 
         protected IEnumerable<Node> FindNodesInCloseArea(Position position)
         {
-            var nearNodes = tree.Search(SearchArea.GetNodeNearArea(position));
+            var nearNodes = tree.Search(SearchArea.GetNearSearArea(position));
 
             return nearNodes;
         }
@@ -114,21 +113,12 @@ namespace DiplomkaBartozel.RRT
             return costOfPath;
         }
 
-        public static double Distance(Position node1, Position node2)
-        {
-            return Math.Sqrt(Math.Pow(node1.XCoordinate - node2.XCoordinate, 2) + Math.Pow(node1.YCoordinate - node2.YCoordinate, 2));
-        }
-
         protected abstract Node Process(Node node);
 
         protected void AddParent(Node parent, Node child)
         {
             child.Parent = parent;
-            child.CostToParent = Distance(parent, child);
-        }
-
-        protected int CalculateNumberOfSamples()
-        {
+            child.CostToParent = Misc.Distance(parent, child);
         }
 
         public void StartSearch()

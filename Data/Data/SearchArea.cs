@@ -9,6 +9,8 @@ namespace Data.Data
 {
     public class SearchArea : Position
     {
+        private Position rootCoordinates;
+
         public int MaxX { get; }
         public int MinX { get; }
         public int MaxY { get; }
@@ -19,12 +21,24 @@ namespace Data.Data
 
         }
 
-        public SearchArea(int xMin, int xMax, int yMin, int yMax) : this()
+        public SearchArea(int coornerX1, int coornerY1, int coornerX2, int coornerY2) : this()
         {
-            MinX = xMin;
-            MaxX = xMax;
-            MinY = yMin;
-            MaxY = yMax;
+            (int minX, int maxX) = Compare(coornerX1, coornerX2);
+            (int minY, int maxY) = Compare(coornerY1, coornerY2);
+            MinX = minX;
+            MaxX = maxX;
+            MinY = minY;
+            MaxY = maxY;
+        }
+
+        public SearchArea(Position position) : base(position)
+        {
+            var area = GetSearchArea(position);
+            MaxX = area.MaxX;
+            MinX = area.MinX;
+
+            MaxY = area.MaxY;
+            MinY = area.MinY;
         }
 
         public static SearchArea GetSearchArea(Position position)
@@ -87,7 +101,7 @@ namespace Data.Data
             return new SearchArea(minX, maxX, minY, maxY);
         }
 
-        public static SearchArea GetSearchNearArea(Position position)
+        public static SearchArea GetNearSearArea(Position position)
         {
             int dist = GlobalConfig.NearAreaCenterToEdge;
             return GetSearchArea(position, dist);

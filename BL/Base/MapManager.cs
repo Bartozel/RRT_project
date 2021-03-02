@@ -7,20 +7,12 @@ namespace Data.Map
 {
     static class MapManager
     {
-        public static List<Obstacle> GetStaticObstales()
-        {
-            return MapData.StaticObstacles;
-        }
+        public static List<Obstacle>  StaticObstales { get;  } = MapData.StaticObstacles;
 
-        public static List<AgentObstacle> GetAgentObstacles()
+        public static void CreateObstacle(Position corner1, Position corner2)
         {
-
-        }
-
-        public static void CreateObstacle(Position min, Position max)
-        {
-            var sa = new SearchArea()
-            MapData.Insert();
+            var o = Obstacle.GetObstacle(corner1, corner2);
+            MapData.Add(o);
         } 
 
     }

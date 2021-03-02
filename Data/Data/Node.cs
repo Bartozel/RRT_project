@@ -10,12 +10,12 @@ namespace Data.Data
         public double CostToParent { get; set; }
         public Node Parent { get; set; }
 
-        public Node(Position position) : base(position)
+        public Node(Position position) : base()
         {
             envelope = position.GetNewEnvelope();
         }
 
-        public Node(int posX, int posY) :base(posX, posY)
+        public Node(int posX, int posY) :base()
         {
             envelope = new Position(posX, posY).GetNewEnvelope();
         }

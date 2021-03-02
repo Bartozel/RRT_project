@@ -19,7 +19,6 @@ namespace DiplomkaBartozel.Base
         public static int HeighOfSearchWindow { get; } = 800;
         public static int NearAreaCenterToEdge { get; } = 13;
         public static int SearchAreaCenterToEdge { get; } = 3;
-
         #endregion
     }
 }

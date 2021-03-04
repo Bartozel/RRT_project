@@ -15,7 +15,7 @@ namespace DiplomkaBartozel.Interfaces
 
         bool PathExist { get; }
 
-        List<Node> PathToGoal();
+        List<TreeLine> PathGoalToRoot();
         void StartSearch();
         void StopSearch();
         void RestartSearch();

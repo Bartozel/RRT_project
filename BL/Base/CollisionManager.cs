@@ -2,13 +2,7 @@
 using Data.Data;
 using Data.Map;
 using DiplomkaBartozel.Base.Agent;
-using DiplomkaBartozel.Interfaces;
-using DiplomkaBartozel.Map;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiplomkaBartozel.Base
 {
@@ -31,9 +25,9 @@ namespace DiplomkaBartozel.Base
 
         public bool IsPathBetweenPointsFree(Position p1, Position p2)
         {
-            
+            return true; //TODO
         }
-
+        
         public bool IsCollisionDynamicObstacles(SearchArea sa)
         {
             bool res = false;

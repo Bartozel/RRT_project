@@ -21,7 +21,7 @@ namespace Data
             return new Envelope(area.MinX, area.MinY, area.MaxX, area.MaxY);
         }
 
-        public static Envelope GetNewEnvelope(this SearchArea area)
+        public static Envelope GetEnvelope(this SearchArea area)
         {
             if (area == null)
                 throw new NullReferenceException();

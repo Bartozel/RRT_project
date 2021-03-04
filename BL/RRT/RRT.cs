@@ -1,4 +1,5 @@
-﻿using Data.Data;
+﻿using BL.Base;
+using Data.Data;
 using DiplomkaBartozel.Base;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace DiplomkaBartozel.RRT
                 if (collisionManager.IsPathBetweenPointsFree(newNode, closestNode))
                 {
                     newNode.Parent = closestNode;
-                    newNode.CostToParent = Distance(newNode, closestNode);
+                    newNode.CostToParent = Misc.Distance(newNode, closestNode);
                 }
 
             return newNode;

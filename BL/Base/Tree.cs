@@ -1,4 +1,5 @@
-﻿using Data.Data;
+﻿using Data;
+using Data.Data;
 using DiplomkaBartozel.Interfaces;
 using RBush;
 using System;
@@ -36,22 +37,22 @@ namespace DiplomkaBartozel.Base
 
         public void Clear(Node node)
         {
-            
+            this.tree.Delete(node);
         }
 
         public void ClearAll()
         {
-           
+            this.tree.Clear();
         }
 
         public IEnumerable<Node> GetAllNodes()
         {
-           
+            return this.tree.Search();
         }
 
         public IEnumerable<Node> Search(SearchArea area)
         {
-           
+            return this.tree.Search(area.GetEnvelope());
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using Data.Data;
+﻿using BL.Base;
+using Data.Data;
 using DiplomkaBartozel.Base;
 using DiplomkaBartozel.RRT;
 using System;
@@ -37,16 +38,16 @@ namespace DiplomkaBartozel.RRT
         {
             foreach (var node in closeNodes)
             {
-                double costOld = CostToRoot(node);
+                double costOld = PathToRoot(node).cost;
 
                 var closeNodes2 = FindNodesInCloseArea(node);
                 foreach (var node2 in closeNodes2)
                 {
-                    double distance = Distance(node, node2);
+                    double distance = Misc.Distance(node, node2);
                     if (distance == 0)
                         continue;
 
-                    double cost = CostToRoot(node2) + distance;
+                    double cost = PathToRoot(node2).cost + distance;
 
                     if (cost < costOld && collisionManager.IsPathBetweenPointsFree(node, node2))
                     {
@@ -64,8 +65,8 @@ namespace DiplomkaBartozel.RRT
             double costMin = double.MaxValue;
             foreach (Node node in nearNodes)
             {
-                double distance = Distance(node, newNode);
-                double costNew = CostToRoot(node) + distance;
+                double distance = Misc.Distance(node, newNode);
+                double costNew = PathToRoot(node).cost + distance;
                 if (costNew < costMin && collisionManager.IsPathBetweenPointsFree(newNode, node))
                 {
                     costMin = costNew;

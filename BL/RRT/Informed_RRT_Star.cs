@@ -1,4 +1,5 @@
-﻿using Data.Data;
+﻿using BL.Base;
+using Data.Data;
 using DiplomkaBartozel.Base;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace DiplomkaBartozel.RRT
         {
             if (this.PathExist)
             {
-                var dist = Distance(this.root, this.goal);
+                var dist = Misc.Distance(this.root, this.goal);
                 int width = GetPathWidth();
 
                 Position pseudoPosition = GetPseudoPosition(dist, width);

@@ -6,8 +6,11 @@ using DiplomkaBartozel.Base;
 using DiplomkaBartozel.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Windows.Shapes;
 
 namespace DiplomkaBartozel.RRT
 {
@@ -18,7 +21,9 @@ namespace DiplomkaBartozel.RRT
         protected Random rand;
         protected Position root;
         protected Position goal;
+        private CancellationTokenSource token;
         private List<IObservable<TreeLine>> observables;
+        private IObserver<TreeLine> observer;
 
         public event EventHandler PathIsAvailable;
         public event EventHandler PathIsBlocked;
@@ -38,6 +43,7 @@ namespace DiplomkaBartozel.RRT
             this.goal = goal;
             SearchState = SearchState.Creatred;
             collisionManager = new CollisionManager();
+            token = new CancellationTokenSource();
         }
 
         protected virtual Node GenerateNewNode()
@@ -101,16 +107,17 @@ namespace DiplomkaBartozel.RRT
             return nearNodes;
         }
 
-        public static double CostToRoot(Node node)
+        public static (double cost, List<Node> nodes) PathToRoot(Node node)
         {
             Node searchNode = node;
             double costOfPath = 0;
+            List<Node> nodes = null;
             while (searchNode.Parent != null)
             {
                 costOfPath += searchNode.CostToParent;
                 searchNode = searchNode.Parent;
             }
-            return costOfPath;
+            return (costOfPath, nodes);
         }
 
         protected abstract Node Process(Node node);
@@ -123,25 +130,63 @@ namespace DiplomkaBartozel.RRT
 
         public void StartSearch()
         {
-            var n = GenerateNewNode();
-            n = Process(n);
+            Start();
 
+        }
+
+        private void Start()
+        {
+            while (!this.token.IsCancellationRequested)
+            {
+                var n = GenerateNewNode();
+                n = Process(n);
+                var line = new TreeLine(n, n.Parent);
+                //observer.OnNext(line);
+            }
         }
 
         public void StopSearch()
         {
+            this.SearchState = SearchState.Stopped;
+            this.token.Cancel();
         }
 
         public void RestartSearch()
         {
+            this.SearchState = SearchState.Creatred;
+            this.tree.ClearAll();
+            this.token.Cancel();
         }
 
-        public List<Node> PathToGoal()
+        public List<TreeLine> PathGoalToRoot()
         {
+            var newPath = new List<TreeLine>();
+            var nodesNearGoal = FindNodesInCloseArea(this.goal);
+            if (nodesNearGoal.Any())
+            {
+                List<Node> bestNodes = null;
+                double bestCost = double.MaxValue;
+                foreach (var n in nodesNearGoal)
+                {
+                    var path = PathToRoot(n);
+                    if (bestCost < path.cost)
+                    {
+                        bestCost = path.cost;
+                        bestNodes = path.nodes;
+                    }
+                }
+
+                newPath = bestNodes.Where(x => x.Parent != null)
+                                    .Select(x => new TreeLine(x, x.Parent, Color.Red, 5))
+                                    .ToList();
+            }
+
+            return newPath;
         }
 
         public void ChangeRoot()
         {
+            //TODO
         }
     }
 }

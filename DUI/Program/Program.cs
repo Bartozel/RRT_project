@@ -1,17 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using BL.Agent;
 using System.Threading.Tasks;
+using Data.Data;
+using DiplomkaBartozel.Interfaces;
+using Data.Enum;
 
-namespace DUI
+namespace DUI.Program
 {
     class Program: IProgram
     {
-        private Task process;
+        private Position testStart;
+        private Position testGoal;
+        private SearchType testSP;
+        private int testVelocity = 5;
 
         public Program() 
         {
             LoadSetting();
+            testStart = new Position(20, 20);
+            testGoal = new Position(150, 150);
+            testSP = SearchType.RRT_STAR;
         }
 
         private void LoadSetting()
@@ -24,9 +32,11 @@ namespace DUI
             throw new NotImplementedException();
         }
 
-        public Task StartAsync()
+        public void StartAsync()
         {
-            throw new NotImplementedException();
+            var agent = new Agent(testStart, testGoal, testVelocity, testSP);
+            var observer = new SearchObserver();
+            agent.SubscribeSearch(observer);
         }
 
         public void Pause()

@@ -1,13 +1,8 @@
 ﻿using Data.Data;
-using DiplomkaBartozel.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
 
-namespace DiplomkaBartozel.Base.Agent
+namespace BL.Agent
 {
-    abstract class AgentBase : SearchArea
+    public abstract class AgentBase : SearchArea
     {
         public bool IsMooving => isMooving;
         private bool isMooving;

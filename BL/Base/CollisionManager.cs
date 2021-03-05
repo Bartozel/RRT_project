@@ -1,7 +1,7 @@
 ﻿using Data;
 using Data.Data;
 using Data.Map;
-using DiplomkaBartozel.Base.Agent;
+using BL.Agent;
 using System.Linq;
 
 namespace DiplomkaBartozel.Base

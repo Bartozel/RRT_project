@@ -1,28 +1,44 @@
 ﻿using DiplomkaBartozel.Interfaces;
-using System;
 using Data.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
+using Data.Enum;
+using BL.Base;
+using System;
+using System.Reactive.Linq;
 
-namespace DiplomkaBartozel.Base.Agent
+namespace BL.Agent
 {
-    class Agent : AgentBase, IAgent
+    public class Agent : AgentBase, IAgent
     {
         private ISearchEngine searchEngine;
-
-        public void GenerateSearch()
-        {
-            searchEngine.StartSearch();
-        }
 
         public override void Move()
         {
             //will be implemented with alg for dynamic planning RRTx
         }
 
-        public Agent(Position rootCoordinates, Position goalCoordinates, int velocity, ISearchEngine searchEngine) : base(rootCoordinates, goalCoordinates, velocity)
+        public IDisposable SubscribeSearch(IObserver<TreeLine> observer)
         {
-            this.searchEngine = searchEngine;
+            throw new NotImplementedException();
+        }
+
+        public void StopSearch()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Pause()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Restart()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Agent(Position rootCoordinates, Position goalCoordinates, int velocity, SearchType sp) : base(rootCoordinates, goalCoordinates, velocity)
+        {
+            this.searchEngine = SearchFactory.Create(sp, rootCoordinates, goalCoordinates);
         }
 
     }

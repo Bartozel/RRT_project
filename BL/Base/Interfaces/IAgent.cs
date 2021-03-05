@@ -15,6 +15,10 @@ namespace DiplomkaBartozel.Interfaces
         Position GoalCoordinates { get; set; }
         Position RootCoordinates { get; set; }
 
-        void GenerateSearch();
+        IDisposable SubscribeSearch(IObserver<TreeLine> observer);
+        //IDisposable SubscribeMove(IObserver<TreeLine> observer);
+        void StopSearch();
+        void Pause();
+        void Restart();
     }
 }

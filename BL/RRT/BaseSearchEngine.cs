@@ -22,8 +22,6 @@ namespace DiplomkaBartozel.RRT
         protected Position root;
         protected Position goal;
         private CancellationTokenSource token;
-        private List<IObservable<TreeLine>> observables;
-        private IObserver<TreeLine> observer;
 
         public event EventHandler PathIsAvailable;
         public event EventHandler PathIsBlocked;

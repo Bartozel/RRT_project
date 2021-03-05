@@ -11,6 +11,6 @@ namespace DiplomkaBartozel.Interfaces
 {
     interface ISearchEngine_RRT
     {
-        List<Node> SpanningTree { get; }
+
     }
 }

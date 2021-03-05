@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DiplomkaBartozel.Interfaces
 {
-    interface ISearchEngine
+    public interface ISearchEngine
     {
         event EventHandler PathIsAvailable;
         event EventHandler PathIsBlocked;
@@ -16,8 +16,6 @@ namespace DiplomkaBartozel.Interfaces
         bool PathExist { get; }
 
         List<TreeLine> PathGoalToRoot();
-        void StartSearch();
-        void StopSearch();
-        void RestartSearch();
+        TreeLine GenerateNextStep();
     }
 }

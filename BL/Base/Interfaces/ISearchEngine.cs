@@ -1,12 +1,8 @@
-﻿using DiplomkaBartozel.Base;
-using Data.Data;
+﻿using Data.Data;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DiplomkaBartozel.Interfaces
+namespace BL.Base.Interfaces
 {
     public interface ISearchEngine
     {

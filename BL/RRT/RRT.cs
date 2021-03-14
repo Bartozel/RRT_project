@@ -1,11 +1,5 @@
 ﻿using BL.Base;
 using Data.Data;
-using DiplomkaBartozel.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiplomkaBartozel.RRT
 {
@@ -17,11 +11,11 @@ namespace DiplomkaBartozel.RRT
             numberOfSamples = 200;
         }
 
-        protected override Node Process(Node node)
+        protected override Node GetNewNode(Position position)
         {
                 //Node randNode = GenerateNewNode();
-                Node closestNode = FindClosestNode(node);
-                Node newNode = Steer(node, closestNode);
+                Node closestNode = FindClosestNode(position);
+                Node newNode = Steer(position, closestNode);
                 if (collisionManager.IsPathBetweenPointsFree(newNode, closestNode))
                 {
                     newNode.Parent = closestNode;

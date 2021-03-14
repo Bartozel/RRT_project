@@ -1,31 +1,24 @@
 ﻿using BL.Base;
+using BL.Base.Interfaces;
+using Data;
 using Data.Data;
-using DiplomkaBartozel.Base;
-using DiplomkaBartozel.RRT;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DiplomkaBartozel.RRT
 {
-    class RRT_STAR : RRT
+    class RRT_STAR : RRT, ISearchEngine_RRT_STAR
     {
         public RRT_STAR(Position startPos, Position goalPos) : base(startPos, goalPos)
         {
         }
 
-        protected override Node Process(Node node)
+        protected override Node GetNewNode(Position position)
         {
-            node = base.Process(node);
+            var node = base.GetNewNode(position);
 
             var closeNodes = FindNodesInCloseArea(node);
             var newParent = FindBestParent(node, closeNodes);
             AddParent(newParent, node);
-
-            var cnWithouRoot = closeNodes.Where(x => !x.Equals(this.root)); //can't make better position for root
-            RewireTree(cnWithouRoot);
 
             return node;
         }
@@ -34,8 +27,10 @@ namespace DiplomkaBartozel.RRT
         /// Rewire surroundings of newly added node, to keep tree near to optimal.
         /// </summary>
         /// <param name="xNew"></param>
-        private void RewireTree(IEnumerable<Node> closeNodes)
+        private IEnumerable<Node> Rewire(Position newNode)
         {
+            var closeNodes = FindNodesInCloseArea(newNode);
+            List<Node> changedNodes = new List<Node>();
             foreach (var node in closeNodes)
             {
                 double costOld = PathToRoot(node).cost;
@@ -54,9 +49,11 @@ namespace DiplomkaBartozel.RRT
                         node.Parent = node2;
                         node.CostToParent = distance;
                         costOld = cost;
+                        changedNodes.Add(node);
                     }
                 }
             }
+            return changedNodes;
         }
 
         private Node FindBestParent(Node newNode, IEnumerable<Node> nearNodes)
@@ -74,6 +71,12 @@ namespace DiplomkaBartozel.RRT
                 }
             }
             return bNode;
+        }
+
+        public IEnumerable<TreeLine> GetChangesFromRewire(Position position)
+        {
+            var changedNodes = Rewire(position);
+            return changedNodes.ToLine();
         }
     }
 }

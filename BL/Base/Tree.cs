@@ -1,13 +1,11 @@
-﻿using Data;
+﻿using BL.Base.Interfaces;
+using Data;
 using Data.Data;
-using DiplomkaBartozel.Interfaces;
 using RBush;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
 
-namespace DiplomkaBartozel.Base
+namespace BL.Base
 {
     class Tree : ITreeDataStructure
     {
@@ -52,7 +50,7 @@ namespace DiplomkaBartozel.Base
 
         public IEnumerable<Node> Search(SearchArea area)
         {
-            return this.tree.Search(area.GetEnvelope());
+            return this.tree.Search(area.ToEnvelope());
         }
     }
 

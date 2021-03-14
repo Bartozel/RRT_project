@@ -1,35 +1,28 @@
 ﻿using BL.Base;
+using BL.Base.Interfaces;
 using Data;
 using Data.Data;
 using Data.Enum;
-using DiplomkaBartozel.Base;
-using DiplomkaBartozel.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading;
-using System.Windows.Shapes;
 
 namespace DiplomkaBartozel.RRT
 {
-    abstract class BaseSearchEngine : ISearchEngine, ISearchEngine_RRT
+    abstract class BaseSearchEngine : ISearchEngine
     {
         protected ITreeDataStructure tree;
         protected CollisionManager collisionManager;
         protected Random rand;
         protected Position root;
         protected Position goal;
-        private CancellationTokenSource token;
 
         public event EventHandler PathIsAvailable;
         public event EventHandler PathIsBlocked;
 
         public SearchState SearchState { get; set; }
         public List<Node> SpanningTree { get; }
-
-        List<Node> ISearchEngine_RRT.SpanningTree { get; }
 
         public bool PathExist { get; }
 
@@ -41,12 +34,11 @@ namespace DiplomkaBartozel.RRT
             this.goal = goal;
             SearchState = SearchState.Creatred;
             collisionManager = new CollisionManager();
-            token = new CancellationTokenSource();
         }
 
-        protected virtual Node GenerateNewNode()
+        protected virtual Position GenerateNewPosition()
         {
-            var n = new Node(rand.Next(GlobalConfig.WidthOfSearchWindow), rand.Next(GlobalConfig.HeighOfSearchWindow));
+            var n = new Position(rand.Next(GlobalConfig.WidthOfSearchWindow), rand.Next(GlobalConfig.HeighOfSearchWindow));
             return n;
         }
 
@@ -56,17 +48,17 @@ namespace DiplomkaBartozel.RRT
         /// <param name="node">nove</param>
         /// <param name="closestNode"></param>
         /// <returns></returns>
-        protected Node Steer(Node node, Node closestNode)
+        protected Node Steer(Position position, Node closestNode)
         {
-            var dist = Misc.Distance(closestNode, node);
+            var dist = Misc.Distance(closestNode, position);
             if (dist > GlobalConfig.MaxDist)
             {
-                (int newX, int newY) = Misc.CalculateCloserPosition(closestNode, node, dist, GlobalConfig.MaxDist);
+                (int newX, int newY) = Misc.CalculateCloserPosition(closestNode, position, dist, GlobalConfig.MaxDist);
                 var n = new Node(newX, newY);
                 return n;
             }
             else
-                return node;
+                return new Node(position.XCoordinate, position.YCoordinate);
         }
 
         protected Node FindClosestNode(Position position)
@@ -118,42 +110,12 @@ namespace DiplomkaBartozel.RRT
             return (costOfPath, nodes);
         }
 
-        protected abstract Node Process(Node node);
+        protected abstract Node GetNewNode(Position node);
 
         protected void AddParent(Node parent, Node child)
         {
             child.Parent = parent;
             child.CostToParent = Misc.Distance(parent, child);
-        }
-
-        public void StartSearch()
-        {
-            Start();
-
-        }
-
-        private void Start()
-        {
-            while (!this.token.IsCancellationRequested)
-            {
-                var n = GenerateNewNode();
-                n = Process(n);
-                var line = new TreeLine(n, n.Parent);
-                //observer.OnNext(line);
-            }
-        }
-
-        public void StopSearch()
-        {
-            this.SearchState = SearchState.Stopped;
-            this.token.Cancel();
-        }
-
-        public void RestartSearch()
-        {
-            this.SearchState = SearchState.Creatred;
-            this.tree.ClearAll();
-            this.token.Cancel();
         }
 
         public List<TreeLine> PathGoalToRoot()
@@ -182,10 +144,17 @@ namespace DiplomkaBartozel.RRT
             return newPath;
         }
 
-        public void ChangeRoot()
+        public TreeLine GenerateNextStep()
         {
-            //TODO
+            var n = GenerateNewPosition();
+            var node = GetNewNode(n);
+            this.tree.Insert(node);
+
+            TreeLine line = node.ToLine();
+
+            return line;
         }
+
     }
 }
 

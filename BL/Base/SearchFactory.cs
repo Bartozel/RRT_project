@@ -1,10 +1,8 @@
-﻿using Data.Data;
+﻿using BL.Base.Interfaces;
+using Data.Data;
 using Data.Enum;
-using DiplomkaBartozel.Interfaces;
 using DiplomkaBartozel.RRT;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BL.Base
 {

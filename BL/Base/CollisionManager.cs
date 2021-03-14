@@ -4,7 +4,7 @@ using Data.Map;
 using BL.Agent;
 using System.Linq;
 
-namespace DiplomkaBartozel.Base
+namespace BL.Base
 {
     class CollisionManager
     {

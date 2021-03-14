@@ -1,10 +1,6 @@
 ﻿using BL.Base;
 using Data.Data;
-using DiplomkaBartozel.Base;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DiplomkaBartozel.RRT
 {
@@ -15,7 +11,7 @@ namespace DiplomkaBartozel.RRT
         {
         }
 
-        protected override Node GenerateNewNode()
+        protected override Position GenerateNewPosition()
         {
             if (this.PathExist)
             {
@@ -28,11 +24,11 @@ namespace DiplomkaBartozel.RRT
                 return res;
             }
             else
-                return base.GenerateNewNode();
+                return base.GenerateNewPosition();
         }
 
         //move newly generated pseudo poin into real position between Goal and Root
-        private Node Transform(Position pseudoPosition)
+        private Position Transform(Position pseudoPosition)
         {
             throw new NotImplementedException();
         }

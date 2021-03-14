@@ -1,8 +1,5 @@
 ﻿using Data.Data;
-using DiplomkaBartozel.Base;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BL.Base
 {
@@ -14,11 +11,11 @@ namespace BL.Base
         }
 
         //TODO test
-        internal static (int newX, int newY) CalculateCloserPosition(SearchArea staticNode, SearchArea shiftNode, double currentDist, double maxDistance)
+        internal static (int newX, int newY) CalculateCloserPosition(Node staticNode, Position shiftNode, double currentDist, double maxDistance)
         {
             double shift = maxDistance / currentDist;
-            var newX = (int)((1 - shift) * staticNode.MaxX + shift * shiftNode.MaxX);
-            var newY = (int)((1 - shift) * staticNode.MaxY + shift * shiftNode.MaxY);
+            var newX = (int)((1 - shift) * staticNode.XCoordinate + shift * shiftNode.XCoordinate);
+            var newY = (int)((1 - shift) * staticNode.YCoordinate + shift * shiftNode.YCoordinate);
 
             return (newX, newY);
         }

@@ -1,9 +1,8 @@
-﻿using DiplomkaBartozel.Interfaces;
-using Data.Data;
+﻿using Data.Data;
 using Data.Enum;
 using BL.Base;
 using System;
-using System.Reactive.Linq;
+using BL.Base.Interfaces;
 
 namespace BL.Agent
 {
@@ -16,7 +15,7 @@ namespace BL.Agent
             //will be implemented with alg for dynamic planning RRTx
         }
 
-        public IDisposable SubscribeSearch(IObserver<TreeLine> observer)
+        public IDisposable SubscribeSearch(IObserver_UI observer)
         {
             throw new NotImplementedException();
         }

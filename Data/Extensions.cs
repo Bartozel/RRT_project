@@ -21,7 +21,7 @@ namespace Data
             return new Envelope(area.MinX, area.MinY, area.MaxX, area.MaxY);
         }
 
-        public static Envelope GetEnvelope(this SearchArea area)
+        public static Envelope ToEnvelope(this SearchArea area)
         {
             if (area == null)
                 throw new NullReferenceException();
@@ -35,6 +35,16 @@ namespace Data
                 return true;
 
             return false;
+        }
+
+        public static TreeLine ToLine(this Node node)
+        {
+            return new TreeLine(node, node.Parent);
+        }
+
+        public static IEnumerable<TreeLine> ToLine(this IEnumerable<Node> nodes)
+        {
+            return nodes.Select(node=> new TreeLine(node, node.Parent));
         }
     }
 }

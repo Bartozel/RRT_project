@@ -1,9 +1,8 @@
 ﻿using System;
 using BL.Agent;
-using System.Threading.Tasks;
 using Data.Data;
-using DiplomkaBartozel.Interfaces;
 using Data.Enum;
+using BL.Base.Interfaces;
 
 namespace DUI.Program
 {
@@ -32,10 +31,10 @@ namespace DUI.Program
             throw new NotImplementedException();
         }
 
-        public void StartAsync()
+        public void Start()
         {
             var agent = new Agent(testStart, testGoal, testVelocity, testSP);
-            var observer = new SearchObserver();
+            IObserver_UI observer = new SearchObserver();
             agent.SubscribeSearch(observer);
         }
 

@@ -1,9 +1,8 @@
 ﻿using Data.Data;
 using Data.Map;
-using DiplomkaBartozel.Base.Agent;
 using System.Collections.Generic;
 
-namespace Data.Map
+namespace BL.Base
 {
     static class MapManager
     {

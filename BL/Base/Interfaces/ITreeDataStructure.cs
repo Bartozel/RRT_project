@@ -1,12 +1,7 @@
 ﻿using Data.Data;
-using DiplomkaBartozel.Base;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DiplomkaBartozel.Interfaces
+namespace BL.Base.Interfaces
 {
     interface ITreeDataStructure
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DUI.Program
+namespace BL.Base.Interfaces
 {
-    interface IProgram
+    public interface IProgram
     {
-        Task StartAsync();
+        void Start();
         void Stop();
         void Pause();
         void Restart();

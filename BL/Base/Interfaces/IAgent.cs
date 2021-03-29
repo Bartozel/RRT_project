@@ -8,7 +8,7 @@ namespace BL.Base.Interfaces
         Position GoalCoordinates { get; set; }
         Position RootCoordinates { get; set; }
 
-        IDisposable SubscribeSearch(IObserver_UI observer);
+        void SubscribeSearch(IObserver_RRT observer);
         void StopSearch();
         void Pause();
         void Restart();

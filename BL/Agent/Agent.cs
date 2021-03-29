@@ -3,21 +3,48 @@ using Data.Enum;
 using BL.Base;
 using System;
 using BL.Base.Interfaces;
+using System.Reactive;
+using System.Reactive.Linq;
+using System.Reactive.Disposables;
+using Data;
 
 namespace BL.Agent
 {
     public class Agent : AgentBase, IAgent
     {
         private ISearchEngine searchEngine;
+        private IObserver_RRT observer;
 
         public override void Move()
         {
             //will be implemented with alg for dynamic planning RRTx
         }
 
-        public IDisposable SubscribeSearch(IObserver_UI observer)
+        public void SubscribeSearch(IObserver_RRT observer)
         {
-            throw new NotImplementedException();
+            this.observer = observer;
+        }
+
+        private void SubscribeUpdate()
+        {
+            
+        }
+
+        private void SubscribeAdd()
+        {
+            var numOfSamples = 2000;//GlobalConfig.
+            var observeble = Observable.Create<TreeLine>(x =>
+            {
+                int i = 0;
+                while(i >=numOfSamples)
+                {
+                    x.OnNext(searchEngine.GenerateNextStep());
+                }
+                x.OnCompleted();
+                return Disposable.Empty;
+            });
+
+            observeble.Subscribe(this.observer);
         }
 
         public void StopSearch()

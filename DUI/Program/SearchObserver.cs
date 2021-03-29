@@ -6,7 +6,7 @@ using System.Reactive;
 
 namespace DUI.Program
 {
-    class SearchObserver : IObserver_UI
+    class SearchObserver : IObserver_RRT
     {
         public void Add(TreeLine treeLine)
         {

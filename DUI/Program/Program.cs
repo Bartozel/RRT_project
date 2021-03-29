@@ -34,7 +34,7 @@ namespace DUI.Program
         public void Start()
         {
             var agent = new Agent(testStart, testGoal, testVelocity, testSP);
-            IObserver_UI observer = new SearchObserver();
+            IObserver_RRT observer = new SearchObserver();
             agent.SubscribeSearch(observer);
         }
 

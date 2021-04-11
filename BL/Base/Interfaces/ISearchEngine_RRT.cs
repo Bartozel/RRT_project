@@ -4,10 +4,12 @@ using System.Collections.Generic;
 
 namespace BL.Base.Interfaces
 {
-    interface ISearchEngine_RRT_STAR
+    interface ISearchEngine_RRT : ISearchEngine
     {
-        event EventHandler NewPoint;
+        IObservable<TreeLine> UpdateTree(Position position);
 
-        IEnumerable<TreeLine> GetChangesFromRewire(Position position);
+        IObservable<TreeLine> GenerateNextStep();
+
+        void Subscript(IObserver_RRT observer);
     }
 }

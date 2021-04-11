@@ -18,7 +18,5 @@ namespace BL.Agent
             Velocity = velocity;
             this.isMooving = false;
         }
-
-        public abstract void Move();
     }
 }

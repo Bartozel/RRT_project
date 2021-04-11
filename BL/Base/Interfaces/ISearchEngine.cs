@@ -12,6 +12,5 @@ namespace BL.Base.Interfaces
         bool PathExist { get; }
 
         List<TreeLine> PathGoalToRoot();
-        TreeLine GenerateNextStep();
     }
 }

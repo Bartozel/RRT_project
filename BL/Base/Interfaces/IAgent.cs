@@ -8,7 +8,6 @@ namespace BL.Base.Interfaces
         Position GoalCoordinates { get; set; }
         Position RootCoordinates { get; set; }
 
-        void SubscribeSearch(IObserver_RRT observer);
         void StopSearch();
         void Pause();
         void Restart();

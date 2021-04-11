@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace DiplomkaBartozel.RRT
 {
-    abstract class BaseSearchEngine : ISearchEngine
+    abstract class BaseRrtSearchEngine :  ISearchEngine_RRT
     {
         protected ITreeDataStructure tree;
         protected CollisionManager collisionManager;
@@ -23,10 +23,8 @@ namespace DiplomkaBartozel.RRT
 
         public SearchState SearchState { get; set; }
         public List<Node> SpanningTree { get; }
-
         public bool PathExist { get; }
-
-        public BaseSearchEngine(Position root, Position goal)
+        public BaseRrtSearchEngine(Position root, Position goal)
         {
             rand = new Random();
             tree = new Tree(root);
@@ -35,13 +33,11 @@ namespace DiplomkaBartozel.RRT
             SearchState = SearchState.Creatred;
             collisionManager = new CollisionManager();
         }
-
         protected virtual Position GenerateNewPosition()
         {
             var n = new Position(rand.Next(GlobalConfig.WidthOfSearchWindow), rand.Next(GlobalConfig.HeighOfSearchWindow));
             return n;
         }
-
         /// <summary>
         /// Calculate new position of newNode if new node is too far from closest node.
         /// </summary>
@@ -60,7 +56,6 @@ namespace DiplomkaBartozel.RRT
             else
                 return new Node(position.XCoordinate, position.YCoordinate);
         }
-
         protected Node FindClosestNode(Position position)
         {
             int apend = GlobalConfig.MaxDist;
@@ -89,14 +84,12 @@ namespace DiplomkaBartozel.RRT
 
             return returnPoint;
         }
-
         protected IEnumerable<Node> FindNodesInCloseArea(Position position)
         {
             var nearNodes = tree.Search(SearchArea.GetNearSearArea(position));
 
             return nearNodes;
         }
-
         public static (double cost, List<Node> nodes) PathToRoot(Node node)
         {
             Node searchNode = node;
@@ -109,15 +102,11 @@ namespace DiplomkaBartozel.RRT
             }
             return (costOfPath, nodes);
         }
-
-        protected abstract Node GetNewNode(Position node);
-
         protected void AddParent(Node parent, Node child)
         {
             child.Parent = parent;
             child.CostToParent = Misc.Distance(parent, child);
         }
-
         public List<TreeLine> PathGoalToRoot()
         {
             var newPath = new List<TreeLine>();
@@ -143,18 +132,10 @@ namespace DiplomkaBartozel.RRT
 
             return newPath;
         }
-
-        public TreeLine GenerateNextStep()
-        {
-            var n = GenerateNewPosition();
-            var node = GetNewNode(n);
-            this.tree.Insert(node);
-
-            TreeLine line = node.ToLine();
-
-            return line;
-        }
-
+        protected abstract Node GetNewNode(Position node);
+        public abstract IObservable<TreeLine> UpdateTree(Position position);
+        public abstract IObservable<TreeLine> GenerateNextStep();
+        public abstract void Subscript(IObserver_RRT observer);
     }
 }
 

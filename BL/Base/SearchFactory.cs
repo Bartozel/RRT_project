@@ -8,9 +8,9 @@ namespace BL.Base
 {
     class SearchFactory
     {
-        public static ISearchEngine Create(SearchType sp, Position start, Position goal)
+        public static ISearchEngine_RRT CreateRrtEngine(SearchType sp, Position start, Position goal)
         {
-            ISearchEngine search;
+            ISearchEngine_RRT search;
             switch (sp)
             {
                 case SearchType.RRT:

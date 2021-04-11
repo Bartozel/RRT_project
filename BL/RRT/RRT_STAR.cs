@@ -2,14 +2,30 @@
 using BL.Base.Interfaces;
 using Data;
 using Data.Data;
+using System;
 using System.Collections.Generic;
 
 namespace DiplomkaBartozel.RRT
 {
-    class RRT_STAR : RRT, ISearchEngine_RRT_STAR
+    class RRT_STAR : RRT
     {
         public RRT_STAR(Position startPos, Position goalPos) : base(startPos, goalPos)
         {
+        }
+
+        public override IObservable<TreeLine> GenerateNextStep()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Subscript(IObserver_RRT observer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IObservable<TreeLine> UpdateTree(Position position)
+        {
+            throw new NotImplementedException();
         }
 
         protected override Node GetNewNode(Position position)

@@ -9,6 +9,7 @@ namespace BL.Base.Interfaces
         Position RootCoordinates { get; set; }
 
         void StopSearch();
+        IObservable<TreeLine> StartSearch();
         void Pause();
         void Restart();
     }

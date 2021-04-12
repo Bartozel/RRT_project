@@ -12,6 +12,7 @@ namespace BL.Agent
 {
     public abstract class Agent : AgentBase, IAgent
     {
+        public abstract IObservable<TreeLine> StartSearch();
         public abstract void StopSearch();
         public abstract void Pause();
         public abstract void Restart();

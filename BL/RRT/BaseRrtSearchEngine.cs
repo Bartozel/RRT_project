@@ -132,10 +132,10 @@ namespace DiplomkaBartozel.RRT
 
             return newPath;
         }
+
         protected abstract Node GetNewNode(Position node);
         public abstract IObservable<TreeLine> UpdateTree(Position position);
-        public abstract IObservable<TreeLine> GenerateNextStep();
-        public abstract void Subscript(IObserver_RRT observer);
+        public abstract IObservable<TreeLine> GenerateNextStep(int amount);
     }
 }
 

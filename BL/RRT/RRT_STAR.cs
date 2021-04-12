@@ -3,29 +3,42 @@ using BL.Base.Interfaces;
 using Data;
 using Data.Data;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reactive.Disposables;
+using System.Reactive.Linq;
 
 namespace DiplomkaBartozel.RRT
 {
     class RRT_STAR : RRT
     {
+        private ConcurrentQueue<Node> newNodes;
+
         public RRT_STAR(Position startPos, Position goalPos) : base(startPos, goalPos)
         {
+            newNodes = new ConcurrentQueue<Node>();
         }
 
-        public override IObservable<TreeLine> GenerateNextStep()
+        public override IObservable<TreeLine> GenerateNextStep(int amount)
         {
-            throw new NotImplementedException();
-        }
+            return Observable.Create<TreeLine>(o =>
+            {
+                for (int x = 0; x <= amount; x++)
+                {
+                    var newNode = GenerateNextStep();
+                    newNodes.Enqueue(newNode);
+                    o.OnNext(newNode.ToLine());
+                }
 
-        public override void Subscript(IObserver_RRT observer)
-        {
-            throw new NotImplementedException();
+                return Disposable.Empty;
+            });
         }
 
         public override IObservable<TreeLine> UpdateTree(Position position)
         {
-            throw new NotImplementedException();
+            var changes = GetChangesFromRewire(position);
+            return changes.ToObservable();
         }
 
         protected override Node GetNewNode(Position position)

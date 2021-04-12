@@ -8,10 +8,5 @@ namespace BL.Agent
         {
 
         }
-
-        public override void Move()
-        {
-            
-        }
     }
 }

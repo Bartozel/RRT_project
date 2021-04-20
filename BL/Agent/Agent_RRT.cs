@@ -15,8 +15,8 @@ namespace BL.Agent
     public class Agent_RRT : Agent
     {
         private ISearchEngine_RRT searchEngine;
-        private List<IObserver<TreeLine>> createObserver;
-        private List<IObserver<TreeLine>> updateObserver;
+        private List<IObserver<Node>> createObserver;
+        private List<IObserver<Node>> updateObserver;
         private List<IObserver<SearchArea>> moveObserver;
 
 
@@ -24,17 +24,17 @@ namespace BL.Agent
         {
             this.searchEngine = SearchFactory.CreateRrtEngine(sp, rootCoordinates, goalCoordinates);
 
-            this.createObserver = new List<IObserver<TreeLine>>();
-            this.updateObserver = new List<IObserver<TreeLine>>();
+            this.createObserver = new List<IObserver<Node>>();
+            this.updateObserver = new List<IObserver<Node>>();
             this.moveObserver = new List<IObserver<SearchArea>>();
         }
 
-        public void SubscribeSearchCreate(IObserver<TreeLine> observer)
+        public void SubscribeSearchCreate(IObserver<Node> observer)
         {
             this.createObserver.Add(observer);
         }
 
-        public void SubscribeSearchUpdate(IObserver<TreeLine> observer)
+        public void SubscribeSearchUpdate(IObserver<Node> observer)
         {
             this.updateObserver.Add(observer);
         }
@@ -59,29 +59,29 @@ namespace BL.Agent
             throw new NotImplementedException();
         }
 
-        public override IObservable<TreeLine> StartSearch()
+        public override IObservable<Node> StartSearch()
         {
             var co = NewLineObservable();
             this.createObserver.ForEach(x => co.Subscribe(x));
 
-            var uo = UpdateObservable();
-            this.updateObserver.ForEach(x => uo.Subscribe(x));
+            //var uo = UpdateObservable();
+            //this.updateObserver.ForEach(x => uo.Subscribe(x));
 
             return co;
         }
 
-        private IObservable<TreeLine> NewLineObservable()
+        private IObservable<Node> NewLineObservable()
         {
             IScheduler scheduler = DefaultScheduler.Instance;
             int amount = 20000;
-            return Observable.Create<TreeLine>(o =>
+            return Observable.Create<Node>(o =>
             {
                 var cancellation = new CancellationDisposable();
                 var scheduledWork = scheduler.Schedule(() =>
                 {
                     try
                     {
-                        searchEngine.GenerateNextStep(amount);
+                        searchEngine.CreateNewNodeObs(amount);
                         o.OnCompleted();
                     }
                     catch (Exception ex)
@@ -93,7 +93,7 @@ namespace BL.Agent
             });
         }
 
-        private IObservable<TreeLine> UpdateObservable()
+        private IObservable<Node> UpdateObservable()
         {
             IScheduler scheduler = DefaultScheduler.Instance;
             int amount = 20000;

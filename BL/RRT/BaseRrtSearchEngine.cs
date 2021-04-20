@@ -17,6 +17,7 @@ namespace DiplomkaBartozel.RRT
         protected Random rand;
         protected Position root;
         protected Position goal;
+        public IObservable<Node> NewNodeObs { get; protected set; }
 
         public event EventHandler PathIsAvailable;
         public event EventHandler PathIsBlocked;
@@ -134,8 +135,8 @@ namespace DiplomkaBartozel.RRT
         }
 
         protected abstract Node GetNewNode(Position node);
-        public abstract IObservable<TreeLine> UpdateTree(Position position);
-        public abstract IObservable<TreeLine> GenerateNextStep(int amount);
+        public abstract IObservable<Node> UpdateTree();
+        public abstract IObservable<Node> CreateNewNodeObs(int amount);
     }
 }
 

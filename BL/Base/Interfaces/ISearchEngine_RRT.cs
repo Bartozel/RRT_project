@@ -6,7 +6,7 @@ namespace BL.Base.Interfaces
 {
     interface ISearchEngine_RRT : ISearchEngine
     {
-        IObservable<TreeLine> UpdateTree(Position position);
-        IObservable<TreeLine> GenerateNextStep(int amount);
+        IObservable<Node> UpdateTree();
+        IObservable<Node> CreateNewNodeObs(int amount);
     }
 }

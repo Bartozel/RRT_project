@@ -4,6 +4,7 @@ using Data;
 using Data.Data;
 using System;
 using System.Collections.Generic;
+using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -18,18 +19,33 @@ namespace DiplomkaBartozel.RRT
 
         }
 
-        public override IObservable<TreeLine> GenerateNextStep(int amount)
+        public override IObservable<Node> CreateNewNodeObs(int amount)
         {
-            return Observable.Create<TreeLine>(o =>
+            IScheduler scheduler = DefaultScheduler.Instance;
+            var obs =  Observable.Create<Node>(o =>
             {
-                for (int x = 0; x <= amount; x++)
+                var cancellation = new CancellationDisposable();
+                var scheduledWork = scheduler.Schedule(() =>
                 {
-                    var node = GenerateNextStep();
-                    o.OnNext(node.ToLine());
-                }
-
-                return Disposable.Empty;
+                    try
+                    {
+                        for (int x = 0; x <= amount; x++)
+                        {
+                            var node = GenerateNextStep();
+                            o.OnNext(node);
+                        }
+                        o.OnCompleted();
+                    }
+                    catch (Exception ex)
+                    {
+                        o.OnError(ex);
+                    }
+                });
+                return new CompositeDisposable(scheduledWork, cancellation);
             });
+
+            this.NewNodeObs = obs;
+            return this.NewNodeObs;
         }
 
         protected Node GenerateNextStep()
@@ -40,9 +56,9 @@ namespace DiplomkaBartozel.RRT
             return node;
         }
 
-        public override IObservable<TreeLine> UpdateTree(Position position)
+        public override IObservable<Node> UpdateTree()
         {
-            return new List<TreeLine>().ToObservable();
+            return new List<Node>().ToObservable();
         }
 
         protected override Node GetNewNode(Position position)

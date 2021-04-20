@@ -6,6 +6,8 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reactive;
+using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 
@@ -13,32 +15,29 @@ namespace DiplomkaBartozel.RRT
 {
     class RRT_STAR : RRT
     {
-        private ConcurrentQueue<Node> newNodes;
-
+        private IObservable<Node> createObservable;
         public RRT_STAR(Position startPos, Position goalPos) : base(startPos, goalPos)
         {
-            newNodes = new ConcurrentQueue<Node>();
+            SubscribeNewNode();
         }
 
-        public override IObservable<TreeLine> GenerateNextStep(int amount)
+        private void SubscribeNewNode()
         {
-            return Observable.Create<TreeLine>(o =>
-            {
-                for (int x = 0; x <= amount; x++)
-                {
-                    var newNode = GenerateNextStep();
-                    newNodes.Enqueue(newNode);
-                    o.OnNext(newNode.ToLine());
-                }
-
-                return Disposable.Empty;
-            });
+            throw new NotImplementedException();
         }
 
-        public override IObservable<TreeLine> UpdateTree(Position position)
+        public override IObservable<Node> CreateNewNodeObs(int amount)
         {
-            var changes = GetChangesFromRewire(position);
-            return changes.ToObservable();
+            return base.CreateNewNodeObs(amount);
+        }
+
+        public override IObservable<Node> UpdateTree()
+        {
+            if (this.NewNodeObs == null)
+                throw new Exception("Updatetree:NewNodeObs==null");
+
+            var updateObs = this.NewNodeObs.SelectMany(x => GetChangesFromRewire(x));
+            return updateObs;
         }
 
         protected override Node GetNewNode(Position position)
@@ -56,33 +55,38 @@ namespace DiplomkaBartozel.RRT
         /// Rewire surroundings of newly added node, to keep tree near to optimal.
         /// </summary>
         /// <param name="xNew"></param>
-        private IEnumerable<Node> Rewire(Position newNode)
+        private IObservable<Node> Rewire(Position newNode)
         {
             var closeNodes = FindNodesInCloseArea(newNode);
-            List<Node> changedNodes = new List<Node>();
-            foreach (var node in closeNodes)
+
+            var obs = Observable.Create<Node>(x =>
             {
-                double costOld = PathToRoot(node).cost;
-
-                var closeNodes2 = FindNodesInCloseArea(node);
-                foreach (var node2 in closeNodes2)
+                foreach (var node in closeNodes)
                 {
-                    double distance = Misc.Distance(node, node2);
-                    if (distance == 0)
-                        continue;
+                    double costOld = PathToRoot(node).cost;
 
-                    double cost = PathToRoot(node2).cost + distance;
-
-                    if (cost < costOld && collisionManager.IsPathBetweenPointsFree(node, node2))
+                    var closeNodes2 = FindNodesInCloseArea(node);
+                    foreach (var node2 in closeNodes2)
                     {
-                        node.Parent = node2;
-                        node.CostToParent = distance;
-                        costOld = cost;
-                        changedNodes.Add(node);
+                        double distance = Misc.Distance(node, node2);
+                        if (distance == 0)
+                            continue;
+
+                        double cost = PathToRoot(node2).cost + distance;
+
+                        if (cost < costOld && collisionManager.IsPathBetweenPointsFree(node, node2))
+                        {
+                            node.Parent = node2;
+                            node.CostToParent = distance;
+                            costOld = cost;
+                            x.OnNext(node);
+                        }
                     }
                 }
-            }
-            return changedNodes;
+                return Disposable.Empty;
+            });
+
+            return obs;
         }
 
         private Node FindBestParent(Node newNode, IEnumerable<Node> nearNodes)
@@ -102,10 +106,10 @@ namespace DiplomkaBartozel.RRT
             return bNode;
         }
 
-        public IEnumerable<TreeLine> GetChangesFromRewire(Position position)
+        public IObservable<Node> GetChangesFromRewire(Position position)
         {
             var changedNodes = Rewire(position);
-            return changedNodes.ToLine();
+            return changedNodes;
         }
     }
 }

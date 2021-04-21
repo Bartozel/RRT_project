@@ -8,8 +8,10 @@ namespace BL.Base.Interfaces
         Position GoalCoordinates { get; set; }
         Position RootCoordinates { get; set; }
 
+        IObservable<Node> GetNewNodeObs { get; }
+        IObservable<Node> GetUpdateNodeObs { get; }
+
         void StopSearch();
-        IObservable<Node> StartSearch();
         void Pause();
         void Restart();
     }

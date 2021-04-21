@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Canvas x:Name="canvasMap" Grid.Column="1" Background="White"></Canvas>
     </Grid>
 </UserControl>

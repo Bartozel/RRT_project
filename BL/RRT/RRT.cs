@@ -1,14 +1,11 @@
 ﻿using BL.Base;
-using BL.Base.Interfaces;
-using Data;
 using Data.Data;
 using System;
 using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Navigation;
+using System.Threading;
 
 namespace DiplomkaBartozel.RRT
 {
@@ -19,12 +16,11 @@ namespace DiplomkaBartozel.RRT
 
         }
 
-        public override IObservable<Node> CreateNewNodeObs(int amount)
+        public override IObservable<Node> CreateNewNodeObs(uint amount, CancellationDisposable cancelationToken)
         {
             IScheduler scheduler = DefaultScheduler.Instance;
             var obs =  Observable.Create<Node>(o =>
             {
-                var cancellation = new CancellationDisposable();
                 var scheduledWork = scheduler.Schedule(() =>
                 {
                     try
@@ -41,11 +37,10 @@ namespace DiplomkaBartozel.RRT
                         o.OnError(ex);
                     }
                 });
-                return new CompositeDisposable(scheduledWork, cancellation);
+                return new CompositeDisposable(scheduledWork, cancelationToken);
             });
 
-            this.NewNodeObs = obs;
-            return this.NewNodeObs;
+            return obs;
         }
 
         protected Node GenerateNextStep()

@@ -9,44 +9,56 @@ using System.Reactive.Disposables;
 using Data;
 using System.Collections.Generic;
 using System.Reactive.Concurrency;
+using System.Threading;
 
 namespace BL.Agent
 {
     public class Agent_RRT : Agent
     {
         private ISearchEngine_RRT searchEngine;
-        private List<IObserver<Node>> createObserver;
-        private List<IObserver<Node>> updateObserver;
-        private List<IObserver<SearchArea>> moveObserver;
+        CancellationDisposable cancellationToken;
 
+        /// <summary>
+        /// Default value 5000
+        /// </summary>
+        public uint NodeQuantity { get; set; }
+
+        public override IObservable<Node> GetNewNodeObs
+        {
+            get
+            {
+                if (this.newNodeObs == null)
+                    this.newNodeObs = NewNodeObservable();
+
+                return this.newNodeObs;
+            }
+        }
+        private IObservable<Node> newNodeObs;
+
+        public override IObservable<Node> GetUpdateNodeObs
+        {
+            get
+            {
+                if (this.updateNodeObs == null)
+                {
+                    this.updateNodeObs = GetUpdateObservable();
+                }
+
+                return this.updateNodeObs;
+            }
+        }
+        private IObservable<Node> updateNodeObs;
 
         public Agent_RRT(Position rootCoordinates, Position goalCoordinates, int velocity, SearchType sp) : base(rootCoordinates, goalCoordinates, velocity, sp)
         {
             this.searchEngine = SearchFactory.CreateRrtEngine(sp, rootCoordinates, goalCoordinates);
-
-            this.createObserver = new List<IObserver<Node>>();
-            this.updateObserver = new List<IObserver<Node>>();
-            this.moveObserver = new List<IObserver<SearchArea>>();
-        }
-
-        public void SubscribeSearchCreate(IObserver<Node> observer)
-        {
-            this.createObserver.Add(observer);
-        }
-
-        public void SubscribeSearchUpdate(IObserver<Node> observer)
-        {
-            this.updateObserver.Add(observer);
-        }
-
-        public void SubscribeAgentMove(IObserver<SearchArea> observer)
-        {
-            this.moveObserver.Add(observer);
+            this.cancellationToken = new CancellationDisposable();
+            NodeQuantity = 5000;
         }
 
         public override void StopSearch()
         {
-            throw new NotImplementedException();
+            cancellationToken.Dispose();
         }
 
         public override void Pause()
@@ -59,69 +71,19 @@ namespace BL.Agent
             throw new NotImplementedException();
         }
 
-        public override IObservable<Node> StartSearch()
+        private IObservable<Node> NewNodeObservable()
         {
-            var co = NewLineObservable();
-            this.createObserver.ForEach(x => co.Subscribe(x));
-
-            //var uo = UpdateObservable();
-            //this.updateObserver.ForEach(x => uo.Subscribe(x));
-
-            return co;
+            var obs = searchEngine.CreateNewNodeObs(this.NodeQuantity, cancellationToken);
+            return obs;
         }
 
-        private IObservable<Node> NewLineObservable()
+        private IObservable<Node> GetUpdateObservable()
         {
-            IScheduler scheduler = DefaultScheduler.Instance;
-            int amount = 20000;
-            return Observable.Create<Node>(o =>
-            {
-                var cancellation = new CancellationDisposable();
-                var scheduledWork = scheduler.Schedule(() =>
-                {
-                    try
-                    {
-                        searchEngine.CreateNewNodeObs(amount);
-                        o.OnCompleted();
-                    }
-                    catch (Exception ex)
-                    {
-                        o.OnError(ex);
-                    }
-                });
-                return new CompositeDisposable(scheduledWork, cancellation);
-            });
-        }
+            if (this.newNodeObs == null)
+                this.newNodeObs = NewNodeObservable();
 
-        private IObservable<Node> UpdateObservable()
-        {
-            IScheduler scheduler = DefaultScheduler.Instance;
-            int amount = 20000;
-            return Observable.Create<TreeLine>(o =>
-            {
-                var cancellation = new CancellationDisposable();
-                var scheduledWork = scheduler.Schedule(() =>
-                {
-                    try
-                    {
-
-                        for (int x = 0; x < amount; x++)
-                        {
-                            //cancellation.Token.ThrowIfCancellationRequested();
-
-                            //var line = searchEngine.GenerateNextStep(amount);
-                            //o.OnNext(line);
-                        }
-
-                        o.OnCompleted();
-                    }
-                    catch (Exception ex)
-                    {
-                        o.OnError(ex);
-                    }
-                });
-                return new CompositeDisposable(scheduledWork, cancellation);
-            });
+            var obs= searchEngine.UpdateTree();
+            return obs;
         }
     }
 }

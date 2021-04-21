@@ -12,7 +12,7 @@
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="9*" />
         </Grid.ColumnDefinitions>
-        
+
         <Grid x:Name="grdMenu" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -28,8 +28,10 @@
             <Button x:Name="bPause" Content="Pause" Click="bPause_Click" Grid.Row="2"/>
             <Button x:Name="bRestart" Content="Restart" Click="bRestart_Click" Grid.Row="3"/>
             <Button x:Name="bSetting" Content="Setting" Click="bSetting_Click" Grid.Row="4"/>
-        </Grid>
-        <Canvas Grid.Column="1"></Canvas>
 
+        </Grid>
+        <Grid x:Name="grdMapa" Grid.Column="1">
+            <local:Mapa x:Name="canvasMap"></local:Mapa>
+        </Grid>
     </Grid>
 </Window>

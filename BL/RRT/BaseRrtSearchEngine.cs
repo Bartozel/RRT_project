@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Reactive.Disposables;
+using System.Threading;
 
 namespace DiplomkaBartozel.RRT
 {
@@ -17,7 +19,6 @@ namespace DiplomkaBartozel.RRT
         protected Random rand;
         protected Position root;
         protected Position goal;
-        public IObservable<Node> NewNodeObs { get; protected set; }
 
         public event EventHandler PathIsAvailable;
         public event EventHandler PathIsBlocked;
@@ -136,7 +137,7 @@ namespace DiplomkaBartozel.RRT
 
         protected abstract Node GetNewNode(Position node);
         public abstract IObservable<Node> UpdateTree();
-        public abstract IObservable<Node> CreateNewNodeObs(int amount);
+        public abstract IObservable<Node> CreateNewNodeObs(uint amount, CancellationDisposable cancellationToken);
     }
 }
 

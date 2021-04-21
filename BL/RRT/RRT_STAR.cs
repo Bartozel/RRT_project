@@ -10,12 +10,14 @@ using System.Reactive;
 using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Threading;
 
 namespace DiplomkaBartozel.RRT
 {
     class RRT_STAR : RRT
     {
-        private IObservable<Node> createObservable;
+        public IObservable<Node> NewNodeObs { get; protected set; }
+
         public RRT_STAR(Position startPos, Position goalPos) : base(startPos, goalPos)
         {
             SubscribeNewNode();
@@ -26,9 +28,10 @@ namespace DiplomkaBartozel.RRT
             throw new NotImplementedException();
         }
 
-        public override IObservable<Node> CreateNewNodeObs(int amount)
+        public override IObservable<Node> CreateNewNodeObs(uint amount, CancellationDisposable cancelationToken)
         {
-            return base.CreateNewNodeObs(amount);
+            this.NewNodeObs = base.CreateNewNodeObs(amount, cancelationToken);
+            return this.NewNodeObs;
         }
 
         public override IObservable<Node> UpdateTree()

@@ -3,13 +3,13 @@ using System;
 
 namespace BL.Base.Interfaces
 {
-    interface IAgent
+    public interface IAgent
     {
         Position GoalCoordinates { get; set; }
         Position RootCoordinates { get; set; }
 
-        IObservable<Node> GetNewNodeObs { get; }
-        IObservable<Node> GetUpdateNodeObs { get; }
+        IObservable<Node> GetNewNodeObs(uint nodeCount);
+        IObservable<Node> GetUpdateNodeObs();
 
         void StopSearch();
         void Pause();

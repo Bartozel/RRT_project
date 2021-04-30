@@ -49,23 +49,23 @@ namespace DiplomkaBartozel.RRT
         protected Node Steer(Position position, Node closestNode)
         {
             var dist = Misc.Distance(closestNode, position);
-            if (dist > GlobalConfig.MaxDist)
+            if (dist > GlobalConfig.MAX_DISTANCE)
             {
-                (int newX, int newY) = Misc.CalculateCloserPosition(closestNode, position, dist, GlobalConfig.MaxDist);
-                var n = new Node(newX, newY);
+                (int newX, int newY) = Misc.CalculateCloserPosition(closestNode, position, dist, GlobalConfig.MAX_DISTANCE);
+                var n = new Node(new Position(newX, newY));
                 return n;
             }
             else
-                return new Node(position.XCoordinate, position.YCoordinate);
+                return new Node(position);
         }
         protected Node FindClosestNode(Position position)
         {
-            int apend = GlobalConfig.MaxDist;
+            int apend = GlobalConfig.MAX_DISTANCE;
             Node returnPoint = null;
 
             while (true)
             {
-                var list = FindNodesInCloseArea(position);
+                var list = FindNodesInCloseArea(position, apend);
                 if (list.Any())
                 {
                     double shotestDist = double.MaxValue;
@@ -86,9 +86,10 @@ namespace DiplomkaBartozel.RRT
 
             return returnPoint;
         }
-        protected IEnumerable<Node> FindNodesInCloseArea(Position position)
+
+        protected IEnumerable<Node> FindNodesInCloseArea(Position position, int dist = GlobalConfig.MAX_DISTANCE)
         {
-            var nearNodes = tree.Search(SearchArea.GetNearSearArea(position));
+            var nearNodes = tree.Search(SearchArea.GetNearSearArea(position, dist));
 
             return nearNodes;
         }

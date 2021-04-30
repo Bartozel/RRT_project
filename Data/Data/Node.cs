@@ -10,14 +10,9 @@ namespace Data.Data
         public double CostToParent { get; set; }
         public Node Parent { get; set; }
 
-        public Node(Position position) : base()
+        public Node(Position position) : base(position)
         {
-            envelope = position.GetNewEnvelope();
-        }
-
-        public Node(int posX, int posY) :base()
-        {
-            envelope = new Position(posX, posY).GetNewEnvelope();
+            envelope = this.GetNewEnvelope();
         }
 
         public int CompareTo(Node other)

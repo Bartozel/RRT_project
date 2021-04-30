@@ -6,6 +6,8 @@ using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Documents;
 
 namespace DiplomkaBartozel.RRT
 {
@@ -18,8 +20,9 @@ namespace DiplomkaBartozel.RRT
 
         public override IObservable<Node> CreateNewNodeObs(uint amount, CancellationDisposable cancelationToken)
         {
-            IScheduler scheduler = DefaultScheduler.Instance;
-            var obs =  Observable.Create<Node>(o =>
+            EventLoopScheduler scheduler = new EventLoopScheduler();
+
+            var obs = Observable.Create<Node>(o =>
             {
                 var scheduledWork = scheduler.Schedule(() =>
                 {
@@ -28,6 +31,7 @@ namespace DiplomkaBartozel.RRT
                         for (int x = 0; x <= amount; x++)
                         {
                             var node = GenerateNextStep();
+                            Thread.Sleep(25);
                             o.OnNext(node);
                         }
                         o.OnCompleted();
@@ -39,7 +43,6 @@ namespace DiplomkaBartozel.RRT
                 });
                 return new CompositeDisposable(scheduledWork, cancelationToken);
             });
-
             return obs;
         }
 

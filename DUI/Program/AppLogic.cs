@@ -10,47 +10,37 @@ using System.Reactive.Concurrency;
 
 namespace DUI.Program
 {
-    public static class AppLogic
+    public class AppLogic
     {
-        private static Position testStart;
-        private static Position testGoal;
-        private static SearchType testSP;
-        private static int testVelocity = 5;
+        //test properties
+        private IAgent agent;
 
-        static AppLogic()
+        public Position StartPosition { get; internal set; }
+
+        public AppLogic() { }
+
+        public AppLogic(Position start, Position goal, SearchType st) : base()
         {
-            LoadSetting();
-            testStart = new Position(20, 20);
-            testGoal = new Position(150, 150);
-            testSP = SearchType.RRT;
+            agent = new Agent_RRT(start, goal, 5, st);
         }
 
-        private static void LoadSetting()
+        public void Stop()
         {
-            //TODO
+            agent.StopSearch();
         }
 
-        public static void Stop()
+        public IObservable<Node> Start()
         {
-            throw new NotImplementedException();
-        }
-
-        public static IObservable<Node> Start(IObserver<Node> observer)
-        {
-            var agent = new Agent_RRT(testStart, testGoal, testVelocity, testSP);
-            var disp = agent.GetNewNodeObs;
-            disp.ObserveOn(DispatcherScheduler.Current)
-                .Subscribe(observer);
-
+            var disp = agent.GetNewNodeObs(500);
             return disp;
         }
 
-        public static void Pause()
+        public void Pause()
         {
             throw new NotImplementedException();
         }
 
-        public static void Restart()
+        public void Restart()
         {
             throw new NotImplementedException();
         }

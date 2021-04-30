@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="850">
     <Grid x:Name="grdMain">
 
         <Grid.ColumnDefinitions>
@@ -31,7 +31,7 @@
 
         </Grid>
         <Grid x:Name="grdMapa" Grid.Column="1">
-            <local:Mapa x:Name="canvasMap"></local:Mapa>
+            <local:Mapa x:Name="canvasMap"/>
         </Grid>
     </Grid>
 </Window>

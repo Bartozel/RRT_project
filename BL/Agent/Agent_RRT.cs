@@ -18,42 +18,31 @@ namespace BL.Agent
         private ISearchEngine_RRT searchEngine;
         CancellationDisposable cancellationToken;
 
-        /// <summary>
-        /// Default value 5000
-        /// </summary>
-        public uint NodeQuantity { get; set; }
-
-        public override IObservable<Node> GetNewNodeObs
+        public override IObservable<Node> GetNewNodeObs(uint nodesCount)
         {
-            get
-            {
-                if (this.newNodeObs == null)
-                    this.newNodeObs = NewNodeObservable();
+            if (this.newNodeObs == null)
+                this.newNodeObs = NewNodeObservable(nodesCount);
 
-                return this.newNodeObs;
-            }
+            return this.newNodeObs;
         }
         private IObservable<Node> newNodeObs;
 
-        public override IObservable<Node> GetUpdateNodeObs
+        public override IObservable<Node> GetUpdateNodeObs()
         {
-            get
+            if (this.updateNodeObs == null)
             {
-                if (this.updateNodeObs == null)
-                {
-                    this.updateNodeObs = GetUpdateObservable();
-                }
-
-                return this.updateNodeObs;
+                this.updateNodeObs = GetUpdateObservable();
             }
+
+            return this.updateNodeObs;
         }
+
         private IObservable<Node> updateNodeObs;
 
         public Agent_RRT(Position rootCoordinates, Position goalCoordinates, int velocity, SearchType sp) : base(rootCoordinates, goalCoordinates, velocity, sp)
         {
             this.searchEngine = SearchFactory.CreateRrtEngine(sp, rootCoordinates, goalCoordinates);
             this.cancellationToken = new CancellationDisposable();
-            NodeQuantity = 5000;
         }
 
         public override void StopSearch()
@@ -71,18 +60,18 @@ namespace BL.Agent
             throw new NotImplementedException();
         }
 
-        private IObservable<Node> NewNodeObservable()
+        private IObservable<Node> NewNodeObservable(uint nodesCount)
         {
-            var obs = searchEngine.CreateNewNodeObs(this.NodeQuantity, cancellationToken);
+            var obs = searchEngine.CreateNewNodeObs(nodesCount, cancellationToken);
             return obs;
         }
 
         private IObservable<Node> GetUpdateObservable()
         {
             if (this.newNodeObs == null)
-                this.newNodeObs = NewNodeObservable();
+                throw new Exception("Update before start 'create new'");
 
-            var obs= searchEngine.UpdateTree();
+            var obs = searchEngine.UpdateTree();
             return obs;
         }
     }

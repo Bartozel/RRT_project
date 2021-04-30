@@ -12,8 +12,8 @@ namespace BL.Agent
 {
     public abstract class Agent : AgentBase, IAgent
     {
-        public abstract IObservable<Node> GetNewNodeObs { get; }
-        public abstract IObservable<Node> GetUpdateNodeObs { get; }
+        public abstract IObservable<Node> GetNewNodeObs(uint nodeCount);
+        public abstract IObservable<Node> GetUpdateNodeObs();
         public abstract void StopSearch();
         public abstract void Pause();
         public abstract void Restart();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reactive;
+using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,19 +26,18 @@ namespace DUI
             try
             {
                 bStart.IsEnabled = false;
-                await canvasMap.StartSearch()
-                                .ToTask();
+                await canvasMap.StartSearch();
                 bStart.IsEnabled = true;
             }
             catch (Exception ex)
             {
-                //TODO
+                Logger.LogError(ex);
             }
         }
 
         private void bStop_Click(object sender, RoutedEventArgs e)
         {
-
+            canvasMap.StopSearch();
         }
 
         private void bPause_Click(object sender, RoutedEventArgs e)

@@ -10,10 +10,12 @@ namespace BL.Base
     class Tree : ITreeDataStructure
     {
         private readonly RBush<Node> tree;
-        public int NodeSum => throw new NotImplementedException();
+        object _lock;
+        public uint Count => (uint)this.tree.Count;
 
         private Tree()
         {
+            _lock = new object();
             this.tree = new RBush<Node>(GlobalConfig.MaxEntries);
         }
 
@@ -25,12 +27,13 @@ namespace BL.Base
 
         public void Insert(Node point)
         {
-            tree.Insert(point);
+            //lock (_lock)
+                tree.Insert(point);
         }
 
         public void BulkInsert(IEnumerable<Node> nodes)
         {
-            
+
         }
 
         public void Clear(Node node)
@@ -50,7 +53,8 @@ namespace BL.Base
 
         public IEnumerable<Node> Search(SearchArea area)
         {
-            return this.tree.Search(area.ToEnvelope());
+            //lock (_lock)
+                return this.tree.Search(area.ToEnvelope());
         }
     }
 

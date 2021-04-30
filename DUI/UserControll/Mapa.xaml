@@ -7,6 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Canvas x:Name="canvasMap" Grid.Column="1" Background="White"></Canvas>
+        <Canvas x:Name="canvasMap" Grid.Column="1" Background="WhiteSmoke">
+            <Button Name="btnStart" Content="Start" Canvas.Left="10" Canvas.Top="10" Height="20" Width="40" Click="Button_Click_Start"/>
+            <Button Name="btnGoal" Content="Goal" Canvas.Left="55" Canvas.Top="10" Height="20" Width="40" Click="Button_Click_Goal"/>
+            <Button Name="btnObs" Content="Obs" Canvas.Left="100" Canvas.Top="10" Height="20" Width="40" Click="Button_Click_Obs"/>
+            <Button Name="btnDel" Content="Del" Canvas.Left="750" Canvas.Top="10" Height="20" Width="40" Click="Button_Click_Del"/>
+        </Canvas>
     </Grid>
 </UserControl>

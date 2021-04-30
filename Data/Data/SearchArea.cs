@@ -20,6 +20,13 @@ namespace Data.Data
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="coornerX1"></param>
+        /// <param name="coornerY1"></param>
+        /// <param name="coornerX2"></param>
+        /// <param name="coornerY2"></param>
         public SearchArea(int coornerX1, int coornerY1, int coornerX2, int coornerY2) : this()
         {
             (int minX, int maxX) = Compare(coornerX1, coornerX2);
@@ -45,7 +52,7 @@ namespace Data.Data
             (int minX, int maxX) = GetXRange(position.XCoordinate);
             (int minY, int maxY) = GetYRange(position.YCoordinate);
 
-            return new SearchArea(minX, maxX, minY, maxY);
+            return new SearchArea(minX, minY, maxX, maxY);
         }
 
         private static (int minY, int maxY) GetYRange(int yCoordinate)
@@ -97,12 +104,11 @@ namespace Data.Data
             (int minX, int maxX) = GetRange(position.XCoordinate, GlobalConfig.WidthOfSearchWindow, dist);
             (int minY, int maxY) = GetRange(position.YCoordinate, GlobalConfig.HeighOfSearchWindow, dist);
 
-            return new SearchArea(minX, maxX, minY, maxY);
+            return new SearchArea(minX, minY, maxX, maxY);
         }
 
-        public static SearchArea GetNearSearArea(Position position)
+        public static SearchArea GetNearSearArea(Position position, int dist)
         {
-            int dist = GlobalConfig.NearAreaCenterToEdge;
             return GetSearchArea(position, dist);
         }
     }

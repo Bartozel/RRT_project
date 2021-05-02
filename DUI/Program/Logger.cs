@@ -8,7 +8,7 @@ namespace DUI.Program
     {
         internal static void LogError(Exception ex)
         {
-            throw new NotImplementedException();
+
         }
     }
 }

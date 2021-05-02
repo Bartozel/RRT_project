@@ -16,7 +16,8 @@ namespace BL.Agent
     public class Agent_RRT : Agent
     {
         private ISearchEngine_RRT searchEngine;
-        CancellationDisposable cancellationToken;
+        CancellationTokenSource cancellationToken;
+
 
         public override IObservable<Node> GetNewNodeObs(uint nodesCount)
         {
@@ -30,9 +31,7 @@ namespace BL.Agent
         public override IObservable<Node> GetUpdateNodeObs()
         {
             if (this.updateNodeObs == null)
-            {
                 this.updateNodeObs = GetUpdateObservable();
-            }
 
             return this.updateNodeObs;
         }
@@ -42,12 +41,12 @@ namespace BL.Agent
         public Agent_RRT(Position rootCoordinates, Position goalCoordinates, int velocity, SearchType sp) : base(rootCoordinates, goalCoordinates, velocity, sp)
         {
             this.searchEngine = SearchFactory.CreateRrtEngine(sp, rootCoordinates, goalCoordinates);
-            this.cancellationToken = new CancellationDisposable();
+            this.cancellationToken = new CancellationTokenSource();
         }
 
         public override void StopSearch()
         {
-            cancellationToken.Dispose();
+            cancellationToken.Cancel();
         }
 
         public override void Pause()
@@ -62,7 +61,8 @@ namespace BL.Agent
 
         private IObservable<Node> NewNodeObservable(uint nodesCount)
         {
-            var obs = searchEngine.CreateNewNodeObs(nodesCount, cancellationToken);
+            var cd = new CancellationDisposable(cancellationToken);
+            var obs = searchEngine.CreateNewNodeObs(nodesCount, cd);
             return obs;
         }
 

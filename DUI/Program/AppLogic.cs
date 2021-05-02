@@ -16,13 +16,10 @@ namespace DUI.Program
         private IAgent agent;
 
         public Position StartPosition { get; internal set; }
+        public Position GoalPosition { get; internal set; }
+        SearchType searchType;
 
         public AppLogic() { }
-
-        public AppLogic(Position start, Position goal, SearchType st) : base()
-        {
-            agent = new Agent_RRT(start, goal, 5, st);
-        }
 
         public void Stop()
         {
@@ -31,8 +28,17 @@ namespace DUI.Program
 
         public IObservable<Node> Start()
         {
-            var disp = agent.GetNewNodeObs(500);
+            searchType = GetSearchType();
+            agent = new Agent_RRT(this.StartPosition, this.GoalPosition, 5, searchType);
+            var disp = agent.GetNewNodeObs(1500);
             return disp;
+        }
+
+        private SearchType GetSearchType()
+        {
+            SearchType searchType = SearchType.RRT;
+
+            return searchType;
         }
 
         public void Pause()

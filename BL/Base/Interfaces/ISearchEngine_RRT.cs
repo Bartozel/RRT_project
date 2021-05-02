@@ -8,6 +8,7 @@ namespace BL.Base.Interfaces
 {
     interface ISearchEngine_RRT : ISearchEngine
     {
+        uint NodesCount { get; }
         IObservable<Node> UpdateTree();
         IObservable<Node> CreateNewNodeObs(uint amount, CancellationDisposable cancellationToken);
     }

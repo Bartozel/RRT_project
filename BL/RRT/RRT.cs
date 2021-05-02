@@ -13,25 +13,30 @@ namespace DiplomkaBartozel.RRT
 {
     class RRT : BaseRrtSearchEngine
     {
+        List<int> ids;
         public RRT(Position startPos, Position goalPos) : base(startPos, goalPos)
         {
-
+            ids = new List<int>();
         }
 
         public override IObservable<Node> CreateNewNodeObs(uint amount, CancellationDisposable cancelationToken)
         {
             EventLoopScheduler scheduler = new EventLoopScheduler();
-
             var obs = Observable.Create<Node>(o =>
             {
                 var scheduledWork = scheduler.Schedule(() =>
                 {
                     try
                     {
-                        for (int x = 0; x <= amount; x++)
+                        while (this.tree.Count <= amount)
                         {
+                            if (cancelationToken.Token.IsCancellationRequested)
+                                break;
+                            else if (!ids.Contains(Thread.CurrentThread.ManagedThreadId))
+                                ids.Add(Thread.CurrentThread.ManagedThreadId);
+
                             var node = GenerateNextStep();
-                            Thread.Sleep(25);
+                            Thread.Sleep(10);
                             o.OnNext(node);
                         }
                         o.OnCompleted();
@@ -43,7 +48,9 @@ namespace DiplomkaBartozel.RRT
                 });
                 return new CompositeDisposable(scheduledWork, cancelationToken);
             });
+
             return obs;
+
         }
 
         protected Node GenerateNextStep()

@@ -32,6 +32,7 @@ namespace DUI
             catch (Exception ex)
             {
                 Logger.LogError(ex);
+                MessageBox.Show(ex.Message);
             }
         }
 

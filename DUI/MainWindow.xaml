@@ -31,7 +31,7 @@
 
         </Grid>
         <Grid x:Name="grdMapa" Grid.Column="1">
-            <local:Mapa x:Name="canvasMap"/>
+            <local:Mapa x:Name="canvasMap" Margin="10,10,10,10"/>
         </Grid>
     </Grid>
 </Window>

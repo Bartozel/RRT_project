@@ -1,21 +1,13 @@
-﻿using Data;
-using Data.Data;
+﻿using Data.Data;
 using DUI.Program;
 using System;
 using System.Collections.Generic;
 using System.Reactive;
-using System.Reactive.Concurrency;
 using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace DUI
@@ -26,11 +18,37 @@ namespace DUI
     public partial class Mapa : UserControl
     {
         private AppLogic appLogic;
+        private Rectangle recStart;
+        private Rectangle recGoal;
+        private List<Rectangle> obstaclesRec;
+        private int halfWidth = 5;
+        private int halfHeight = 5;
 
         public Mapa()
         {
             InitializeComponent();
             appLogic = new AppLogic();
+            obstaclesRec = new List<Rectangle>();
+        }
+
+        private void StartLoad()
+        {
+            appLogic.StartPosition = new Position(35, 35);
+            this.recStart = GetRectangle(Brushes.Green);
+            SetRecOffset(appLogic.StartPosition, this.recStart);
+            this.AddChild(this.recStart);
+
+            appLogic.GoalPosition = new Position((int)this.canvasMap.ActualWidth - 35, (int)this.canvasMap.ActualHeight - 35);
+            this.recGoal = GetRectangle(Brushes.Red);
+            SetRecOffset(appLogic.GoalPosition, this.recGoal);
+            this.AddChild(this.recGoal);
+
+            LoadDefaultObs();
+        }
+
+        private void LoadDefaultObs()
+        {
+
         }
 
         internal void StopSearch()
@@ -42,12 +60,12 @@ namespace DUI
         {
             var obs = Observer.Create<Node>(
                     x => AddLine(x),
+                    OnError,
                     OnCompleted
                 );
 
             var disp = appLogic.Start();
             disp.ObserveOnDispatcher()
-                .Synchronize()
                 .Subscribe(obs);
 
             return disp;
@@ -69,6 +87,10 @@ namespace DUI
         {
 
         }
+        private void OnError(Exception ex)
+        {
+
+        }
 
         private void Button_Click_Start(object sender, RoutedEventArgs e)
         {
@@ -80,8 +102,9 @@ namespace DUI
         {
             this.canvasMap.MouseLeftButtonDown -= Canvas_Click_Start;
             var mp = Mouse.GetPosition(this.canvasMap);
-            appLogic.StartPosition = new Position((int)mp.X, (int)mp.Y);
-            AddChild(appLogic.StartPosition);
+            var pos = new Position((int)mp.X, (int)mp.Y);
+            appLogic.StartPosition = pos;
+            SetRecOffset(appLogic.StartPosition, this.recStart);
 
             ButtonsEnable(true);
         }
@@ -89,7 +112,36 @@ namespace DUI
         private void Button_Click_Goal(object sender, RoutedEventArgs e)
         {
             ButtonsEnable(false);
+            this.canvasMap.MouseLeftButtonDown += Canvas_Click_Goal;
+        }
+        private void Canvas_Click_Goal(object sender, RoutedEventArgs e)
+        {
+            this.canvasMap.MouseLeftButtonDown -= Canvas_Click_Goal;
+            var mp = Mouse.GetPosition(this.canvasMap);
+            var pos = new Position((int)mp.X, (int)mp.Y);
+            appLogic.GoalPosition = pos;
+            SetRecOffset(appLogic.GoalPosition, this.recGoal);
 
+            ButtonsEnable(true);
+        }
+
+        private void SetRecOffset(Position pos, Rectangle rec)
+        {
+            Canvas.SetLeft(rec, pos.XCoordinate - this.halfWidth);
+            Canvas.SetTop(rec, pos.YCoordinate - this.halfHeight);
+        }
+
+        private Rectangle GetRectangle(SolidColorBrush fillColor)
+        {
+            Rectangle rec = new Rectangle()
+            {
+                Width = halfWidth * 2,
+                Height = halfHeight * 2,
+                Fill = fillColor,
+                Stroke = Brushes.Black,
+                StrokeThickness = 2,
+            };
+            return rec;
         }
 
         private void Button_Click_Obs(object sender, RoutedEventArgs e)
@@ -102,37 +154,16 @@ namespace DUI
             ButtonsEnable(false);
         }
 
-        private void Canvas_Click_Goal(object sender, RoutedEventArgs e)
-        {
-            ButtonsEnable(false);
-        }
-
         private void Canvas_Click_Obs(object sender, RoutedEventArgs e)
         {
-
-
             ButtonsEnable(false);
         }
 
-        private void AddChild(Position p)
+        private void AddChild(Rectangle rec)
         {
-            int halfWidth = 5;
-            int halfHeight = 5;
-
-            Rectangle rec = new Rectangle()
-            {
-                Width = halfWidth * 2,
-                Height = halfHeight * 2,
-                Fill = Brushes.Green,
-                Stroke = Brushes.Black,
-                StrokeThickness = 2,
-            };
-
-            Canvas.SetLeft(rec, p.XCoordinate - halfWidth);
-            Canvas.SetTop(rec, p.YCoordinate - halfWidth);
-
             this.canvasMap.Children.Add(rec);
         }
+
 
         private void ButtonsEnable(bool enable)
         {
@@ -144,6 +175,11 @@ namespace DUI
         private void IsStartEnabled()
         {
 
+        }
+
+        private void Canvas_Loaded(object sender, RoutedEventArgs e)
+        {
+            StartLoad();
         }
     }
 }

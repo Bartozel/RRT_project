@@ -26,6 +26,9 @@ namespace DiplomkaBartozel.RRT
         public SearchState SearchState { get; set; }
         public List<Node> SpanningTree { get; }
         public bool PathExist { get; }
+
+        public uint NodesCount => this.tree.Count;
+
         public BaseRrtSearchEngine(Position root, Position goal)
         {
             rand = new Random();

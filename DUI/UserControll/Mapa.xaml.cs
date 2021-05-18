@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reactive;
 using System.Reactive.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -54,6 +55,13 @@ namespace DUI
         internal void StopSearch()
         {
             appLogic.Stop();
+            this.canvasMap.Children.Clear();
+            StartLoad();
+        }
+
+        internal void PauseSearch()
+        {
+            appLogic.Pause();
         }
 
         internal IObservable<Node> StartSearch()
@@ -170,11 +178,6 @@ namespace DUI
             this.btnStart.IsEnabled = enable;
             this.btnGoal.IsEnabled = enable;
             this.btnObs.IsEnabled = enable;
-        }
-
-        private void IsStartEnabled()
-        {
-
         }
 
         private void Canvas_Loaded(object sender, RoutedEventArgs e)

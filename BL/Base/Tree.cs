@@ -11,7 +11,13 @@ namespace BL.Base
     {
         private readonly RBush<Node> tree;
         object _lock;
-        public uint Count => (uint)this.tree.Count;
+        public int Count
+        {
+            get
+            {
+                return this.tree.Count;
+            }
+        }
 
         private Tree()
         {
@@ -28,7 +34,7 @@ namespace BL.Base
         public void Insert(Node point)
         {
             //lock (_lock)
-                tree.Insert(point);
+            tree.Insert(point);
         }
 
         public void BulkInsert(IEnumerable<Node> nodes)
@@ -54,7 +60,7 @@ namespace BL.Base
         public IEnumerable<Node> Search(SearchArea area)
         {
             //lock (_lock)
-                return this.tree.Search(area.ToEnvelope());
+            return this.tree.Search(area.ToEnvelope());
         }
     }
 

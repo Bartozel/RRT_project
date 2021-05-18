@@ -13,51 +13,61 @@ namespace DiplomkaBartozel.RRT
 {
     class RRT : BaseRrtSearchEngine
     {
-        List<int> ids;
         public RRT(Position startPos, Position goalPos) : base(startPos, goalPos)
         {
-            ids = new List<int>();
+
         }
 
         public override IObservable<Node> CreateNewNodeObs(uint amount, CancellationDisposable cancelationToken)
         {
             EventLoopScheduler scheduler = new EventLoopScheduler();
-            var obs = Observable.Create<Node>(o =>
-            {
-                var scheduledWork = scheduler.Schedule(() =>
-                {
-                    try
-                    {
-                        while (this.tree.Count <= amount)
-                        {
-                            if (cancelationToken.Token.IsCancellationRequested)
-                                break;
-                            else if (!ids.Contains(Thread.CurrentThread.ManagedThreadId))
-                                ids.Add(Thread.CurrentThread.ManagedThreadId);
+            //var obs = Observable.Create<Node>(o =>
+            //{
+            //    var scheduledWork = scheduler.Schedule(() =>
+            //    {
+            //        try
+            //        {
+            //            for (int i = 0; i < amount; i++)
+            //            {
+            //                cancelationToken.Token.ThrowIfCancellationRequested();
 
-                            var node = GenerateNextStep();
-                            Thread.Sleep(10);
-                            o.OnNext(node);
-                        }
-                        o.OnCompleted();
-                    }
-                    catch (Exception ex)
-                    {
-                        o.OnError(ex);
-                    }
-                });
-                return new CompositeDisposable(scheduledWork, cancelationToken);
-            });
+            //                var node = GenerateNextStep();
+            //                Thread.Sleep(25);
+            //                o.OnNext(node);
+            //            }
+            //            o.OnCompleted();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            o.OnError(ex);
+            //        }
+
+            //    });
+            //    return new CompositeDisposable(scheduledWork, cancelationToken);
+            //});
+
+            var obs = Observable.Generate(
+                0,
+                x => x <= amount,
+                x => x = x + 1,
+                (x) =>
+                {
+                    cancelationToken.Token.ThrowIfCancellationRequested();
+
+                    var node = GenerateNextStep();
+                    this.tree.Insert(node);
+                    return node;
+                })
+                .SubscribeOn(scheduler);
 
             return obs;
-
         }
 
         protected Node GenerateNextStep()
         {
             var position = this.GenerateNewPosition();
             var node = GetNewNode(position);
-            this.tree.Insert(node);
+
             return node;
         }
 

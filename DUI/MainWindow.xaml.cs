@@ -23,17 +23,27 @@ namespace DUI
 
         private async void bStart_Click(object sender, RoutedEventArgs e)
         {
+            ProcessStartedEnableBtns(false);
             try
             {
-                bStart.IsEnabled = false;
                 await canvasMap.StartSearch();
-                bStart.IsEnabled = true;
+            }
+            catch(OperationCanceledException ee)
+            {
+                MessageBox.Show("Process stopped");
             }
             catch (Exception ex)
             {
                 Logger.LogError(ex);
                 MessageBox.Show(ex.Message);
             }
+            ProcessStartedEnableBtns(true);
+        }
+
+        private void ProcessStartedEnableBtns(bool enable)
+        {
+            bStart.IsEnabled = enable;
+            bSetting.IsEnabled = enable;
         }
 
         private void bStop_Click(object sender, RoutedEventArgs e)
@@ -43,7 +53,7 @@ namespace DUI
 
         private void bPause_Click(object sender, RoutedEventArgs e)
         {
-
+            canvasMap.PauseSearch();
         }
 
         private void bRestart_Click(object sender, RoutedEventArgs e)

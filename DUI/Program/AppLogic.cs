@@ -7,6 +7,7 @@ using Data;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Concurrency;
+using System.Threading.Tasks;
 
 namespace DUI.Program
 {
@@ -18,19 +19,25 @@ namespace DUI.Program
         public Position StartPosition { get; internal set; }
         public Position GoalPosition { get; internal set; }
         SearchType searchType;
+        SearchStatus appState;
+
 
         public AppLogic() { }
 
         public void Stop()
         {
+            appState = SearchStatus.Stopped;
             agent.StopSearch();
         }
 
         public IObservable<Node> Start()
         {
             searchType = GetSearchType();
-            agent = new Agent_RRT(this.StartPosition, this.GoalPosition, 5, searchType);
-            var disp = agent.GetNewNodeObs(1500);
+            if (appState != SearchStatus.Paused)
+                agent = new Agent_RRT(this.StartPosition, this.GoalPosition, 5, searchType);
+
+            var disp = agent.GetNewNodeObs(150);
+            appState = SearchStatus.Started;
             return disp;
         }
 
@@ -43,12 +50,16 @@ namespace DUI.Program
 
         public void Pause()
         {
-            throw new NotImplementedException();
+            agent.StopSearch();
+            appState = SearchStatus.Paused;
         }
 
-        public void Restart()
-        {
-            throw new NotImplementedException();
-        }
+    }
+
+    public enum SearchStatus
+    {
+        Started,
+        Paused,
+        Stopped
     }
 }

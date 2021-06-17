@@ -46,19 +46,20 @@ namespace BL.Agent
             this.cancellationToken = new CancellationTokenSource();
         }
 
-        public override void StopSearch()
+        public override SearchState StopSearch()
         {
             cancellationToken.Cancel();
+            return SearchState.Stopped;
         }
 
-        public override void Pause()
+        public override SearchState Pause()
         {
-            throw new NotImplementedException();
+            
         }
 
-        public override void Restart()
+        public override SearchState Restart()
         {
-            throw new NotImplementedException();
+            
         }
 
         private IObservable<Node> NewNodeObservable(uint nodesCount)
@@ -75,6 +76,11 @@ namespace BL.Agent
 
             var obs = searchEngine.UpdateTree();
             return obs;
+        }
+
+        public override IObservable<List<Node>> GetPathToGoal()
+        {
+            
         }
     }
 }

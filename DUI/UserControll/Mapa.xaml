@@ -8,10 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid x:Name="grdMain">
         <Canvas x:Name="canvasMap" Grid.Column="1" Background="WhiteSmoke" Loaded="Canvas_Loaded">
-            <Button Name="btnStart" Content="Start" Canvas.Left="10" Canvas.Top="10" Height="20" Width="40" Click="Button_Click_Start"/>
-            <Button Name="btnGoal" Content="Goal" Canvas.Left="55" Canvas.Top="10" Height="20" Width="40" Click="Button_Click_Goal"/>
-            <Button Name="btnObs" Content="Obs" Canvas.Left="100" Canvas.Top="10" Height="20" Width="40" Click="Button_Click_Obs"/>
-            <Button Name="btnDel" Content="Del" Canvas.Right="10" Canvas.Top="10" Height="20" Width="40" Click="Button_Click_Del"/>
+            <Button Name="btnStart" Content="Start" Canvas.Left="10" Canvas.Top="10" Height="20" Width="40" Click="Button_Click_Start_Position"/>
+            <Button Name="btnGoal" Content="Goal" Canvas.Left="55" Canvas.Top="10" Height="20" Width="40" Click="Button_Click_Goal_Position"/>
+            <Button Name="btnObs" Content="Obs" Canvas.Left="100" Canvas.Top="10" Height="20" Width="40" Click="Button_Click_Obs_Position"/>
+            <Button Name="btnDel" Content="Del" Canvas.Right="10" Canvas.Top="10" Height="20" Width="40" Click="Button_Click_Del_Position"/>
         </Canvas>
     </Grid>
 </UserControl>

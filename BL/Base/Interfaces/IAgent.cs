@@ -1,6 +1,7 @@
 ﻿using Data.Data;
 using System;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using Data.Enum;
 
 namespace BL.Base.Interfaces
 {
@@ -11,9 +12,10 @@ namespace BL.Base.Interfaces
 
         IObservable<Node> GetNewNodeObs(uint nodeCount);
         IObservable<Node> GetUpdateNodeObs();
+        IObservable<List<Node>> GetPathToGoal();
 
-        void StopSearch();
-        void Pause();
-        void Restart();
+        SearchState StopSearch();
+        SearchState Pause();
+        SearchState Restart();
     }
 }

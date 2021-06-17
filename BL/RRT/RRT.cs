@@ -53,7 +53,6 @@ namespace DiplomkaBartozel.RRT
                 (x) =>
                 {
                     cancelationToken.Token.ThrowIfCancellationRequested();
-
                     var node = GenerateNextStep();
                     this.tree.Insert(node);
                     return node;
@@ -73,12 +72,11 @@ namespace DiplomkaBartozel.RRT
 
         public override IObservable<Node> UpdateTree()
         {
-            return new List<Node>().ToObservable();
+            return new Node[] { }.ToObservable();
         }
 
         protected override Node GetNewNode(Position position)
         {
-            //Node randNode = GenerateNewNode();
             Node closestNode = FindClosestNode(position);
             Node newNode = Steer(position, closestNode);
             if (collisionManager.IsPathBetweenPointsFree(newNode, closestNode))

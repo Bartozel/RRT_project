@@ -34,12 +34,12 @@ namespace DUI
 
         private void StartLoad()
         {
-            appLogic.StartPosition = new Position(35, 35);
+            appLogic.StartPosition = new Position(35, 35); //Just test coordinates
             this.recStart = GetRectangle(Brushes.Green);
             SetRecOffset(appLogic.StartPosition, this.recStart);
             this.AddChild(this.recStart);
 
-            appLogic.GoalPosition = new Position((int)this.canvasMap.ActualWidth - 35, (int)this.canvasMap.ActualHeight - 35);
+            appLogic.GoalPosition = new Position((int)this.canvasMap.ActualWidth - 35, (int)this.canvasMap.ActualHeight - 35); //Just test coordinates
             this.recGoal = GetRectangle(Brushes.Red);
             SetRecOffset(appLogic.GoalPosition, this.recGoal);
             this.AddChild(this.recGoal);
@@ -79,18 +79,6 @@ namespace DUI
             return disp;
         }
 
-        private void AddLine(Node node)
-        {
-            var line = new Line();
-            line.X1 = node.XCoordinate;
-            line.Y1 = node.YCoordinate;
-            line.X2 = node.Parent.XCoordinate;
-            line.Y2 = node.Parent.YCoordinate;
-            line.Stroke = new SolidColorBrush(Colors.Black);
-
-            this.canvasMap.Children.Add(line);
-        }
-
         private void OnCompleted()
         {
 
@@ -100,15 +88,15 @@ namespace DUI
 
         }
 
-        private void Button_Click_Start(object sender, RoutedEventArgs e)
+        private void Button_Click_Start_Position(object sender, RoutedEventArgs e)
         {
             ButtonsEnable(false);
-            this.canvasMap.MouseLeftButtonDown += Canvas_Click_Start;
+            this.canvasMap.MouseLeftButtonDown += Canvas_Click_Start_Position;
         }
 
-        private void Canvas_Click_Start(object sender, RoutedEventArgs e)
+        private void Canvas_Click_Start_Position(object sender, RoutedEventArgs e)
         {
-            this.canvasMap.MouseLeftButtonDown -= Canvas_Click_Start;
+            this.canvasMap.MouseLeftButtonDown -= Canvas_Click_Start_Position;
             var mp = Mouse.GetPosition(this.canvasMap);
             var pos = new Position((int)mp.X, (int)mp.Y);
             appLogic.StartPosition = pos;
@@ -117,14 +105,14 @@ namespace DUI
             ButtonsEnable(true);
         }
 
-        private void Button_Click_Goal(object sender, RoutedEventArgs e)
+        private void Button_Click_Goal_Position(object sender, RoutedEventArgs e)
         {
             ButtonsEnable(false);
-            this.canvasMap.MouseLeftButtonDown += Canvas_Click_Goal;
+            this.canvasMap.MouseLeftButtonDown += Canvas_Click_Goal_Position;
         }
-        private void Canvas_Click_Goal(object sender, RoutedEventArgs e)
+        private void Canvas_Click_Goal_Position(object sender, RoutedEventArgs e)
         {
-            this.canvasMap.MouseLeftButtonDown -= Canvas_Click_Goal;
+            this.canvasMap.MouseLeftButtonDown -= Canvas_Click_Goal_Position;
             var mp = Mouse.GetPosition(this.canvasMap);
             var pos = new Position((int)mp.X, (int)mp.Y);
             appLogic.GoalPosition = pos;
@@ -152,17 +140,17 @@ namespace DUI
             return rec;
         }
 
-        private void Button_Click_Obs(object sender, RoutedEventArgs e)
+        private void Button_Click_Obs_Position(object sender, RoutedEventArgs e)
         {
             ButtonsEnable(false);
         }
 
-        private void Button_Click_Del(object sender, RoutedEventArgs e)
+        private void Button_Click_Del_Position(object sender, RoutedEventArgs e)
         {
             ButtonsEnable(false);
         }
 
-        private void Canvas_Click_Obs(object sender, RoutedEventArgs e)
+        private void Canvas_Click_Obs_Position(object sender, RoutedEventArgs e)
         {
             ButtonsEnable(false);
         }
@@ -171,7 +159,17 @@ namespace DUI
         {
             this.canvasMap.Children.Add(rec);
         }
+        private void AddLine(Node node)
+        {
+            var line = new Line();
+            line.X1 = node.XCoordinate;
+            line.Y1 = node.YCoordinate;
+            line.X2 = node.Parent.XCoordinate;
+            line.Y2 = node.Parent.YCoordinate;
+            line.Stroke = new SolidColorBrush(Colors.Black);
 
+            this.canvasMap.Children.Add(line);
+        }
 
         private void ButtonsEnable(bool enable)
         {

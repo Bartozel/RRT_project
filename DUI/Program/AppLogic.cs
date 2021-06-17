@@ -19,25 +19,22 @@ namespace DUI.Program
         public Position StartPosition { get; internal set; }
         public Position GoalPosition { get; internal set; }
         SearchType searchType;
-        SearchStatus appState;
+        SearchState appState;
 
 
         public AppLogic() { }
 
-        public void Stop()
-        {
-            appState = SearchStatus.Stopped;
-            agent.StopSearch();
-        }
+        public void Stop() =>
+            appState = agent.StopSearch();
 
         public IObservable<Node> Start()
         {
             searchType = GetSearchType();
-            if (appState != SearchStatus.Paused)
+            if (appState != SearchState.Paused)
                 agent = new Agent_RRT(this.StartPosition, this.GoalPosition, 5, searchType);
 
             var disp = agent.GetNewNodeObs(150);
-            appState = SearchStatus.Started;
+            appState = SearchState.Running;
             return disp;
         }
 
@@ -48,18 +45,7 @@ namespace DUI.Program
             return searchType;
         }
 
-        public void Pause()
-        {
-            agent.StopSearch();
-            appState = SearchStatus.Paused;
-        }
-
-    }
-
-    public enum SearchStatus
-    {
-        Started,
-        Paused,
-        Stopped
+        public void Pause() =>
+            appState = agent.Pause();
     }
 }

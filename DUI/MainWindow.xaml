@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="850">
-    <Grid x:Name="grdMain">
+    <Grid x:Name="grdMain" Loaded="grdMain_Loaded">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -14,21 +14,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid x:Name="grdMenu" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Button x:Name="bStart" Content="Start" Click="bStart_Click"  Grid.Row="0"/>
-            <Button x:Name="bStop" Content="Stop" Click="bStop_Click" Grid.Row="1"/>
-            <Button x:Name="bPause" Content="Pause" Click="bPause_Click" Grid.Row="2"/>
-            <Button x:Name="bRestart" Content="Restart" Click="bRestart_Click" Grid.Row="3"/>
-            <Button x:Name="bSetting" Content="Setting" Click="bSetting_Click" Grid.Row="4"/>
-
+            <local:Menu x:Name="menu"/>
         </Grid>
         <Grid x:Name="grdMapa" Grid.Column="1">
             <local:Mapa x:Name="canvasMap" Margin="10,10,10,10"/>

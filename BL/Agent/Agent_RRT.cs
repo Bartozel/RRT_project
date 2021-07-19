@@ -20,7 +20,6 @@ namespace BL.Agent
         private ISearchEngine_RRT searchEngine;
         CancellationTokenSource cancellationToken;
 
-
         public override IObservable<Node> GetNewNodeObs(uint nodesCount)
         {
             if (this.newNodeObs == null)
@@ -54,12 +53,12 @@ namespace BL.Agent
 
         public override SearchState Pause()
         {
-            
+            throw new NotImplementedException();
         }
 
         public override SearchState Restart()
         {
-            
+            throw new NotImplementedException();
         }
 
         private IObservable<Node> NewNodeObservable(uint nodesCount)
@@ -80,7 +79,7 @@ namespace BL.Agent
 
         public override IObservable<List<Node>> GetPathToGoal()
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

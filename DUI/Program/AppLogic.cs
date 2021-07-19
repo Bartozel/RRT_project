@@ -8,21 +8,50 @@ using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Concurrency;
 using System.Threading.Tasks;
+using System.Windows.Shapes;
+using System.Windows.Media;
 
 namespace DUI.Program
 {
     public class AppLogic
     {
         //test properties
-        private IAgent agent;
-
+        IAgent agent;
+        Mapa canvasMap;
         public Position StartPosition { get; internal set; }
         public Position GoalPosition { get; internal set; }
         SearchType searchType;
         SearchState appState;
 
 
-        public AppLogic() { }
+        public AppLogic(Mapa canvasMap)
+        {
+            this.canvasMap = canvasMap;
+            this.StartPosition = new Position(35, 35);
+            this.GoalPosition = new Position((int)this.canvasMap.ActualWidth - 35, (int)this.canvasMap.ActualHeight - 35);
+
+            canvasMap.StartChanged += StartChanged;
+            canvasMap.GoalChanged += GoalChanged;
+
+        }
+
+        private void GoalChanged(object sender, Position e)
+        {
+            if (e != null)
+                this.GoalPosition = e;
+        }
+
+        private void StartChanged(object sender, Position e)
+        {
+            if (e != null)
+                this.StartPosition = e;
+        }
+
+        private void SetSearchBoundaries()
+        {
+            canvasMap.SetStartPosition(this.StartPosition);
+            canvasMap.SetGoalPosition(this.GoalPosition);
+        }
 
         public void Stop() =>
             appState = agent.StopSearch();
@@ -33,9 +62,27 @@ namespace DUI.Program
             if (appState != SearchState.Paused)
                 agent = new Agent_RRT(this.StartPosition, this.GoalPosition, 5, searchType);
 
-            var disp = agent.GetNewNodeObs(150);
             appState = SearchState.Running;
+
+            var observer = Observer.Create<Node>(
+                            x => this.canvasMap.AddLine(x),
+                            OnError,
+                            OnCompleted
+                        );
+
+            var disp = agent.GetNewNodeObs(150);
+            disp.ObserveOnDispatcher()
+                .Subscribe(observer);
             return disp;
+        }
+
+        private void OnCompleted()
+        {
+
+        }
+        private void OnError(Exception ex)
+        {
+
         }
 
         private SearchType GetSearchType()
@@ -47,5 +94,6 @@ namespace DUI.Program
 
         public void Pause() =>
             appState = agent.Pause();
+
     }
 }

@@ -1,28 +1,21 @@
 ﻿using System;
 using Data.Data;
 using Data.Enum;
-using BL.Base.Interfaces;
 using BL.Agent;
-using Data;
 using System.Reactive;
 using System.Reactive.Linq;
-using System.Reactive.Concurrency;
-using System.Threading.Tasks;
-using System.Windows.Shapes;
-using System.Windows.Media;
+using Data.Data.Interfaces;
 
 namespace DUI.Program
 {
     public class AppLogic
     {
-        //test properties
         IAgent agent;
-        Mapa canvasMap;
-        public IPosition StartPosition { get; internal set; }
-        public IPosition GoalPosition { get; internal set; }
+        private Mapa canvasMap;
         SearchType searchType;
         SearchState appState;
-
+        public IPosition StartPosition { get; internal set; }
+        public IPosition GoalPosition { get; internal set; }
 
         public AppLogic(Mapa canvasMap)
         {

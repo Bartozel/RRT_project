@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Data.Data
 {
-    public class Position
+    public class Position : IPosition
     {
         public int XCoordinate { get; }
         public int YCoordinate { get; }
 
-        public Position() 
+        public Position()
         {
             XCoordinate = 0;
             YCoordinate = 0;
@@ -23,10 +23,16 @@ namespace Data.Data
             YCoordinate = yCoordinate;
         }
 
-        public Position(Position position) : base()
+        public Position(IPosition position) : base()
         {
             XCoordinate = position.XCoordinate;
             YCoordinate = position.YCoordinate;
         }
+    }
+
+    public interface IPosition
+    {
+        int XCoordinate { get; }
+        int YCoordinate { get; }
     }
 }

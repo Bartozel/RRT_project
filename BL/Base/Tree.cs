@@ -1,66 +1,72 @@
-﻿using BL.Base.Interfaces;
+﻿using System;
+using BL.Base.Interfaces;
 using Data;
 using Data.Data;
-using RBush;
-using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Windows.Automation.Provider;
 
 namespace BL.Base
 {
-    class Tree : ITreeDataStructure
+    class Tree : ITree
     {
-        private readonly RBush<Node> tree;
-        object _lock;
-        public int Count
+        private ITreeNode[,] _tree;
+        public int Count => _tree.Length;
+        public ITreeNode Root { get; private set; }
+        private int _rows;
+        private int _columns;
+
+        public Tree(int rows, int columns, IPosition rootPosition)
         {
-            get
-            {
-                return this.tree.Count;
-            }
+            _rows = rows;
+            _columns = columns;
+            _tree = new ITreeNode[columns, rows];
+            Root = new TreeNode(rootPosition);
+            Insert(Root);
         }
 
-        private Tree()
+        public bool Insert(ITreeNode point)
         {
-            _lock = new object();
-            this.tree = new RBush<Node>(GlobalConfig.MaxEntries);
+            var node = _tree[point.XCoordinate, point.YCoordinate];
+            var returnVal = node != null;
+            if (returnVal)
+                _tree[point.XCoordinate, point.YCoordinate] = point;
+
+            return returnVal;
         }
 
-        public Tree(Position position) : this()
+        public bool BulkInsert(IEnumerable<ITreeNode> nodes)
         {
-            var root = new Node(position);
-            tree.Insert(root);
+            return true;
         }
 
-        public void Insert(Node point)
+        public void Clear(ITreeNode node)
         {
-            //lock (_lock)
-            tree.Insert(point);
-        }
-
-        public void BulkInsert(IEnumerable<Node> nodes)
-        {
-
-        }
-
-        public void Clear(Node node)
-        {
-            this.tree.Delete(node);
+            _tree[node.XCoordinate, node.YCoordinate] = null;
         }
 
         public void ClearAll()
         {
-            this.tree.Clear();
+            _tree = new TreeNode[_columns, _rows];
         }
 
-        public IEnumerable<Node> GetAllNodes()
+        public IEnumerable<ITreeNode> Search(SearchArea area)
         {
-            return this.tree.Search();
-        }
+            if (area == null)
+                throw new Exception("Tree->Search area=null");
 
-        public IEnumerable<Node> Search(SearchArea area)
-        {
-            //lock (_lock)
-            return this.tree.Search(area.ToEnvelope());
+            var nodes = new List<ITreeNode>();
+            for (int x = area.MinX; x <= area.MaxX; x++)
+            {
+                for (int y = area.MinY; y <= area.MaxY; y++)
+                {
+                    var node = _tree[x, y];
+                    if (node != null)
+                        nodes.Add(node);
+                }
+            }
+            return nodes;
         }
     }
 

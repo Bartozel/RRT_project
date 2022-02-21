@@ -18,8 +18,8 @@ namespace DUI.Program
         //test properties
         IAgent agent;
         Mapa canvasMap;
-        public Position StartPosition { get; internal set; }
-        public Position GoalPosition { get; internal set; }
+        public IPosition StartPosition { get; internal set; }
+        public IPosition GoalPosition { get; internal set; }
         SearchType searchType;
         SearchState appState;
 
@@ -35,13 +35,13 @@ namespace DUI.Program
 
         }
 
-        private void GoalChanged(object sender, Position e)
+        private void GoalChanged(object sender, IPosition e)
         {
             if (e != null)
                 this.GoalPosition = e;
         }
 
-        private void StartChanged(object sender, Position e)
+        private void StartChanged(object sender, IPosition e)
         {
             if (e != null)
                 this.StartPosition = e;
@@ -56,7 +56,7 @@ namespace DUI.Program
         public void Stop() =>
             appState = agent.StopSearch();
 
-        public IObservable<Node> Start()
+        public IObservable<ITreeNode> Start()
         {
             searchType = GetSearchType();
             if (appState != SearchState.Paused)
@@ -64,7 +64,7 @@ namespace DUI.Program
 
             appState = SearchState.Running;
 
-            var observer = Observer.Create<Node>(
+            var observer = Observer.Create<ITreeNode>(
                             x => this.canvasMap.AddLine(x),
                             OnError,
                             OnCompleted

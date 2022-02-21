@@ -13,10 +13,4 @@
     <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="RBush">
-      <HintPath>..\..\..\..\Skola\dip prace\Projekt\RRT_project\packages\RBush.2.0.46\lib\netstandard1.2\RBush.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>

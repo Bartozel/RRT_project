@@ -24,8 +24,8 @@ namespace DUI
         private int halfWidth = 5;
         private int halfHeight = 5;
 
-        public event EventHandler<Position> StartChanged;
-        public event EventHandler<Position> GoalChanged;
+        public event EventHandler<IPosition> StartChanged;
+        public event EventHandler<IPosition> GoalChanged;
         public event EventHandler<List<Rectangle>> ObstaclesChanged;
 
         public Mapa()
@@ -48,12 +48,12 @@ namespace DUI
             this.canvasMap.MouseLeftButtonDown += Canvas_Click_Start_Position;
         }
 
-        internal void SetStartPosition(Position startPosition)
+        internal void SetStartPosition(IPosition startPosition)
         {
             SetRecOffset(startPosition, this.recStart);
         }
 
-        internal void SetGoalPosition(Position goalPosition)
+        internal void SetGoalPosition(IPosition goalPosition)
         {
             SetRecOffset(goalPosition, this.recGoal);
         }
@@ -83,7 +83,7 @@ namespace DUI
             ButtonsEnable(true);
         }
 
-        public void SetRecOffset(Position pos, Rectangle rec)
+        public void SetRecOffset(IPosition pos, Rectangle rec)
         {
             Canvas.SetLeft(rec, pos.XCoordinate - this.halfWidth);
             Canvas.SetTop(rec, pos.YCoordinate - this.halfHeight);
@@ -134,7 +134,7 @@ namespace DUI
             this.canvasMap.Children.Add(rec);
         }
 
-        internal void AddLine(Node node)
+        internal void AddLine(ITreeNode node)
         {
             var line = new Line();
             line.X1 = node.XCoordinate;

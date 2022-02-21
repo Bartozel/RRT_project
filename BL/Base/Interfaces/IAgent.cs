@@ -7,12 +7,12 @@ namespace BL.Base.Interfaces
 {
     public interface IAgent
     {
-        Position GoalCoordinates { get; set; }
-        Position RootCoordinates { get; set; }
+        IPosition GoalCoordinates { get; set; }
+        IPosition RootCoordinates { get; set; }
 
-        IObservable<Node> GetNewNodeObs(uint nodeCount);
-        IObservable<Node> GetUpdateNodeObs();
-        IObservable<List<Node>> GetPathToGoal();
+        IObservable<ITreeNode> GetNewNodeObs(uint nodeCount);
+        IObservable<ITreeNode> GetUpdateNodeObs();
+        IObservable<IEnumerable<ITreeNode>> GetPathToGoal();
 
         SearchState StopSearch();
         SearchState Pause();

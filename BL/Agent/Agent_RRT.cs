@@ -20,16 +20,16 @@ namespace BL.Agent
         private ISearchEngine_RRT searchEngine;
         CancellationTokenSource cancellationToken;
 
-        public override IObservable<Node> GetNewNodeObs(uint nodesCount)
+        public override IObservable<ITreeNode> GetNewNodeObs(uint nodesCount)
         {
             if (this.newNodeObs == null)
                 this.newNodeObs = NewNodeObservable(nodesCount);
 
             return this.newNodeObs;
         }
-        private IObservable<Node> newNodeObs;
+        private IObservable<ITreeNode> newNodeObs;
 
-        public override IObservable<Node> GetUpdateNodeObs()
+        public override IObservable<ITreeNode> GetUpdateNodeObs()
         {
             if (this.updateNodeObs == null)
                 this.updateNodeObs = GetUpdateObservable();
@@ -37,9 +37,9 @@ namespace BL.Agent
             return this.updateNodeObs;
         }
 
-        private IObservable<Node> updateNodeObs;
+        private IObservable<ITreeNode> updateNodeObs;
 
-        public Agent_RRT(Position rootCoordinates, Position goalCoordinates, int velocity, SearchType sp) : base(rootCoordinates, goalCoordinates, velocity, sp)
+        public Agent_RRT(IPosition rootCoordinates, IPosition goalCoordinates, int velocity, SearchType sp) : base(rootCoordinates, goalCoordinates, velocity, sp)
         {
             this.searchEngine = SearchFactory.CreateRrtEngine(sp, rootCoordinates, goalCoordinates);
             this.cancellationToken = new CancellationTokenSource();
@@ -61,14 +61,14 @@ namespace BL.Agent
             throw new NotImplementedException();
         }
 
-        private IObservable<Node> NewNodeObservable(uint nodesCount)
+        private IObservable<ITreeNode> NewNodeObservable(uint nodesCount)
         {
             var cd = new CancellationDisposable(cancellationToken);
             var obs = searchEngine.CreateNewNodeObs(nodesCount, cd);
             return obs;
         }
 
-        private IObservable<Node> GetUpdateObservable()
+        private IObservable<ITreeNode> GetUpdateObservable()
         {
             if (this.newNodeObs == null)
                 throw new Exception("Update before start 'create new'");
@@ -77,7 +77,7 @@ namespace BL.Agent
             return obs;
         }
 
-        public override IObservable<List<Node>> GetPathToGoal()
+        public override IObservable<IEnumerable<ITreeNode>> GetPathToGoal()
         {
             throw new NotImplementedException();
         }

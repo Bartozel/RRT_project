@@ -16,9 +16,9 @@ namespace DiplomkaBartozel.RRT
 {
     class RRT_STAR : RRT
     {
-        public IObservable<Node> NewNodeObs { get; protected set; }
+        public IObservable<ITreeNode> NewNodeObs { get; protected set; }
 
-        public RRT_STAR(Position startPos, Position goalPos) : base(startPos, goalPos)
+        public RRT_STAR(IPosition startPos, IPosition goalPos) : base(startPos, goalPos)
         {
             SubscribeNewNode();
         }
@@ -28,13 +28,13 @@ namespace DiplomkaBartozel.RRT
             throw new NotImplementedException();
         }
 
-        public override IObservable<Node> CreateNewNodeObs(uint amount, CancellationDisposable cancelationToken)
+        public override IObservable<ITreeNode> CreateNewNodeObs(uint amount, CancellationDisposable cancelationToken)
         {
             this.NewNodeObs = base.CreateNewNodeObs(amount, cancelationToken);
             return this.NewNodeObs;
         }
 
-        public override IObservable<Node> UpdateTree()
+        public override IObservable<ITreeNode> UpdateTree()
         {
             if (this.NewNodeObs == null)
                 throw new Exception("Updatetree:NewNodeObs==null");
@@ -43,7 +43,7 @@ namespace DiplomkaBartozel.RRT
             return updateObs;
         }
 
-        protected override Node GetNewNode(Position position)
+        protected override ITreeNode GetNewNode(IPosition position)
         {
             var node = base.GetNewNode(position);
 
@@ -58,15 +58,15 @@ namespace DiplomkaBartozel.RRT
         /// Rewire surroundings of newly added node, to keep tree near to optimal.
         /// </summary>
         /// <param name="xNew"></param>
-        private IObservable<Node> Rewire(Position newNode)
+        private IObservable<ITreeNode> Rewire(IPosition newNode)
         {
             var closeNodes = FindNodesInCloseArea(newNode);
 
-            var obs = Observable.Create<Node>(x =>
+            var obs = Observable.Create<ITreeNode>(x =>
             {
                 foreach (var node in closeNodes)
                 {
-                    double costOld = PathToRoot(node).cost;
+                    double costOld = PathToRoot(node).pathCost;
 
                     var closeNodes2 = FindNodesInCloseArea(node);
                     foreach (var node2 in closeNodes2)
@@ -75,7 +75,7 @@ namespace DiplomkaBartozel.RRT
                         if (distance == 0)
                             continue;
 
-                        double cost = PathToRoot(node2).cost + distance;
+                        double cost = PathToRoot(node2).pathCost + distance;
 
                         if (cost < costOld && collisionManager.IsPathBetweenPointsFree(node, node2))
                         {
@@ -92,14 +92,14 @@ namespace DiplomkaBartozel.RRT
             return obs;
         }
 
-        private Node FindBestParent(Node newNode, IEnumerable<Node> nearNodes)
+        private ITreeNode FindBestParent(ITreeNode newNode, IEnumerable<ITreeNode> nearNodes)
         {
-            Node bNode = null;
+            ITreeNode bNode = null;
             double costMin = double.MaxValue;
-            foreach (Node node in nearNodes)
+            foreach (ITreeNode node in nearNodes)
             {
                 double distance = Misc.Distance(node, newNode);
-                double costNew = PathToRoot(node).cost + distance;
+                double costNew = PathToRoot(node).pathCost + distance;
                 if (costNew < costMin && collisionManager.IsPathBetweenPointsFree(newNode, node))
                 {
                     costMin = costNew;
@@ -109,7 +109,7 @@ namespace DiplomkaBartozel.RRT
             return bNode;
         }
 
-        public IObservable<Node> GetChangesFromRewire(Position position)
+        public IObservable<ITreeNode> GetChangesFromRewire(IPosition position)
         {
             var changedNodes = Rewire(position);
             return changedNodes;

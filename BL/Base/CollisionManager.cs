@@ -23,7 +23,7 @@ namespace BL.Base
             return res;
         }
 
-        public bool IsPathBetweenPointsFree(Position p1, Position p2)
+        public bool IsPathBetweenPointsFree(IPosition p1, IPosition p2)
         {
             return true; //TODO
         }

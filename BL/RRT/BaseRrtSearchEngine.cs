@@ -12,35 +12,35 @@ using System.Threading;
 
 namespace DiplomkaBartozel.RRT
 {
-    abstract class BaseRrtSearchEngine :  ISearchEngine_RRT
+    abstract class BaseRrtSearchEngine : ISearchEngine_RRT
     {
-        protected ITreeDataStructure tree;
+        protected ITree tree;
         protected CollisionManager collisionManager;
         protected Random rand;
-        protected Position root;
-        protected Position goal;
+        protected IPosition root;
+        protected IPosition goal;
 
         public event EventHandler PathIsAvailable;
         public event EventHandler PathIsBlocked;
 
         public SearchState SearchState { get; set; }
-        public List<Node> SpanningTree { get; }
-        public bool PathExist { get; }
+        public List<ITreeNode> SpanningTree { get; }
+        public bool PathExists { get; }
 
         public int NodesCount => this.tree.Count;
 
-        public BaseRrtSearchEngine(Position root, Position goal)
+        public BaseRrtSearchEngine(IPosition root, IPosition goal)
         {
             rand = new Random();
-            tree = new Tree(root);
+            tree = new Tree(GlobalConfig.WidthOfSearchWindow, GlobalConfig.HeighOfSearchWindow, root);
             this.root = root;
             this.goal = goal;
             SearchState = SearchState.Creatred;
             collisionManager = new CollisionManager();
         }
-        protected virtual Position GenerateNewPosition()
+        protected virtual IPosition GenerateNewPosition()
         {
-            var n = new Position(rand.Next(GlobalConfig.WidthOfSearchWindow), rand.Next(GlobalConfig.HeighOfSearchWindow));
+            var n = new TreeNode(rand.Next(GlobalConfig.WidthOfSearchWindow), rand.Next(GlobalConfig.HeighOfSearchWindow));
             return n;
         }
         /// <summary>
@@ -49,22 +49,22 @@ namespace DiplomkaBartozel.RRT
         /// <param name="node">nove</param>
         /// <param name="closestNode"></param>
         /// <returns></returns>
-        protected Node Steer(Position position, Node closestNode)
+        protected ITreeNode Steer(IPosition position, ITreeNode closestNode)
         {
             var dist = Misc.Distance(closestNode, position);
             if (dist > GlobalConfig.MAX_DISTANCE)
             {
                 (int newX, int newY) = Misc.CalculateCloserPosition(closestNode, position, dist, GlobalConfig.MAX_DISTANCE);
-                var n = new Node(new Position(newX, newY));
+                var n = new TreeNode(new Position(newX, newY));
                 return n;
             }
             else
-                return new Node(position);
+                return new TreeNode(position);
         }
-        protected Node FindClosestNode(Position position)
+        protected ITreeNode FindClosestNode(IPosition position)
         {
             int apend = GlobalConfig.MAX_DISTANCE;
-            Node returnPoint = null;
+            ITreeNode returnPoint = null;
 
             while (true)
             {
@@ -72,7 +72,7 @@ namespace DiplomkaBartozel.RRT
                 if (list.Any())
                 {
                     double shotestDist = double.MaxValue;
-                    foreach (Node node in list)
+                    foreach (ITreeNode node in list)
                     {
                         var x = Misc.Distance(position, node);
                         if (x < shotestDist)
@@ -90,17 +90,18 @@ namespace DiplomkaBartozel.RRT
             return returnPoint;
         }
 
-        protected IEnumerable<Node> FindNodesInCloseArea(Position position, int dist = GlobalConfig.MAX_DISTANCE)
+        protected IEnumerable<ITreeNode> FindNodesInCloseArea(IPosition position, int dist = GlobalConfig.MAX_DISTANCE)
         {
             var nearNodes = tree.Search(SearchArea.GetNearSearArea(position, dist));
 
             return nearNodes;
         }
-        public static (double cost, List<Node> nodes) PathToRoot(Node node)
+
+        public static (double pathCost, IEnumerable<ITreeNode> path) PathToRoot(ITreeNode node)
         {
-            Node searchNode = node;
+            ITreeNode searchNode = node;
             double costOfPath = 0;
-            List<Node> nodes = null;
+            IEnumerable<ITreeNode> nodes = new List<ITreeNode>();
             while (searchNode.Parent != null)
             {
                 costOfPath += searchNode.CostToParent;
@@ -108,7 +109,7 @@ namespace DiplomkaBartozel.RRT
             }
             return (costOfPath, nodes);
         }
-        protected void AddParent(Node parent, Node child)
+        protected void AddParent(ITreeNode parent, ITreeNode child)
         {
             child.Parent = parent;
             child.CostToParent = Misc.Distance(parent, child);
@@ -119,15 +120,15 @@ namespace DiplomkaBartozel.RRT
             var nodesNearGoal = FindNodesInCloseArea(this.goal);
             if (nodesNearGoal.Any())
             {
-                List<Node> bestNodes = null;
+                IEnumerable<ITreeNode> bestNodes = null;
                 double bestCost = double.MaxValue;
                 foreach (var n in nodesNearGoal)
                 {
                     var path = PathToRoot(n);
-                    if (bestCost < path.cost)
+                    if (bestCost < path.pathCost)
                     {
-                        bestCost = path.cost;
-                        bestNodes = path.nodes;
+                        bestCost = path.pathCost;
+                        bestNodes = path.path;
                     }
                 }
 
@@ -139,9 +140,9 @@ namespace DiplomkaBartozel.RRT
             return newPath;
         }
 
-        protected abstract Node GetNewNode(Position node);
-        public abstract IObservable<Node> UpdateTree();
-        public abstract IObservable<Node> CreateNewNodeObs(uint amount, CancellationDisposable cancellationToken);
+        protected abstract ITreeNode GetNewNode(IPosition node);
+        public abstract IObservable<ITreeNode> UpdateTree();
+        public abstract IObservable<ITreeNode> CreateNewNodeObs(uint amount, CancellationDisposable cancellationToken);
     }
 }
 

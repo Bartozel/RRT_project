@@ -9,7 +9,7 @@ namespace BL.Base.Interfaces
     interface ISearchEngine_RRT : ISearchEngine
     {
         int NodesCount { get; }
-        IObservable<Node> UpdateTree();
-        IObservable<Node> CreateNewNodeObs(uint amount, CancellationDisposable cancellationToken);
+        IObservable<ITreeNode> UpdateTree();
+        IObservable<ITreeNode> CreateNewNodeObs(uint amount, CancellationDisposable cancellationToken);
     }
 }

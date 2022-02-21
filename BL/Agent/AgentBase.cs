@@ -7,11 +7,11 @@ namespace BL.Agent
         public bool IsMooving => isMooving;
         private bool isMooving;
 
-        public Position GoalCoordinates { get; set; }
-        public Position RootCoordinates { get; set; }
+        public IPosition GoalCoordinates { get; set; }
+        public IPosition RootCoordinates { get; set; }
         public int Velocity { get; set; }
 
-        public AgentBase(Position rootCoordinates, Position goalCoordinates, int velocity) : base(rootCoordinates)
+        public AgentBase(IPosition rootCoordinates, IPosition goalCoordinates, int velocity) : base(rootCoordinates)
         {
             GoalCoordinates = goalCoordinates;
             RootCoordinates = rootCoordinates;

@@ -1,5 +1,4 @@
 ﻿using Data.Data;
-using RBush;
 using System;
 using System.Collections.Generic;
 using System.Windows.Shapes;
@@ -15,19 +14,19 @@ namespace Data
             return (int)Math.Floor(val);
         }
 
-        public static Envelope GetNewEnvelope(this Position position)
-        {
-            var area = SearchArea.GetSearchArea(position);
-            return new Envelope(area.MinX, area.MinY, area.MaxX, area.MaxY);
-        }
+        //public static Envelope GetNewEnvelope(this Position position)
+        //{
+        //    var area = SearchArea.GetSearchArea(position);
+        //    return new Envelope(area.MinX, area.MinY, area.MaxX, area.MaxY);
+        //}
 
-        public static Envelope ToEnvelope(this SearchArea area)
-        {
-            if (area == null)
-                throw new NullReferenceException();
+        //public static Envelope ToEnvelope(this SearchArea area)
+        //{
+        //    if (area == null)
+        //        throw new NullReferenceException();
 
-            return new Envelope(area.MinX, area.MinY, area.MaxX, area.MaxY);
-        }
+        //    return new Envelope(area.MinX, area.MinY, area.MaxX, area.MaxY);
+        //}
 
         public static bool Intersect(this SearchArea sa1, SearchArea sa2)
         {
@@ -37,12 +36,12 @@ namespace Data
             return false;
         }
 
-        public static TreeLine ToLine(this Node node)
+        public static TreeLine ToLine(this ITreeNode node)
         {
             return new TreeLine(node, node.Parent);
         }
 
-        public static IEnumerable<TreeLine> ToLine(this IEnumerable<Node> nodes)
+        public static IEnumerable<TreeLine> ToLine(this IEnumerable<ITreeNode> nodes)
         {
             return nodes.Select(node=> new TreeLine(node, node.Parent));
         }

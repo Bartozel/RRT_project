@@ -9,7 +9,7 @@ namespace BL.Base.Interfaces
         event EventHandler PathIsAvailable;
         event EventHandler PathIsBlocked;
 
-        bool PathExist { get; }
+        bool PathExists { get; }
 
         List<TreeLine> PathGoalToRoot();
     }

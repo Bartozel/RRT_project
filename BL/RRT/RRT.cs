@@ -13,12 +13,12 @@ namespace DiplomkaBartozel.RRT
 {
     class RRT : BaseRrtSearchEngine
     {
-        public RRT(Position startPos, Position goalPos) : base(startPos, goalPos)
+        public RRT(IPosition startPos, IPosition goalPos) : base(startPos, goalPos)
         {
 
         }
 
-        public override IObservable<Node> CreateNewNodeObs(uint amount, CancellationDisposable cancelationToken)
+        public override IObservable<ITreeNode> CreateNewNodeObs(uint amount, CancellationDisposable cancelationToken)
         {
             EventLoopScheduler scheduler = new EventLoopScheduler();
             //var obs = Observable.Create<Node>(o =>
@@ -62,7 +62,7 @@ namespace DiplomkaBartozel.RRT
             return obs;
         }
 
-        protected Node GenerateNextStep()
+        protected ITreeNode GenerateNextStep()
         {
             var position = this.GenerateNewPosition();
             var node = GetNewNode(position);
@@ -70,15 +70,15 @@ namespace DiplomkaBartozel.RRT
             return node;
         }
 
-        public override IObservable<Node> UpdateTree()
+        public override IObservable<ITreeNode> UpdateTree()
         {
-            return new Node[] { }.ToObservable();
+            return new TreeNode[] { }.ToObservable();
         }
 
-        protected override Node GetNewNode(Position position)
+        protected override ITreeNode GetNewNode(IPosition position)
         {
-            Node closestNode = FindClosestNode(position);
-            Node newNode = Steer(position, closestNode);
+            ITreeNode closestNode = FindClosestNode(position);
+            ITreeNode newNode = Steer(position, closestNode);
             if (collisionManager.IsPathBetweenPointsFree(newNode, closestNode))
             {
                 newNode.Parent = closestNode;

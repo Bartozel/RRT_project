@@ -7,18 +7,18 @@ namespace DiplomkaBartozel.RRT
     //Not implemented. Maybe later. Implementation suited for specific envinronment
     class Informed_RRT_Star : RRT_STAR
     {
-        public Informed_RRT_Star(Position startPos, Position goalPos) : base(startPos, goalPos)
+        public Informed_RRT_Star(IPosition startPos, IPosition goalPos) : base(startPos, goalPos)
         {
         }
 
-        protected override Position GenerateNewPosition()
+        protected override IPosition GenerateNewPosition()
         {
-            if (this.PathExist)
+            if (this.PathExists)
             {
                 var dist = Misc.Distance(this.root, this.goal);
                 int width = GetPathWidth();
 
-                Position pseudoPosition = GetPseudoPosition(dist, width);
+                IPosition pseudoPosition = GetPseudoPosition(dist, width);
                 var res = Transform(pseudoPosition);
 
                 return res;
@@ -28,13 +28,13 @@ namespace DiplomkaBartozel.RRT
         }
 
         //move newly generated pseudo poin into real position between Goal and Root
-        private Position Transform(Position pseudoPosition)
+        private IPosition Transform(IPosition pseudoPosition)
         {
             throw new NotImplementedException();
         }
 
         //Presume that Goal and Root are on X-axis. So generate point somewhere between those two points (x-coordinate) and path width, which we calculated earlier.
-        private Position GetPseudoPosition(double dist, int width)
+        private IPosition GetPseudoPosition(double dist, int width)
         {
             throw new NotImplementedException();
         }

@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Data.Data
+﻿namespace Data.Data
 {
     public class SearchArea : Position
     {
-        private Position rootCoordinates;
-
         public int MaxX { get; }
         public int MinX { get; }
         public int MaxY { get; }
@@ -37,7 +29,7 @@ namespace Data.Data
             MaxY = maxY;
         }
 
-        public SearchArea(Position position) : base(position)
+        public SearchArea(IPosition position) : base(position)
         {
             var area = GetSearchArea(position);
             MaxX = area.MaxX;
@@ -47,7 +39,7 @@ namespace Data.Data
             MinY = area.MinY;
         }
 
-        public static SearchArea GetSearchArea(Position position)
+        public static SearchArea GetSearchArea(IPosition position)
         {
             (int minX, int maxX) = GetXRange(position.XCoordinate);
             (int minY, int maxY) = GetYRange(position.YCoordinate);
@@ -57,12 +49,12 @@ namespace Data.Data
 
         private static (int minY, int maxY) GetYRange(int yCoordinate)
         {
-            return GetRange(yCoordinate, GlobalConfig.WidthOfSearchWindow, GlobalConfig.SearchAreaCenterToEdge);
+            return GetRange(yCoordinate, GlobalConfig.HeighOfSearchWindow, GlobalConfig.SearchAreaCenterToEdge);
         }
 
         private static (int minX, int maxX) GetXRange(int xCoordinate)
         {
-            return GetRange(xCoordinate, GlobalConfig.HeighOfSearchWindow, GlobalConfig.SearchAreaCenterToEdge);
+            return GetRange(xCoordinate, GlobalConfig.WidthOfSearchWindow, GlobalConfig.SearchAreaCenterToEdge);
         }
 
         private static (int minX, int maxX) GetRange(int coordinate, int rangeLimit, int shift)
@@ -83,7 +75,7 @@ namespace Data.Data
             return (min, max);
         }
 
-        public static SearchArea GetSearchArea(Position p1, Position p2)
+        public static SearchArea GetSearchArea(IPosition p1, IPosition p2)
         {
             (int minX, int maxX) = Compare(p1.XCoordinate, p2.XCoordinate);
             (int minY, int maxY) = Compare(p1.YCoordinate, p2.YCoordinate);
@@ -99,7 +91,7 @@ namespace Data.Data
                 return (val1, val2);
         }
 
-        public static SearchArea GetSearchArea(Position position, int dist)
+        public static SearchArea GetSearchArea(IPosition position, int dist)
         {
             (int minX, int maxX) = GetRange(position.XCoordinate, GlobalConfig.WidthOfSearchWindow, dist);
             (int minY, int maxY) = GetRange(position.YCoordinate, GlobalConfig.HeighOfSearchWindow, dist);
@@ -107,7 +99,7 @@ namespace Data.Data
             return new SearchArea(minX, minY, maxX, maxY);
         }
 
-        public static SearchArea GetNearSearArea(Position position, int dist)
+        public static SearchArea GetNearSearArea(IPosition position, int dist)
         {
             return GetSearchArea(position, dist);
         }

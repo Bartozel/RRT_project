@@ -1,16 +1,9 @@
 ﻿using BL.Base;
-using BL.Base.Interfaces;
-using Data;
 using Data.Data;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reactive;
-using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Threading;
 
 namespace DiplomkaBartozel.RRT
 {

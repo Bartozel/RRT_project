@@ -1,4 +1,4 @@
-﻿namespace BL.Base.Interfaces
+﻿namespace Data.Data.Interfaces
 {
     interface IMazeManager
     {

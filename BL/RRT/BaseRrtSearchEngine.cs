@@ -1,14 +1,13 @@
 ﻿using BL.Base;
-using BL.Base.Interfaces;
 using Data;
 using Data.Data;
+using Data.Data.Interfaces;
 using Data.Enum;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Reactive.Disposables;
-using System.Threading;
 
 namespace DiplomkaBartozel.RRT
 {

@@ -1,15 +1,11 @@
 ﻿using System;
-using BL.Base.Interfaces;
-using Data;
 using Data.Data;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Windows.Automation.Provider;
+using Data.Data.Interfaces;
 
-namespace BL.Base
+namespace Data.Data
 {
-    class Tree : ITree
+    public class Tree : ITree
     {
         private ITreeNode[,] _tree;
         public int Count => _tree.Length;

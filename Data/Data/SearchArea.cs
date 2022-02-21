@@ -15,14 +15,14 @@
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="coornerX1"></param>
-        /// <param name="coornerY1"></param>
-        /// <param name="coornerX2"></param>
-        /// <param name="coornerY2"></param>
-        public SearchArea(int coornerX1, int coornerY1, int coornerX2, int coornerY2) : this()
+        /// <param name="cornerX1"></param>
+        /// <param name="cornerY1"></param>
+        /// <param name="cornerX2"></param>
+        /// <param name="cornerY2"></param>
+        public SearchArea(int cornerX1, int cornerY1, int cornerX2, int cornerY2) : this()
         {
-            (int minX, int maxX) = Compare(coornerX1, coornerX2);
-            (int minY, int maxY) = Compare(coornerY1, coornerY2);
+            (int minX, int maxX) = Compare(cornerX1, cornerX2);
+            (int minY, int maxY) = Compare(cornerY1, cornerY2);
             MinX = minX;
             MaxX = maxX;
             MinY = minY;
@@ -34,7 +34,6 @@
             var area = GetSearchArea(position);
             MaxX = area.MaxX;
             MinX = area.MinX;
-
             MaxY = area.MaxY;
             MinY = area.MinY;
         }

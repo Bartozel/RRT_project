@@ -1,12 +1,9 @@
-﻿using Data.Data;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Reactive.Disposables;
-using System.Threading;
 
-namespace BL.Base.Interfaces
+namespace Data.Data.Interfaces
 {
-    interface ISearchEngine_RRT : ISearchEngine
+    public interface ISearchEngine_RRT : ISearchEngine
     {
         int NodesCount { get; }
         IObservable<ITreeNode> UpdateTree();

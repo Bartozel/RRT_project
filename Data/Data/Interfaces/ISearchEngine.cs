@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BL.Base.Interfaces
+namespace Data.Data.Interfaces
 {
     public interface ISearchEngine
     {

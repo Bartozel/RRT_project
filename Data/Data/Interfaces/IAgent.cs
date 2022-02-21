@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using Data.Enum;
 
-namespace BL.Base.Interfaces
+namespace Data.Data.Interfaces
 {
     public interface IAgent
     {

@@ -1,13 +1,8 @@
 ﻿using Data.Data;
 using Data.Enum;
-using BL.Base;
 using System;
-using BL.Base.Interfaces;
-using System.Reactive;
-using System.Reactive.Linq;
-using System.Reactive.Disposables;
-using Data;
 using System.Collections.Generic;
+using Data.Data.Interfaces;
 
 namespace BL.Agent
 {

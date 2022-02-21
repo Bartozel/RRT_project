@@ -1,9 +1,8 @@
-﻿using Data.Data;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace BL.Base.Interfaces
+namespace Data.Data.Interfaces
 {
-    interface ITree
+    public interface ITree
     {
         ITreeNode Root { get; }
         int Count { get; }

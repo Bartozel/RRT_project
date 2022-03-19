@@ -15,8 +15,8 @@ namespace Data
         #endregion
 
         #region Search
-        public static int WidthOfSearchWindow { get; } = 750;
-        public static int HeighOfSearchWindow { get; } = 550;
+        public static int SearchAreaXValue { get; } = 750;
+        public static int SearchAreaYValue { get; } = 550;
         public static int SearchAreaCenterToEdge { get; } = 3;
         #endregion
     }

@@ -14,7 +14,7 @@ namespace BL.Agent
         private ISearchEngine_RRT searchEngine;
         CancellationTokenSource cancellationToken;
 
-        public override IObservable<ITreeNode> GetNewNodeObs(uint nodesCount)
+        public override IObservable<ITreeNode> GetNewNodesObservable(uint nodesCount)
         {
             if (this.newNodeObs == null)
                 this.newNodeObs = NewNodeObservable(nodesCount);

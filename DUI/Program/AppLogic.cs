@@ -63,7 +63,7 @@ namespace DUI.Program
                             OnCompleted
                         );
 
-            var disp = agent.GetNewNodeObs(150);
+            var disp = agent.GetNewNodesObservable(150);
             disp.ObserveOnDispatcher()
                 .Subscribe(observer);
             return disp;

@@ -10,14 +10,10 @@ namespace Data.Data
         private ITreeNode[,] _tree;
         public int Count => _tree.Length;
         public ITreeNode Root { get; private set; }
-        private int _rows;
-        private int _columns;
 
-        public Tree(int rows, int columns, IPosition rootPosition)
+        public Tree(int xRange, int yRange, IPosition rootPosition)
         {
-            _rows = rows;
-            _columns = columns;
-            _tree = new ITreeNode[columns, rows];
+            _tree = new ITreeNode[xRange, yRange];
             Root = new TreeNode(rootPosition);
             Insert(Root);
         }
@@ -25,7 +21,7 @@ namespace Data.Data
         public bool Insert(ITreeNode point)
         {
             var node = _tree[point.XCoordinate, point.YCoordinate];
-            var returnVal = node != null;
+            var returnVal = node == null;
             if (returnVal)
                 _tree[point.XCoordinate, point.YCoordinate] = point;
 
@@ -44,7 +40,7 @@ namespace Data.Data
 
         public void ClearAll()
         {
-            _tree = new TreeNode[_columns, _rows];
+            _tree = new TreeNode[_tree.GetLength(0), _tree.GetLength(1)];
         }
 
         public IEnumerable<ITreeNode> Search(SearchArea area)
@@ -53,9 +49,9 @@ namespace Data.Data
                 throw new Exception("Tree->Search area=null");
 
             var nodes = new List<ITreeNode>();
-            for (int x = area.MinX; x <= area.MaxX; x++)
+            for (int x = area.MinX; x < area.MaxX; x++)
             {
-                for (int y = area.MinY; y <= area.MaxY; y++)
+                for (int y = area.MinY; y < area.MaxY; y++)
                 {
                     var node = _tree[x, y];
                     if (node != null)

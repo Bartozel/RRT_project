@@ -8,7 +8,7 @@ namespace BL.Agent
 {
     public abstract class Agent : AgentBase, IAgent
     {
-        public abstract IObservable<ITreeNode> GetNewNodeObs(uint nodeCount);
+        public abstract IObservable<ITreeNode> GetNewNodesObservable(uint nodeCount);
         public abstract IObservable<ITreeNode> GetUpdateNodeObs();
         public abstract IObservable<IEnumerable<ITreeNode>> GetPathToGoal();
 

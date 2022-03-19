@@ -10,7 +10,7 @@ namespace Data.Data.Interfaces
         IPosition GoalCoordinates { get; set; }
         IPosition RootCoordinates { get; set; }
 
-        IObservable<ITreeNode> GetNewNodeObs(uint nodeCount);
+        IObservable<ITreeNode> GetNewNodesObservable(uint nodeCount);
         IObservable<ITreeNode> GetUpdateNodeObs();
         IObservable<IEnumerable<ITreeNode>> GetPathToGoal();
 

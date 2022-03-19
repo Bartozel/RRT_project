@@ -21,31 +21,6 @@ namespace DiplomkaBartozel.RRT
         public override IObservable<ITreeNode> CreateNewNodeObs(uint amount, CancellationDisposable cancelationToken)
         {
             EventLoopScheduler scheduler = new EventLoopScheduler();
-            //var obs = Observable.Create<Node>(o =>
-            //{
-            //    var scheduledWork = scheduler.Schedule(() =>
-            //    {
-            //        try
-            //        {
-            //            for (int i = 0; i < amount; i++)
-            //            {
-            //                cancelationToken.Token.ThrowIfCancellationRequested();
-
-            //                var node = GenerateNextStep();
-            //                Thread.Sleep(25);
-            //                o.OnNext(node);
-            //            }
-            //            o.OnCompleted();
-            //        }
-            //        catch (Exception ex)
-            //        {
-            //            o.OnError(ex);
-            //        }
-
-            //    });
-            //    return new CompositeDisposable(scheduledWork, cancelationToken);
-            //});
-
             var obs = Observable.Generate(
                 0,
                 x => x <= amount,

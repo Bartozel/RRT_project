@@ -48,12 +48,12 @@
 
         private static (int minY, int maxY) GetYRange(int yCoordinate)
         {
-            return GetRange(yCoordinate, GlobalConfig.HeighOfSearchWindow, GlobalConfig.SearchAreaCenterToEdge);
+            return GetRange(yCoordinate, GlobalConfig.SearchAreaYValue, GlobalConfig.SearchAreaCenterToEdge);
         }
 
         private static (int minX, int maxX) GetXRange(int xCoordinate)
         {
-            return GetRange(xCoordinate, GlobalConfig.WidthOfSearchWindow, GlobalConfig.SearchAreaCenterToEdge);
+            return GetRange(xCoordinate, GlobalConfig.SearchAreaXValue, GlobalConfig.SearchAreaCenterToEdge);
         }
 
         private static (int minX, int maxX) GetRange(int coordinate, int rangeLimit, int shift)
@@ -92,8 +92,8 @@
 
         public static SearchArea GetSearchArea(IPosition position, int dist)
         {
-            (int minX, int maxX) = GetRange(position.XCoordinate, GlobalConfig.WidthOfSearchWindow, dist);
-            (int minY, int maxY) = GetRange(position.YCoordinate, GlobalConfig.HeighOfSearchWindow, dist);
+            (int minX, int maxX) = GetRange(position.XCoordinate, GlobalConfig.SearchAreaXValue, dist);
+            (int minY, int maxY) = GetRange(position.YCoordinate, GlobalConfig.SearchAreaYValue, dist);
 
             return new SearchArea(minX, minY, maxX, maxY);
         }

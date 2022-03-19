@@ -31,7 +31,7 @@ namespace DiplomkaBartozel.RRT
         public BaseRrtSearchEngine(IPosition root, IPosition goal)
         {
             rand = new Random();
-            tree = new Tree(GlobalConfig.WidthOfSearchWindow, GlobalConfig.HeighOfSearchWindow, root);
+            tree = new Tree(GlobalConfig.SearchAreaXValue, GlobalConfig.SearchAreaYValue, root);
             this.root = root;
             this.goal = goal;
             SearchState = SearchState.Creatred;
@@ -39,7 +39,7 @@ namespace DiplomkaBartozel.RRT
         }
         protected virtual IPosition GenerateNewPosition()
         {
-            var n = new TreeNode(rand.Next(GlobalConfig.WidthOfSearchWindow), rand.Next(GlobalConfig.HeighOfSearchWindow));
+            var n = new TreeNode(rand.Next(GlobalConfig.SearchAreaXValue), rand.Next(GlobalConfig.SearchAreaYValue));
             return n;
         }
         /// <summary>
@@ -82,14 +82,18 @@ namespace DiplomkaBartozel.RRT
                     }
                     break;
                 }
-                else
-                    apend *= 2;
+                apend *= 2;
             }
 
             return returnPoint;
         }
 
-        protected IEnumerable<ITreeNode> FindNodesInCloseArea(IPosition position, int dist = GlobalConfig.MAX_DISTANCE)
+        protected IEnumerable<ITreeNode> FindNodesInCloseArea(IPosition position)
+        {
+            return tree.Search(SearchArea.GetNearSearArea(position, GlobalConfig.MAX_DISTANCE));
+        }
+
+        protected IEnumerable<ITreeNode> FindNodesInCloseArea(IPosition position, int dist)
         {
             var nearNodes = tree.Search(SearchArea.GetNearSearArea(position, dist));
 

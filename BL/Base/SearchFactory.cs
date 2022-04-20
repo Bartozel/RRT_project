@@ -1,6 +1,5 @@
 ﻿using Data.Data;
 using Data.Enum;
-using DiplomkaBartozel.RRT;
 using System;
 using Data.Data.Interfaces;
 
@@ -8,24 +7,17 @@ namespace BL.Base
 {
     class SearchFactory
     {
-        public static ISearchEngine_RRT CreateRrtEngine(SearchType sp, IPosition start, IPosition goal)
+        public static ISearchEngine_RRT CreateRrtEngine(SearchType searchType, IPosition start, IPosition goal)
         {
-            ISearchEngine_RRT search;
-            switch (sp)
+            ISearchEngine_RRT searchEngine = null;
+            var searchEngineType = Type.GetType($"SearchEngine.{searchType}");
+            if (searchEngineType != null)
             {
-                case SearchType.RRT:
-                    search = new RRT(start, goal);
-                    break;
-                case SearchType.RRT_STAR:
-                    search = new RRT_STAR(start, goal);
-                    break;
-                case SearchType.Informed_RRT_Star:
-                    search = new Informed_RRT_Star(start, goal);
-                    break;
-                default:
-                    throw new Exception($"Invalid SearchType token. SearchType={sp}");
+                var parameters = new object[] {start, goal};
+                var search = Activator.CreateInstance(searchEngineType, parameters);
+                searchEngine = search as ISearchEngine_RRT;
             }
-            return search;
+            return searchEngine;
         }
     }
 }

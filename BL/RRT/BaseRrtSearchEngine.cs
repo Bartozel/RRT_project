@@ -9,7 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Reactive.Disposables;
 
-namespace DiplomkaBartozel.RRT
+namespace SearchEngine
 {
     abstract class BaseRrtSearchEngine : ISearchEngine_RRT
     {
@@ -90,12 +90,12 @@ namespace DiplomkaBartozel.RRT
 
         protected IEnumerable<ITreeNode> FindNodesInCloseArea(IPosition position)
         {
-            return tree.Search(SearchArea.GetNearSearArea(position, GlobalConfig.MAX_DISTANCE));
+            return tree.GetNodesFromSearchArea(SearchArea.GetNearSearArea(position, GlobalConfig.MAX_DISTANCE));
         }
 
         protected IEnumerable<ITreeNode> FindNodesInCloseArea(IPosition position, int dist)
         {
-            var nearNodes = tree.Search(SearchArea.GetNearSearArea(position, dist));
+            var nearNodes = tree.GetNodesFromSearchArea(SearchArea.GetNearSearArea(position, dist));
 
             return nearNodes;
         }

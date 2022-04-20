@@ -1,15 +1,11 @@
 ﻿using BL.Base;
 using Data.Data;
 using System;
-using System.Collections.Generic;
 using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Documents;
 
-namespace DiplomkaBartozel.RRT
+namespace SearchEngine
 {
     class RRT : BaseRrtSearchEngine
     {

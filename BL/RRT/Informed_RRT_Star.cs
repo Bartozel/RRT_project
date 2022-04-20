@@ -2,7 +2,7 @@
 using Data.Data;
 using System;
 
-namespace DiplomkaBartozel.RRT
+namespace SearchEngine
 {
     //Not implemented. Maybe later. Implementation suited for specific envinronment
     class Informed_RRT_Star : RRT_STAR

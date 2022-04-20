@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 
-namespace DiplomkaBartozel.RRT
+namespace SearchEngine
 {
     class RRT_STAR : RRT
     {

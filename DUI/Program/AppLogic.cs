@@ -4,6 +4,7 @@ using Data.Enum;
 using BL.Agent;
 using System.Reactive;
 using System.Reactive.Linq;
+using System.Windows.Threading;
 using Data.Data.Interfaces;
 
 namespace DUI.Program
@@ -64,7 +65,8 @@ namespace DUI.Program
                         );
 
             var disp = agent.GetNewNodesObservable(150);
-            disp.ObserveOnDispatcher()
+
+            disp.ObserveOn(new DispatcherSynchronizationContext())
                 .Subscribe(observer);
             return disp;
         }

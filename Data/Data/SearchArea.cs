@@ -1,4 +1,4 @@
-﻿namespace Data.Data
+﻿namespace Data
 {
     public class SearchArea : Position
     {

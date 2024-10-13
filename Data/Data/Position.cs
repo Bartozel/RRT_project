@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Data.Data
+﻿namespace Data
 {
     public class Position : IPosition
     {
@@ -28,11 +22,10 @@ namespace Data.Data
             XCoordinate = position.XCoordinate;
             YCoordinate = position.YCoordinate;
         }
-    }
 
-    public interface IPosition
-    {
-        int XCoordinate { get; }
-        int YCoordinate { get; }
+        public double Distance(IPosition node)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

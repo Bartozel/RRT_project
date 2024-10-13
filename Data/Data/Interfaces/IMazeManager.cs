@@ -1,4 +1,4 @@
-﻿namespace Data.Data.Interfaces
+﻿namespace Data
 {
     interface IMazeManager
     {

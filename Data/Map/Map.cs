@@ -1,4 +1,4 @@
-﻿namespace Data.Map
+﻿namespace Data
 {
     internal class Map
     {

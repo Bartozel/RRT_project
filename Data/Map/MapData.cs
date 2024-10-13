@@ -1,9 +1,6 @@
-﻿
-using Data.Data;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace Data.Map
+namespace Data
 {
     public static class MapData
     {

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Data.Enum
+﻿namespace Data
 {
-    public enum SearchState
-    {
-        Stopped = 0,
-        Running = 1,
-        Paused = 2,
-        Creatred = 3
+    public enum SearchState : uint
+    {     
+        Created,
+        Stopped,
+        Running,
+        Paused
     }
 }

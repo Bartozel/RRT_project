@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Reactive.Disposables;
 
-namespace Data.Data.Interfaces
+namespace Data
 {
     public interface ISearchEngine_RRT : ISearchEngine
     {
         int NodesCount { get; }
-        IObservable<ITreeNode> UpdateTree();
-        IObservable<ITreeNode> CreateNewNodeObs(uint amount, CancellationDisposable cancellationToken);
+        ITreeNode UpdateTree();
+        ITreeNode GenerateNewNode();
     }
 }

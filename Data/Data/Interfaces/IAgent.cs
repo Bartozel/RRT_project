@@ -1,9 +1,7 @@
-﻿using Data.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Data.Enum;
 
-namespace Data.Data.Interfaces
+namespace Data
 {
     public interface IAgent
     {

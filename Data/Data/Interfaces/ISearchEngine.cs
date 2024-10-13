@@ -1,8 +1,7 @@
-﻿using Data.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace Data.Data.Interfaces
+namespace Data
 {
     public interface ISearchEngine
     {
@@ -11,6 +10,6 @@ namespace Data.Data.Interfaces
 
         bool PathExists { get; }
 
-        List<TreeLine> PathGoalToRoot();
+        List<CanvasLine> PathGoalToRoot();
     }
 }

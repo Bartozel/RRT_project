@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<Platforms>x64</Platforms>
+		<OutputPath>..\..\Build\PathFindingSimulator\$(Configuration)\</OutputPath>
+		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<Platforms>x64</Platforms>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\CollisionDetection\CollisionDetection.csproj" />
+	  <ProjectReference Include="..\Data\Data.csproj" />
+	  <ProjectReference Include="..\MapGenerator\ClassLibrary1\MapGenerator.csproj" />
+	  <ProjectReference Include="..\MotionCalculator\MotionCalculator.csproj" />
+	  <ProjectReference Include="..\PathFinding\PathFindingAlgorithms.csproj" />
+	</ItemGroup>
+
+</Project>

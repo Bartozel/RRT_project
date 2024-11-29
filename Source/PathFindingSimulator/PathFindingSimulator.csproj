@@ -14,11 +14,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\CollisionDetection\CollisionDetection.csproj" />
-	  <ProjectReference Include="..\Data\Data.csproj" />
-	  <ProjectReference Include="..\MapGenerator\ClassLibrary1\MapGenerator.csproj" />
-	  <ProjectReference Include="..\MotionCalculator\MotionCalculator.csproj" />
-	  <ProjectReference Include="..\PathFinding\PathFindingAlgorithms.csproj" />
+	  <Folder Include="Font\" />
+	  <Folder Include="Images\" />
+	  <Folder Include="MVVM\Model\" />
+	  <Folder Include="MVVM\ViewModel\" />
+	  <Folder Include="MVVM\View\" />
 	</ItemGroup>
 
 </Project>

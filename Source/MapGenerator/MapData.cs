@@ -1,7 +1,4 @@
-﻿
-using Data.Data;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Data.Map
 {

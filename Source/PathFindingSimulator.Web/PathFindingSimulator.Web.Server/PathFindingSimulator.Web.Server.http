@@ -1,0 +1,6 @@
+@PathFindingSimulator.Web.Server_HostAddress = http://localhost:5120
+
+GET {{PathFindingSimulator.Web.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

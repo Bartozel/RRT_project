@@ -5,7 +5,7 @@
 		<TargetFramework>net8.0-windows</TargetFramework>
 		<UseWPF>true</UseWPF>
 		<Platforms>x64</Platforms>
-		<OutputPath>..\..\Build\PathFindingSimulator\$(Configuration)\</OutputPath>
+		<OutputPath>..\..\Build\PathFindingSimulator.Wpf\$(Configuration)\</OutputPath>
 		<EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>

@@ -11,8 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CollisionDetection\CollisionDetection.csproj" />
-    <ProjectReference Include="..\Data\Data.csproj" />
     <ProjectReference Include="..\PathFinding\PathFindingAlgorithms.csproj" />
   </ItemGroup>
 

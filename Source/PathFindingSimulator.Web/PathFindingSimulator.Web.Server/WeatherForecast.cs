@@ -1,4 +1,4 @@
-namespace PathFindingSimulatorWeb.Server
+namespace PathFindingSimulator.Web.Server
 {
     public class WeatherForecast
     {

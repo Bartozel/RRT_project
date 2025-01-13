@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <SpaRoot>..\pathfindingsimulatorweb.client</SpaRoot>
+    <SpaRoot>..\pathfindingsimulator.web.client</SpaRoot>
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
-    <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
-    <Platforms>x64</Platforms>
+    <SpaProxyServerUrl>https://localhost:50313</SpaProxyServerUrl>
+	<OutputPath>..\..\..\Build\PathFindingSimulator.Web\$(Configuration)\</OutputPath>
+	<PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\pathfindingsimulatorweb.client\pathfindingsimulatorweb.client.esproj">
+    <ProjectReference Include="..\pathfindingsimulator.web.client\pathfindingsimulator.web.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

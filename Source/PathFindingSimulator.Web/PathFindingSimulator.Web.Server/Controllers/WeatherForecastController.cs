@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace PathFindingSimulatorWeb.Server.Controllers
+namespace PathFindingSimulator.Web.Server.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -1,7 +1,6 @@
-﻿using Data.Data;
-using System;
+﻿using System;
 
-namespace Data.Map
+namespace Data
 {
     public class Obstacle : SearchArea
     {

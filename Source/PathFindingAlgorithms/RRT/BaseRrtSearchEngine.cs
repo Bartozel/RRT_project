@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace SearchEngine
 {
-    abstract class BaseRrtSearchEngine : ISearchEngine_RRT
+    abstract class BaseRrtSearchEngine : IRrtSearchEngine
     {
         protected ISearchedNodesTree _searchAreaTree;
         protected CollisionDetector _collisionManager;
@@ -17,7 +17,7 @@ namespace SearchEngine
         public event EventHandler PathIsAvailable;
         public event EventHandler PathIsBlocked;
 
-        public SearchState SearchState { get; set; }
+        public ESearchState SearchState { get; set; }
         public List<ITreeNode> SpanningTree { get; }
         public bool PathExists { get; }
 
@@ -29,7 +29,7 @@ namespace SearchEngine
             _searchAreaTree = new SearchTree(GlobalConfig.SearchAreaXValue, GlobalConfig.SearchAreaYValue, root);
             _root = root;
             _goal = goal;
-            SearchState = SearchState.Created;
+            SearchState = ESearchState.Created;
             _collisionManager = new CollisionDetector();
         }
         protected virtual IPosition GenerateNewPosition()
@@ -91,12 +91,12 @@ namespace SearchEngine
 
         protected IEnumerable<ITreeNode> FindNodesInCloseArea(IPosition position)
         {
-            return _searchAreaTree.GetNodesFromSearchArea(SearchArea.GetNearSearArea(position, GlobalConfig.MAX_DISTANCE));
+            return _searchAreaTree.GetNodesFromSearchArea(Area.GetNearSearArea(position, GlobalConfig.MAX_DISTANCE));
         }
 
         protected IEnumerable<ITreeNode> FindNodesInCloseArea(IPosition position, int dist)
         {
-            var nearNodes = _searchAreaTree.GetNodesFromSearchArea(SearchArea.GetNearSearArea(position, dist));
+            var nearNodes = _searchAreaTree.GetNodesFromSearchArea(Area.GetNearSearArea(position, dist));
 
             return nearNodes;
         }

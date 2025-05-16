@@ -16,7 +16,7 @@ namespace Data.Map
             StaticObstacles.Add(obstacle);
         }
 
-        public static void Insert(SearchArea sa)
+        public static void Insert(Area sa)
         {
             
         }

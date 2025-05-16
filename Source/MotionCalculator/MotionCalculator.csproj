@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PathFinding\PathFindingAlgorithms.csproj" />
+    <ProjectReference Include="..\PathFindingAlgorithms\PathFindingAlgorithms.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,6 +9,7 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True">
+    
     <Border Background="#272537"
           CornerRadius="25">
         <Grid>
@@ -22,56 +23,7 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="BazivelSoftware"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Foreground="White"
-                       FontSize="22"/>
-
-            <Grid Grid.Row="1">
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <RadioButton Content="Home"
-                             Grid.Row="0"
-                             Style="{StaticResource MenuButtonTheme}"/>
-
-                <RadioButton Content="Simulation"
-                             Grid.Row="1"
-                             Style="{StaticResource MenuButtonTheme}"/>
-
-                <RadioButton Content="Map builder"
-                             Grid.Row="2"
-                             Style="{StaticResource MenuButtonTheme}"/>
-
-                <RadioButton Content="Setting"
-                             Grid.Row="3"
-                             Style="{StaticResource MenuButtonTheme}"/>
-            </Grid>
-
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="2*"></RowDefinition>
-                    <RowDefinition Height="6*"></RowDefinition>
-                    <RowDefinition Height="2*"></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                    <ColumnDefinition Width="6*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-
-                <TextBox Grid.Row="1" 
-                         Grid.Column="1"
-                         Style="{StaticResource SearchBoxTheme}"/>
-
-            </Grid>
+            
         </Grid>
     </Border>
 </Window>

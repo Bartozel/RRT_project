@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace PathFindingSimulator.Core
+namespace PathFindingSimulator
 {
     internal class Line : INotifyPropertyChanged
     {

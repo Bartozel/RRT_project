@@ -2,7 +2,7 @@
 
 namespace Data
 {
-    public readonly record struct SimulationSetting
+    public record SimulationSetting
     {
         public ScenarioInfo SelectedScenario { get; init; }
 

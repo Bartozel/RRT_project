@@ -1,4 +1,4 @@
-﻿namespace PathFindingSimulator
+﻿namespace PathFindingSimulatorAgregator
 {
     static class AgentManager
     {

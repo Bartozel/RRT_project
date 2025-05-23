@@ -1,21 +1,20 @@
-﻿using Communication;
-using Data;
-using Data.Communication;
+﻿using Data;
 using Logging;
+using MediatR;
 using System;
 
-namespace PathFindingSimulator
+namespace PathFindingSimulatorAgregator
 {
     public class PathFindingSimulator : BaseLogger
     {
         private ESimulationState _simulationState;
         private readonly SimulationSetting _setting;
-        private readonly ICommunicationProvider _communicationProvider;
+        private readonly IMediator _communicationProvider;
         private readonly SynchroClock _synchronizationClock;
 
         public ESimulationState SimulationState => _simulationState;
 
-        public PathFindingSimulator(in SimulationSetting simulationSetting, ILogger logger, ICommunicationProvider communicationProvider) : base(logger)
+        public PathFindingSimulator(in SimulationSetting simulationSetting, ILogger logger, IMediator communicationProvider) : base(logger)
         {
             _simulationState = ESimulationState.Stop;
             _setting = simulationSetting;
@@ -24,9 +23,6 @@ namespace PathFindingSimulator
             _synchronizationClock.OnTimerElapsed += TimerElapsedHandler;
 
             LoadDefaultScenario(_setting.SelectedScenario);
-
-            _communicationProvider.Subscribe<SimulationStateUpdate>(OnSimulationStateChange);
-            _communicationProvider.Subscribe<SimulationSpeedUpdate>(OnSimulationSpeedChange);
         }
 
         private void TimerElapsedHandler(in TimeSpan delta)
@@ -37,30 +33,6 @@ namespace PathFindingSimulator
         private void LoadDefaultScenario(in ScenarioInfo selectedScenario)
         {
             throw new NotImplementedException();
-        }
-
-        private void OnSimulationStateChange(SimulationStateUpdate simulationUpdate)
-        {
-            _simulationState = simulationUpdate.SimulationState;
-            switch (_simulationState)
-            {
-                case ESimulationState.Start:
-                    _synchronizationClock.Start();
-                    break;
-                case ESimulationState.Pause:
-                    _synchronizationClock.Stop();
-                    break;
-                case ESimulationState.Stop:
-                    _synchronizationClock.Stop();
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(simulationState), simulationState, null);
-            }
-        }
-
-        private void OnSimulationSpeedChange(SimulationSpeedUpdate simulationUpdate)
-        {
-
         }
     }
 }

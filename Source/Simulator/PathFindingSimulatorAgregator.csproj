@@ -10,12 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Movement\" />
-    <Folder Include="Factory\" />
-    <Folder Include="Obstacles\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Communication\Communication.csproj" />
     <ProjectReference Include="..\Data\Data.csproj" />
     <ProjectReference Include="..\Logging\Logging.csproj" />

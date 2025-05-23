@@ -1,11 +1,9 @@
-﻿using Communication;
-using Logging;
-using System;
+﻿using System;
 using System.Threading;
 
-namespace PathFindingSimulator
+namespace PathFindingSimulatorAgregator
 {
-    internal class SynchroClock : BaseLogger
+    internal class SynchroClock
     {
         private TimeSpan _tickFrequency;
         private DateTime _lastTickTime;
@@ -13,7 +11,7 @@ namespace PathFindingSimulator
 
         public event ReadOnlyStructDelegate<TimeSpan> OnTimerElapsed;
 
-        public SynchroClock(TimeSpan tickFrequency, ICommunicationProvider communicationProvider, ILogger logger) : base(logger)
+        public SynchroClock(TimeSpan tickFrequency) 
         {
             _tickFrequency = tickFrequency;
             _timer = new Timer(OnTimerEllapsed, null, TimeSpan.Zero, tickFrequency);

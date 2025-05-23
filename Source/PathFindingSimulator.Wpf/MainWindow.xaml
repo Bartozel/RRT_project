@@ -1,9 +1,9 @@
-﻿<Window x:Class="PathFindingSimulator.MainWindow"
+﻿<Window x:Class="PathFindingSimulator.Wpf.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PathFindingSimulator"
+        xmlns:local="clr-namespace:PathFindingSimulator.Wpf"
         mc:Ignorable="d"
         MinHeight="600" MinWidth="920"
         WindowStyle="None"
@@ -23,7 +23,9 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            
+            <local:LogoView Grid.Column="0" Grid.Row="0"/>
+            <local:SidePanelView Grid.Column="0" Grid.Row="1"/>
+            <local:HeaderPanelView Grid.Column="1" Grid.Row="0"/>
         </Grid>
     </Border>
 </Window>

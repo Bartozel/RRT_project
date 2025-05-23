@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace PathFindingSimulator.wpf.MVVM
+namespace PathFindingSimulator.Wpf
 {
     class MapViewModel : INotifyPropertyChanged
     {

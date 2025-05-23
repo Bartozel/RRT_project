@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace PathFindingSimulator
+namespace PathFindingSimulator.Wpf
 {
     internal class RelayCommand : ICommand
     {

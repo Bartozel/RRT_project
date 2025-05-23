@@ -17,14 +17,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="MVVM\AppControlButtons\" />
-	  <Folder Include="MVVM\MainControlPanel\" />
-	  <Folder Include="MVVM\HeaderPanel\" />
-	  <Folder Include="MVVM\Setting\" />
-	</ItemGroup>
-
-	<ItemGroup>
+	  <ProjectReference Include="..\Communication\Communication.csproj" />
 	  <ProjectReference Include="..\Data\Data.csproj" />
+	  <ProjectReference Include="..\Logging\Logging.csproj" />
+	  <ProjectReference Include="..\Simulator\PathFindingSimulatorAgregator.csproj" />
 	</ItemGroup>
 
 </Project>

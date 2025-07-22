@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{99f8fd5a-e6f9-4655-907e-fa2e669917ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Data">
+      <UniqueIdentifier>{39b36194-8180-43cd-9d60-d17796a22114}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SpatialNode.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="IRrtAlgorithm.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="ISpacialDataManager.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+    <ClInclude Include="ISpatialDataStructure.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\RRT\SpatialPoint.h">
+      <Filter>Data</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

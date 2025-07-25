@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Communication", "..\Source\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFindingSimulator.Avalonia.Desktop", "..\Source\UI\PathFindingSimulator.Avalonia\PathFindingSimulator.Avalonia.Desktop\PathFindingSimulator.Avalonia.Desktop.csproj", "{5131CFDD-2AB6-463E-69B1-0C048660233E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Math", "Math\Math.vcxproj", "{51B8E110-7EE9-412C-BC4C-AC8209285CE1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Math", "..\Source\Simulation\Math\Math.vcxproj", "{51B8E110-7EE9-412C-BC4C-AC8209285CE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

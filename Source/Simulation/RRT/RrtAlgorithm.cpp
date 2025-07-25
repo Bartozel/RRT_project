@@ -15,7 +15,7 @@ std::shared_ptr<SpatialNode> RrtAlgorithm::GetNewNode()
 	SteerToNearestNode(sp);
 
 	auto sn = std::make_shared<SpatialNode>(nn.get(), SpatialCalculator::Distance(sp, *nn.get()), sp);
-	nn.get()->AddChild(std::move(sn));
+	nn.get()->AddChild(sn);
 
 	return sn;
 }

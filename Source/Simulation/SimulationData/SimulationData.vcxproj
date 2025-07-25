@@ -19,12 +19,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\RRT\SpatialPoint.h" />
-    <ClInclude Include="Enum.h" />
-    <ClInclude Include="IRrtAlgorithm.h" />
-    <ClInclude Include="ISpacialDataManager.h" />
-    <ClInclude Include="ISpatialDataStructure.h" />
-    <ClInclude Include="SpatialNode.h" />
+    <ClInclude Include="Enum\eRrtAlgorithm.h" />
+    <ClInclude Include="Enum\eSearchedArea.h" />
+    <ClInclude Include="ExportMacro.h" />
+    <ClInclude Include="Interface\IRrtAlgorithm.h" />
+    <ClInclude Include="Interface\ISpacialDataManager.h" />
+    <ClInclude Include="Interface\ISpatialDataStructure.h" />
+    <ClInclude Include="Data\SpatialNode.h" />
+    <ClInclude Include="Data\SpatialPoint.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Data\SpatialNode.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -79,10 +84,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\..\..\Build\Lib\$(Configuration)\</OutDir>
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\..\..\Build\Lib\$(Configuration)\</OutDir>
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

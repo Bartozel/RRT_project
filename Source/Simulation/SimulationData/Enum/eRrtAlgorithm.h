@@ -1,4 +1,5 @@
 ﻿#pragma once
+
 enum eRrtAlgorithm
 {
 	RRT,
@@ -6,4 +7,3 @@ enum eRrtAlgorithm
 	RRT_INFORMED,
 	RRT_X
 };
-

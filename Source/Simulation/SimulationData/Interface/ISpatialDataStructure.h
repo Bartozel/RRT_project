@@ -1,0 +1,15 @@
+﻿#pragma once
+#include <vector>
+#include <memory>
+#include "..\Data\SpatialNode.h"
+#include "..\ExportMacro.h"
+
+class DLL_API ISpatialDataStructure
+{
+public:
+	virtual std::vector<std::shared_ptr<SpatialNode>> GetNearNodes(const SpatialNode& node, int searchedAreaSideSize) const  = 0;
+	virtual std::vector<std::shared_ptr<SpatialNode>> Insert(std::shared_ptr<SpatialNode> node) const = 0;
+	virtual bool Delete(std::shared_ptr<SpatialNode> node) const = 0;
+	virtual bool Delete(const std::vector<std::shared_ptr<SpatialNode>>& node) const = 0;
+};
+

@@ -7,25 +7,33 @@
     <Filter Include="Data">
       <UniqueIdentifier>{39b36194-8180-43cd-9d60-d17796a22114}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{cf2ef415-1abc-403d-97bd-508c18750c49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SpatialNode.h">
+    <ClInclude Include="Data\SpatialNode.h">
       <Filter>Data</Filter>
     </ClInclude>
-    <ClInclude Include="IRrtAlgorithm.h">
+    <ClInclude Include="Interface\IRrtAlgorithm.h">
       <Filter>Interface</Filter>
     </ClInclude>
-    <ClInclude Include="ISpacialDataManager.h">
+    <ClInclude Include="Interface\ISpacialDataManager.h">
       <Filter>Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Enum.h">
+    <ClInclude Include="Interface\ISpatialDataStructure.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Data\SpatialPoint.h">
       <Filter>Data</Filter>
     </ClInclude>
-    <ClInclude Include="ISpatialDataStructure.h">
-      <Filter>Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\RRT\SpatialPoint.h">
-      <Filter>Data</Filter>
-    </ClInclude>
+    <ClInclude Include="Enum\eRrtAlgorithm.h" />
+    <ClInclude Include="Enum\eSearchedArea.h" />
+    <ClInclude Include="ExportMacro.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Data\SpatialNode.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

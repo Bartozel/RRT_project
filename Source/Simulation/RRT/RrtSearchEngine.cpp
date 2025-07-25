@@ -1,35 +1,38 @@
 ﻿#include "RrtSearchEngine.h"
 #include "RrtAlgorithm.h"
 
+#include <Enum\eSearchedArea.h>
+
 RrtSearchEngine::RrtSearchEngine(eRrtAlgorithm algorithmType, const ISpatialDataStructure& rrtTree) :
 	m_rrtSpatialGenerator(CreateGenerator(algorithmType)),
-	m_rrtTree(rrtTree),
-	m_rd(),
-	m_engine(m_rd()),
-	m_dist(0, 1000) // TODO - make dynamic + canvas size may not be square
+	m_rrtTree(rrtTree)
 {
 }
 
-SpatialNode RrtSearchEngine::GetNode()
+void RrtSearchEngine::NodeRewire(SpatialNode& node)
 {
-	SpatialPoint sp = CreateSpatialPoint();
-	SteerToNearestNode(&sp);
+	for (int i = 0; i <= 3; ++i) {
 
-	return SpatialNode(sp.X, sp.Y);
+		auto nearNodesCollection = m_rrtTree.GetNearNodes(node, eSearchedArea::Small * i);
+
+		if (m_rrtSpatialGenerator->UpdateNodeParent(node, nearNodesCollection))
+		{
+			break;
+		}
+	}
 }
 
-IRrtAlgorithm RrtSearchEngine::CreateGenerator(eRrtAlgorithm algorithmType)
+std::unique_ptr<IRrtAlgorithm> RrtSearchEngine::CreateGenerator(eRrtAlgorithm algorithmType) const
 {
 	switch (algorithmType)
 	{
 	case RRT:
-		return RrtAlgorithm();
-		break;
+		return std::make_unique<RrtAlgorithm>();
+
 	case RRT_START:
 	case RRT_INFORMED:
 	case RRT_X:
 	default:
-		return RrtAlgorithm();
-		break;
+		return std::make_unique<RrtAlgorithm>();
 	}
 }

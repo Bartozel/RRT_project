@@ -1,12 +1,9 @@
 ﻿#pragma once
-#include <random>
-#include <SpatialNode.h>
-#include <IRrtAlgorithm.h>
-#include <ISpacialDataManager.h>
-#include <Enum.h>
-
-#include "SpatialPoint.h"
-#include <ISpatialDataStructure.h>
+#include <optional>
+#include <Interface/ISpatialDataStructure.h>
+#include <Enum/eRrtAlgorithm.h>
+#include <Data/SpatialNode.h>
+#include <Interface/IRrtAlgorithm.h>
 
 class RrtSearchEngine
 {
@@ -19,18 +16,14 @@ public:
 	RrtSearchEngine(eRrtAlgorithm algorithmType, const ISpatialDataStructure& rrtTree);
 
 public:
-	SpatialNode GetNode();
-	void Rewire(const SpatialNode& node);
+	std::shared_ptr<SpatialNode> GetNode() { return m_rrtSpatialGenerator->GetNewNode(); };
+	void NodeRewire(SpatialNode& node);
 
 private:
-	IRrtAlgorithm CreateGenerator(eRrtAlgorithm algorithmType);
-	SpatialPoint CreateSpatialPoint();
-	void SteerToNearestNode(SpatialPoint* steeredNode);
+	std::unique_ptr<IRrtAlgorithm> CreateGenerator(eRrtAlgorithm algorithmType) const ;
+	//std::optional<SpatialNode&> FindNearestNode(const SpatialNode& referenceNode, const std::vector<std::reference_wrapper<SpatialNode>>& nearNodes);
 
 private:
-	IRrtAlgorithm m_rrtSpatialGenerator;
+	std::unique_ptr<IRrtAlgorithm> m_rrtSpatialGenerator;
 	const ISpatialDataStructure& m_rrtTree;
-	std::random_device m_rd;
-	std::mt19937 m_engine;
-	std::uniform_int_distribution<int> m_dist;
 };

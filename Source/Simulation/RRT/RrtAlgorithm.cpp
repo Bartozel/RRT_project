@@ -25,7 +25,7 @@ bool RrtAlgorithm::UpdateNodeParent(SpatialNode& referenceNode, const std::vecto
 
 	for (const auto& nearNode : nearNodes) {
 
-		auto distance = SpatialCalculator::Distance(referenceNode, *nearNode.get());
+		auto distance = SpatialCalculator::DistanceSquared(referenceNode, *nearNode.get());
 
 		if (distance < lowestDistance) {
 			lowestDistance = distance;

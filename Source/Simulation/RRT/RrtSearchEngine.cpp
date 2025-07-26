@@ -17,7 +17,7 @@ SpatialNode RrtSearchEngine::ProduceNode()
 
 	m_rrtAlgorithm->SteerToParent(spatialPoint, parentNode);
 
-	return SpatialNode(parentNode.get(), SpatialCalculator::Distance(*parentNode.get(), spatialPoint), spatialPoint);
+	return SpatialNode(parentNode.get(), SpatialCalculator::DistanceSquared(*parentNode.get(), spatialPoint), spatialPoint);
 }
 
 void RrtSearchEngine::NodeRewire(SpatialNode& node)

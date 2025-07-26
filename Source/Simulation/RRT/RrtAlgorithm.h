@@ -1,8 +1,7 @@
 ﻿#pragma once
 #include <random>
-
-#include <Interface/IRrtAlgorithm.h>
-#include <Data/SpatialPoint.h>
+#include "Interface/IRrtAlgorithm.h"
+#include "Data/SpatialPoint.h"
 
 class RrtAlgorithm : public IRrtAlgorithm
 {
@@ -10,13 +9,12 @@ public:
 	RrtAlgorithm();
 
 public:
-	std::shared_ptr<SpatialNode> GetNewNode() override;
+	SpatialPoint GenerateSpatialPoint() override;
+	void SteerToParent(SpatialPoint& steeredNode, const std::shared_ptr<SpatialNode>& nearNodes) override;
 	bool UpdateNodeParent(SpatialNode& referenceNode, const std::vector<std::shared_ptr<SpatialNode>>& nearNodes)const override;
+	std::shared_ptr<SpatialNode> FindNearest(const SpatialPoint& referencePoint, const std::vector<std::shared_ptr<SpatialNode>> nearNodes) const override;
 
 private:
-	SpatialPoint CreateSpatialPoint() const;
-	void SteerToNearestNode(SpatialPoint& steeredNode);
-	std::shared_ptr<SpatialNode> FindNearestAvailableNode(const SpatialPoint& sp);
 
 private:
 	std::random_device m_rd;

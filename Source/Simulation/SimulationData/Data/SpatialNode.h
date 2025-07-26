@@ -12,6 +12,8 @@ public:
 
 public:
 	void SetParent(SpatialNode* parent, float distance);
+	const SpatialNode& Parent(); //TODO in thery thise canno't be nullptr
+
 	void AddChild(std::shared_ptr<SpatialNode> child);
 	void RemoveChild(const SpatialNode& child);
 	std::shared_ptr<SpatialNode> GetChildOwnership(const SpatialNode& child);
@@ -21,14 +23,12 @@ public:
 public:
 	inline static unsigned MaxChildren;
 
-public:
-
-	bool operator==(const SpatialNode& other) const;
-
 private:
 	float m_distanceToParent;
 	SpatialNode* m_parent;
 	std::vector<std::shared_ptr<SpatialNode>> m_children;
-	std::mutex m_lock;
+
+	std::mutex m_childrenLock;
+	std::mutex m_parentLock;
 };
 

@@ -5,6 +5,7 @@ SpatialNode::SpatialNode(SpatialNode* parent, float distanceToParent, unsigned x
 	m_parent(parent),
 	m_distanceToParent(distanceToParent)
 {
+	m_children.reserve(MaxChildren);
 }
 
 SpatialNode::SpatialNode(SpatialNode* parent, float distanceToParent, const SpatialPoint& definingPoint) :
@@ -13,19 +14,34 @@ SpatialNode::SpatialNode(SpatialNode* parent, float distanceToParent, const Spat
 
 void SpatialNode::SetParent(SpatialNode* parent, float distance)
 {
+	std::lock_guard<std::mutex> lock(m_parentLock);
+
 	m_parent = parent;
 	m_distanceToParent = distance;
 }
 
+const SpatialNode& SpatialNode::Parent()
+{
+	std::lock_guard<std::mutex> lock(m_parentLock);
+
+	if (m_parent) {
+		return *m_parent;
+	}
+	else {
+		throw std::runtime_error("Unexpected nullptr: object must be valid."); //TODo it shouldn't happen. Notify in case it do.
+	}
+}
+
 void SpatialNode::AddChild(std::shared_ptr<SpatialNode> child)
 {
-	std::lock_guard<std::mutex> lock(m_lock);
+	//TODO - add check on max number of childs
+	std::lock_guard<std::mutex> lock(m_childrenLock);
 	m_children.emplace_back(child);
 }
 
 void SpatialNode::RemoveChild(const SpatialNode& child)
 {
-	std::lock_guard<std::mutex> lock(m_lock);
+	std::lock_guard<std::mutex> lock(m_childrenLock);
 
 	m_children.erase(
 		std::remove_if(
@@ -38,7 +54,7 @@ void SpatialNode::RemoveChild(const SpatialNode& child)
 
 std::shared_ptr<SpatialNode> SpatialNode::GetChildOwnership(const SpatialNode& child)
 {
-	std::lock_guard<std::mutex> lock(m_lock);
+	std::lock_guard<std::mutex> lock(m_childrenLock);
 
 	auto it = std::find_if(m_children.begin(), m_children.end(),
 		[&child](const std::shared_ptr<SpatialNode>& ptr) {
@@ -52,8 +68,4 @@ std::shared_ptr<SpatialNode> SpatialNode::GetChildOwnership(const SpatialNode& c
 	}
 
 	return nullptr;
-}
-
-bool SpatialNode::operator==(const SpatialNode& other) const {
-	return X == other.GetX() && Y == other.GetY();
 }

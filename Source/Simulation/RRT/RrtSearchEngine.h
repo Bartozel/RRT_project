@@ -11,19 +11,18 @@ public:
 	/// <summary>
 	/// 
 	/// </summary>
-	/// <param name="algorithmType">Defines under what algorithm engine produces spatial data</param>
-	/// <param name="rrtTree">Provides an information about developped spatial tree. Those are used for rewiringand steering processes.</param>
-	RrtSearchEngine(eRrtAlgorithm algorithmType, const ISpatialDataStructure& rrtTree);
+	/// <param name="algorithmType">Defines under what algorithm engine produces spatial data.</param>
+	/// <param name="rrtTree">Provides available spatial data.</param>
+	RrtSearchEngine(eRrtAlgorithm algorithmType, std::shared_ptr<ISpatialDataStructure> rrtTree);
 
 public:
-	std::shared_ptr<SpatialNode> GetNode() { return m_rrtSpatialGenerator->GetNewNode(); };
+	SpatialNode ProduceNode();
 	void NodeRewire(SpatialNode& node);
 
 private:
-	std::unique_ptr<IRrtAlgorithm> CreateGenerator(eRrtAlgorithm algorithmType) const ;
-	//std::optional<SpatialNode&> FindNearestNode(const SpatialNode& referenceNode, const std::vector<std::reference_wrapper<SpatialNode>>& nearNodes);
+	std::unique_ptr<IRrtAlgorithm> CreateGenerator(eRrtAlgorithm algorithmType) const;
 
 private:
-	std::unique_ptr<IRrtAlgorithm> m_rrtSpatialGenerator;
-	const ISpatialDataStructure& m_rrtTree;
+	std::unique_ptr<IRrtAlgorithm> m_rrtAlgorithm;
+	std::shared_ptr<ISpatialDataStructure> m_rrtTree;
 };

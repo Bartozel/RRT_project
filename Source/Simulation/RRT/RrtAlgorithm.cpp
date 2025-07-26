@@ -8,16 +8,10 @@ RrtAlgorithm::RrtAlgorithm() :
 {
 }
 
-std::shared_ptr<SpatialNode> RrtAlgorithm::GetNewNode()
+SpatialPoint RrtAlgorithm::GenerateSpatialPoint()
 {
-	auto sp = CreateSpatialPoint();
-	auto nn = FindNearestAvailableNode(sp);
-	SteerToNearestNode(sp);
+	return SpatialPoint(m_dist(m_engine), m_dist(m_engine));
 
-	auto sn = std::make_shared<SpatialNode>(nn.get(), SpatialCalculator::Distance(sp, *nn.get()), sp);
-	nn.get()->AddChild(sn);
-
-	return sn;
 }
 
 bool RrtAlgorithm::UpdateNodeParent(SpatialNode& referenceNode, const std::vector<std::shared_ptr<SpatialNode>>& nearNodes) const
@@ -39,7 +33,9 @@ bool RrtAlgorithm::UpdateNodeParent(SpatialNode& referenceNode, const std::vecto
 		}
 	}
 
-	referenceNode.SetParent(nearestNode, lowestDistance);
+	if (*nearestNode != referenceNode.Parent()) {
+		referenceNode.SetParent(nearestNode, lowestDistance);
+	}
 
 	return true;
 }

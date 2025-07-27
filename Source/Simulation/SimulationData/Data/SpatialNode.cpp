@@ -5,6 +5,7 @@ SpatialNode::SpatialNode(SpatialNode* parent, float distanceToParent, unsigned x
 	m_parent(parent),
 	m_distanceToParent(distanceToParent)
 {
+	MaxChildren = 9; //TODO it shoudl be settable
 	m_children.reserve(MaxChildren);
 }
 

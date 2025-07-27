@@ -11,8 +11,12 @@ public:
 public:
 	SpatialPoint GenerateSpatialPoint() override;
 	void SteerToParent(SpatialPoint& steeredNode, const std::shared_ptr<SpatialNode>& nearNodes) override;
+	void SteerToParent(SpatialPoint& steeredNode, const float& parentDistance) override;
 	bool UpdateNodeParent(SpatialNode& referenceNode, const std::vector<std::shared_ptr<SpatialNode>>& nearNodes)const override;
-	std::shared_ptr<SpatialNode> FindNearest(const SpatialPoint& referencePoint, const std::vector<std::shared_ptr<SpatialNode>> nearNodes) const override;
+	std::tuple<std::shared_ptr<SpatialNode>, float> GetNearestWithDistance(const SpatialPoint& referencePoint, const std::vector<std::shared_ptr<SpatialNode>> nearNodes) const override;
+
+public:
+	inline static unsigned MaxDistance;
 
 private:
 

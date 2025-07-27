@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFindingSimulator.Avalon
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Math", "..\Source\Simulation\Math\Math.vcxproj", "{51B8E110-7EE9-412C-BC4C-AC8209285CE1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Agent", "..\Source\Simulation\Agent\Agent.vcxproj", "{B7AAA517-A67B-4D59-B5D6-BC3A07853C11}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimulationEnvinronment", "..\Source\Simulation\SimulationEnvinronment\SimulationEnvinronment.vcxproj", "{19CE101A-5B8F-46B4-A2B9-1E9A376B3857}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +65,14 @@ Global
 		{51B8E110-7EE9-412C-BC4C-AC8209285CE1}.Debug|x64.Build.0 = Debug|x64
 		{51B8E110-7EE9-412C-BC4C-AC8209285CE1}.Release|x64.ActiveCfg = Release|x64
 		{51B8E110-7EE9-412C-BC4C-AC8209285CE1}.Release|x64.Build.0 = Release|x64
+		{B7AAA517-A67B-4D59-B5D6-BC3A07853C11}.Debug|x64.ActiveCfg = Debug|x64
+		{B7AAA517-A67B-4D59-B5D6-BC3A07853C11}.Debug|x64.Build.0 = Debug|x64
+		{B7AAA517-A67B-4D59-B5D6-BC3A07853C11}.Release|x64.ActiveCfg = Release|x64
+		{B7AAA517-A67B-4D59-B5D6-BC3A07853C11}.Release|x64.Build.0 = Release|x64
+		{19CE101A-5B8F-46B4-A2B9-1E9A376B3857}.Debug|x64.ActiveCfg = Debug|x64
+		{19CE101A-5B8F-46B4-A2B9-1E9A376B3857}.Debug|x64.Build.0 = Debug|x64
+		{19CE101A-5B8F-46B4-A2B9-1E9A376B3857}.Release|x64.ActiveCfg = Release|x64
+		{19CE101A-5B8F-46B4-A2B9-1E9A376B3857}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +86,8 @@ Global
 		{F1BAD534-BD5D-9205-0FD1-55E323F8835F} = {991391C9-4688-49A1-9E3F-75A93496DF88}
 		{5131CFDD-2AB6-463E-69B1-0C048660233E} = {991391C9-4688-49A1-9E3F-75A93496DF88}
 		{51B8E110-7EE9-412C-BC4C-AC8209285CE1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{B7AAA517-A67B-4D59-B5D6-BC3A07853C11} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{19CE101A-5B8F-46B4-A2B9-1E9A376B3857} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8C4D061-9FA7-4D63-8A62-61C03E0A463F}

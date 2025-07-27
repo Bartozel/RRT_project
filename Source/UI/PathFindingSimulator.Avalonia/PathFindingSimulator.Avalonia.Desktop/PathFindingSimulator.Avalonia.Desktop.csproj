@@ -8,7 +8,7 @@
 		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
 		<Platforms>x64</Platforms>
 
-		<OutputPath>..\..\..\Build\Lib\$(Configuration)\</OutputPath>
+		<OutputPath>..\..\..\..\Build\UI\$(Configuration)\</OutputPath>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>

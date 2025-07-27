@@ -8,6 +8,7 @@ struct DLL_API SpatialNode : public SpatialPoint
 {
 public:
 	SpatialNode(SpatialNode* parent, float distanceToParent, unsigned x, unsigned y);
+	SpatialNode(SpatialNode* parent, float distanceToParent, unsigned x, unsigned y, unsigned z);
 	SpatialNode(SpatialNode* parent, float distanceToParent, const SpatialPoint& definingPoint);
 
 public:

@@ -1,7 +1,11 @@
 ﻿#include "SpatialNode.h"
 
 SpatialNode::SpatialNode(SpatialNode* parent, float distanceToParent, unsigned x, unsigned y) :
-	SpatialPoint(x, y),
+	SpatialNode(parent, distanceToParent, x, y, 0.0f) {
+}
+
+SpatialNode::SpatialNode(SpatialNode* parent, float distanceToParent, unsigned x, unsigned y, unsigned z) :
+	SpatialPoint(x, y, z),
 	m_parent(parent),
 	m_distanceToParent(distanceToParent)
 {

@@ -18,9 +18,6 @@
     <ClInclude Include="Interface\IRrtAlgorithm.h">
       <Filter>Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Interface\ISpacialDataManager.h">
-      <Filter>Interface</Filter>
-    </ClInclude>
     <ClInclude Include="Interface\ISpatialDataStructure.h">
       <Filter>Interface</Filter>
     </ClInclude>

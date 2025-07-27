@@ -23,7 +23,6 @@
     <ClInclude Include="Enum\eSearchedArea.h" />
     <ClInclude Include="ExportMacro.h" />
     <ClInclude Include="Interface\IRrtAlgorithm.h" />
-    <ClInclude Include="Interface\ISpacialDataManager.h" />
     <ClInclude Include="Interface\ISpatialDataStructure.h" />
     <ClInclude Include="Data\SpatialNode.h" />
     <ClInclude Include="Data\SpatialPoint.h" />

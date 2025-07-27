@@ -26,9 +26,11 @@
     <ClInclude Include="Interface\ISpatialDataStructure.h" />
     <ClInclude Include="Data\SpatialNode.h" />
     <ClInclude Include="Data\SpatialPoint.h" />
+    <ClInclude Include="Data\SpatialNodeMap.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data\SpatialNode.cpp" />
+    <ClCompile Include="Data\SpatialNodeMap.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

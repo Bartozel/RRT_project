@@ -13,7 +13,7 @@ public:
 
 public:
 	void SetParent(SpatialNode* parent, float distance);
-	const SpatialNode& Parent(); //TODO in thery thise canno't be nullptr
+	const SpatialNode& Parent();
 
 	void AddChild(std::shared_ptr<SpatialNode> child);
 	void RemoveChild(const SpatialNode& child);

@@ -11,20 +11,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RRT\RrtAlgorithm.h" />
-    <ClInclude Include="RRT\RrtSearchEngine.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="RRT\RrtAlgorithm.cpp" />
-    <ClCompile Include="RRT\RrtSearchEngine.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Math\Math.vcxproj">
       <Project>{51b8e110-7ee9-412c-bc4c-ac8209285ce1}</Project>
     </ProjectReference>
     <ProjectReference Include="..\SimulationData\SimulationData.vcxproj">
       <Project>{b70aebea-5c31-4441-bf6b-15039e3b8db4}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="RRT\RrtAlgorithm.cpp" />
+    <ClCompile Include="RRT\RrtSearchEngine.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="RRT\RrtAlgorithm.h" />
+    <ClInclude Include="RRT\RrtSearchEngine.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -75,14 +75,14 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Git\RRT_project\Source\Simulation\SimulationData;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\SimulationData;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>Math.lib;SimulationData.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Git\RRT_project\Source\Simulation\SimulationData\x64\$(Configuration)\;C:\Git\RRT_project\Source\Simulation\Math\x64\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\SimulationData\x64\$(Configuration)\;..\Math\x64\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -96,14 +96,14 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Git\RRT_project\Source\Simulation\SimulationData;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\SimulationData;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
       <AdditionalDependencies>Math.lib;SimulationData.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Git\RRT_project\Source\Simulation\SimulationData\x64\$(Configuration)\;C:\Git\RRT_project\Source\Simulation\Math\x64\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\SimulationData\x64\$(Configuration)\;..\Math\x64\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

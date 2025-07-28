@@ -28,11 +28,15 @@
     <ClInclude Include="Enum\eSearchedArea.h" />
     <ClInclude Include="ExportMacro.h" />
     <ClInclude Include="Data\SpatialNodeMap.h" />
+    <ClInclude Include="Interface\IAgent.h" />
+    <ClInclude Include="Interface\IAgentMovement.h" />
+    <ClInclude Include="Interface\ISearchEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data\SpatialNode.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
     <ClCompile Include="Data\SpatialNodeMap.cpp" />
+    <ClCompile Include="ISearchEngine.cpp" />
   </ItemGroup>
 </Project>

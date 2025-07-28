@@ -1,11 +1,13 @@
 ﻿#pragma once
 #include <optional>
-#include <Interface/ISpatialDataStructure.h>
-#include <Enum/eRrtAlgorithm.h>
-#include <Data/SpatialNode.h>
-#include <Interface/IRrtAlgorithm.h>
 
-class RrtSearchEngine
+#include "Interface/ISpatialDataStructure.h"
+#include "Enum/eRrtAlgorithm.h"
+#include "Data/SpatialNode.h"
+#include "Interface/IRrtAlgorithm.h"
+#include "Interface/ISearchEngine.h"
+
+class RrtSearchEngine : public ISearchEngine
 {
 public:
 	/// <summary>

@@ -14,6 +14,11 @@ public:
 	{
 	}
 
+	SpatialPoint(const SpatialPoint& sp) :
+		X(sp.GetX()), Y(sp.GetY()), Z(sp.GetZ())
+	{
+	}
+
 public:
 	unsigned GetX() const { return X; }
 	unsigned GetY() const { return Y; }

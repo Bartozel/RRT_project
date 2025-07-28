@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Simulation", "Simulation", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{991391C9-4688-49A1-9E3F-75A93496DF88}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RRT", "..\Source\Simulation\RRT\RRT.vcxproj", "{4E1AAD86-2597-4360-AE2A-234D581C5B44}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimulationData", "..\Source\Simulation\SimulationData\SimulationData.vcxproj", "{B70AEBEA-5C31-4441-BF6B-15039E3B8DB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PathFindingSimulator.Avalonia", "..\Source\UI\PathFindingSimulator.Avalonia\PathFindingSimulator.Avalonia\PathFindingSimulator.Avalonia.csproj", "{7A1F112D-A618-6491-6061-E06123DDA637}"
@@ -27,16 +25,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Agent", "..\Source\Simulati
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SimulationEnvinronment", "..\Source\Simulation\SimulationEnvinronment\SimulationEnvinronment.vcxproj", "{19CE101A-5B8F-46B4-A2B9-1E9A376B3857}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SearchAlgorithms", "..\Source\Simulation\SearchAlgorithms\RRT\RRT.vcxproj", "{4E1AAD86-2597-4360-AE2A-234D581C5B44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4E1AAD86-2597-4360-AE2A-234D581C5B44}.Debug|x64.ActiveCfg = Debug|x64
-		{4E1AAD86-2597-4360-AE2A-234D581C5B44}.Debug|x64.Build.0 = Debug|x64
-		{4E1AAD86-2597-4360-AE2A-234D581C5B44}.Release|x64.ActiveCfg = Release|x64
-		{4E1AAD86-2597-4360-AE2A-234D581C5B44}.Release|x64.Build.0 = Release|x64
 		{B70AEBEA-5C31-4441-BF6B-15039E3B8DB4}.Debug|x64.ActiveCfg = Debug|x64
 		{B70AEBEA-5C31-4441-BF6B-15039E3B8DB4}.Debug|x64.Build.0 = Debug|x64
 		{B70AEBEA-5C31-4441-BF6B-15039E3B8DB4}.Release|x64.ActiveCfg = Release|x64
@@ -73,12 +69,15 @@ Global
 		{19CE101A-5B8F-46B4-A2B9-1E9A376B3857}.Debug|x64.Build.0 = Debug|x64
 		{19CE101A-5B8F-46B4-A2B9-1E9A376B3857}.Release|x64.ActiveCfg = Release|x64
 		{19CE101A-5B8F-46B4-A2B9-1E9A376B3857}.Release|x64.Build.0 = Release|x64
+		{4E1AAD86-2597-4360-AE2A-234D581C5B44}.Debug|x64.ActiveCfg = Debug|x64
+		{4E1AAD86-2597-4360-AE2A-234D581C5B44}.Debug|x64.Build.0 = Debug|x64
+		{4E1AAD86-2597-4360-AE2A-234D581C5B44}.Release|x64.ActiveCfg = Release|x64
+		{4E1AAD86-2597-4360-AE2A-234D581C5B44}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{4E1AAD86-2597-4360-AE2A-234D581C5B44} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{B70AEBEA-5C31-4441-BF6B-15039E3B8DB4} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{7A1F112D-A618-6491-6061-E06123DDA637} = {991391C9-4688-49A1-9E3F-75A93496DF88}
 		{44F8B7F2-0DA7-66B7-E48C-2645A5BAA006} = {991391C9-4688-49A1-9E3F-75A93496DF88}
@@ -88,6 +87,7 @@ Global
 		{51B8E110-7EE9-412C-BC4C-AC8209285CE1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{B7AAA517-A67B-4D59-B5D6-BC3A07853C11} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{19CE101A-5B8F-46B4-A2B9-1E9A376B3857} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{4E1AAD86-2597-4360-AE2A-234D581C5B44} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8C4D061-9FA7-4D63-8A62-61C03E0A463F}

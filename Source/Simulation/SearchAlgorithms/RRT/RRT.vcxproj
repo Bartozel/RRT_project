@@ -11,12 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RrtAlgorithm.h" />
-    <ClInclude Include="RrtSearchEngine.h" />
+    <ClInclude Include="RRT\RrtAlgorithm.h" />
+    <ClInclude Include="RRT\RrtSearchEngine.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RrtAlgorithm.cpp" />
-    <ClCompile Include="RrtSearchEngine.cpp" />
+    <ClCompile Include="RRT\RrtAlgorithm.cpp" />
+    <ClCompile Include="RRT\RrtSearchEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Math\Math.vcxproj">
@@ -32,6 +32,7 @@
     <ProjectGuid>{4e1aad86-2597-4360-ae2a-234d581c5b44}</ProjectGuid>
     <RootNamespace>RRT</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>SearchAlgorithms</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">

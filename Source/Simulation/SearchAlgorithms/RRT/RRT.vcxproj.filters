@@ -18,18 +18,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RrtSearchEngine.h">
+    <ClInclude Include="RRT\RrtSearchEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RrtAlgorithm.h">
+    <ClInclude Include="RRT\RrtAlgorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RrtSearchEngine.cpp">
+    <ClCompile Include="RRT\RrtSearchEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RrtAlgorithm.cpp">
+    <ClCompile Include="RRT\RrtAlgorithm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

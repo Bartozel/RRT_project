@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MotionModelFactory.h" />
     <ClInclude Include="SimulationMovement.h" />
   </ItemGroup>
   <ItemGroup>

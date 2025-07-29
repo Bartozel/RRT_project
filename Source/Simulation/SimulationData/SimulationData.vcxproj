@@ -19,22 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Data\AgentSetting.h" />
+    <ClInclude Include="Data\MotionModelSetting.h" />
+    <ClInclude Include="Data\SearchEngineSetting.h" />
+    <ClInclude Include="Data\SpatialDataStructureSetting.h" />
     <ClInclude Include="Enum\eRrtAlgorithm.h" />
     <ClInclude Include="Enum\eSearchedArea.h" />
     <ClInclude Include="ExportMacro.h" />
-    <ClInclude Include="Interface\IAgentMovement.h" />
+    <ClInclude Include="Interface\IMovementModel.h" />
     <ClInclude Include="Interface\IAgent.h" />
     <ClInclude Include="Interface\IRrtAlgorithm.h" />
     <ClInclude Include="Interface\ISpatialDataStructure.h" />
     <ClInclude Include="Data\SpatialNode.h" />
     <ClInclude Include="Data\SpatialPoint.h" />
-    <ClInclude Include="Data\SpatialNodeMap.h" />
     <ClInclude Include="Interface\ISearchEngine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data\SpatialNode.cpp" />
-    <ClCompile Include="Data\SpatialNodeMap.cpp" />
-    <ClCompile Include="ISearchEngine.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

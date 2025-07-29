@@ -27,16 +27,17 @@
     <ClInclude Include="Enum\eRrtAlgorithm.h" />
     <ClInclude Include="Enum\eSearchedArea.h" />
     <ClInclude Include="ExportMacro.h" />
-    <ClInclude Include="Data\SpatialNodeMap.h" />
     <ClInclude Include="Interface\IAgent.h" />
-    <ClInclude Include="Interface\IAgentMovement.h" />
+    <ClInclude Include="Interface\IMovementModel.h" />
     <ClInclude Include="Interface\ISearchEngine.h" />
+    <ClInclude Include="Data\AgentSetting.h" />
+    <ClInclude Include="Data\MotionModelSetting.h" />
+    <ClInclude Include="Data\SearchEngineSetting.h" />
+    <ClInclude Include="Data\SpatialDataStructureSetting.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data\SpatialNode.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
-    <ClCompile Include="Data\SpatialNodeMap.cpp" />
-    <ClCompile Include="ISearchEngine.cpp" />
   </ItemGroup>
 </Project>

@@ -18,11 +18,9 @@ public:
 	void AddChild(std::shared_ptr<SpatialNode> child);
 	void RemoveChild(const SpatialNode& child);
 	std::shared_ptr<SpatialNode> GetChildOwnership(const SpatialNode& child);
+	unsigned ChildCount();
 
 	const float GetDistanceToParent() { return m_distanceToParent; };
-
-public:
-	inline static unsigned MaxChildren;
 
 private:
 	float m_distanceToParent;

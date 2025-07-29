@@ -9,8 +9,6 @@ SpatialNode::SpatialNode(SpatialNode* parent, float distanceToParent, unsigned x
 	m_parent(parent),
 	m_distanceToParent(distanceToParent)
 {
-	MaxChildren = 9; //TODO it shoudl be settable
-	m_children.reserve(MaxChildren);
 }
 
 SpatialNode::SpatialNode(SpatialNode* parent, float distanceToParent, const SpatialPoint& definingPoint) :
@@ -73,4 +71,9 @@ std::shared_ptr<SpatialNode> SpatialNode::GetChildOwnership(const SpatialNode& c
 	}
 
 	return nullptr;
+}
+
+unsigned SpatialNode::ChildCount()
+{
+	m_children.size();
 }

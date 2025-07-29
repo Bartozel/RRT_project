@@ -25,6 +25,7 @@
   <ItemGroup>
     <ClInclude Include="RRT\RrtAlgorithm.h" />
     <ClInclude Include="RRT\RrtSearchEngine.h" />
+    <ClInclude Include="SearchEngineFactory.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "..\Interface\ISpatialDataStructure.h"
+#include "Interface\ISpatialDataStructure.h"
 
 class SpatialNodeMap : public ISpatialDataStructure
 {

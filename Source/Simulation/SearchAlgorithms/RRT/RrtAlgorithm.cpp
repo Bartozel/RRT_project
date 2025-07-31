@@ -21,15 +21,14 @@ void RrtAlgorithm::SteerToParent(SpatialPoint& steeredNode, const std::shared_pt
 	SteerToParent(steeredNode, distance);
 }
 
-void RrtAlgorithm::SteerToParent(SpatialPoint& steeredNode, const float& parentDistance)
+void RrtAlgorithm::SteerToParent(SpatialPoint& steeredNode, float parentDistance)
 {
 	if (parentDistance > MaxDistance) {
 		auto ration = MaxDistance / parentDistance;
 
-		auto newX = steeredNode.GetX() * ration;
-		auto newY = steeredNode.GetY() * ration;
-
-		steeredNode = SpatialPoint(newX, newY);
+		steeredNode.SetX(steeredNode.GetX() * ration);
+		steeredNode.SetY(steeredNode.GetY() * ration);
+		steeredNode.SetZ(steeredNode.GetZ() * ration);
 	}
 }
 

@@ -8,9 +8,7 @@ struct AgentSetting
 public:
 	AgentSetting(const MotionModelSetting& movementSetting, const SearchEngineSetting& searchEngineSetting, const SpatialDataStructureSetting& spatialDataSetting) :
 		MotionModelSetting(movementSetting), SearchEngineSetting(searchEngineSetting), SpatialDataSetting(spatialDataSetting)
-	{
-
-	}
+	{}
 
 	const MotionModelSetting MotionModelSetting;
 	const SearchEngineSetting SearchEngineSetting;

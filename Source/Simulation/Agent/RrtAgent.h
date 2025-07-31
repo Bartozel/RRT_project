@@ -11,16 +11,16 @@
 class RrtAgent : public IAgent
 {
 public:
-	RrtAgent(AgentSetting agentSetting, SpatialPoint startPosition);
+	RrtAgent(AgentSetting agentSetting, const SpatialPoint& startPosition);
 
 public:
-	void SetOwnPosition(const SpatialPoint& goalPosition) override;
-	void SetGoal(const SpatialPoint& goalPosition) override;
+	void StartMapEnvinronment() const override;
+	void SetOwnPosition(const SpatialPoint& newPosition) override;
+	void SetGoal(const SpatialPoint& newPosition) override;
 	void Tick(const double& delta) override;
 
 private:
-	SpatialPoint m_ownPosition;
-	SpatialPoint m_goalPosition;
+	std::shared_ptr<SpatialPoint> m_goalPosition;
 
 	std::unique_ptr<IMotionModel> m_movement;
 	std::unique_ptr<ISearchEngine> m_searchEngine;

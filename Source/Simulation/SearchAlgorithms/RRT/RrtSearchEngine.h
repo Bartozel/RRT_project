@@ -18,8 +18,9 @@ public:
 	RrtSearchEngine(eRrtAlgorithm algorithmType, std::shared_ptr<ISpatialDataStructure> rrtTree);
 
 public:
-	SpatialNode ProduceNode();
-	void NodeRewire(SpatialNode& node);
+	SpatialNode ProduceNode() const override;
+	void NodeRewire(SpatialNode& node) override;
+	void RewireAroundPoint(const SpatialPoint& point) override;
 
 private:
 	std::unique_ptr<IRrtAlgorithm> CreateGenerator(eRrtAlgorithm algorithmType) const;

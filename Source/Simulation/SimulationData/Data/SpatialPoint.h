@@ -24,6 +24,10 @@ public:
 	unsigned GetY() const { return Y; }
 	unsigned GetZ() const { return Z; }
 
+	inline void SetX(unsigned newVal) { X = newVal; }
+	inline void SetY(unsigned newVal) { Y = newVal; }
+	inline void SetZ(unsigned newVal) { Z = newVal; }
+
 public:
 	bool operator==(const SpatialPoint& other) const {
 		return X == other.GetX() && Y == other.GetY() && Z == other.GetZ();

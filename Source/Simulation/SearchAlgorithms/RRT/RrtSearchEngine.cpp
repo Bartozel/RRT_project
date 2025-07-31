@@ -9,7 +9,7 @@ RrtSearchEngine::RrtSearchEngine(eRrtAlgorithm algorithmType, std::shared_ptr<IS
 {
 }
 
-SpatialNode RrtSearchEngine::ProduceNode()
+SpatialNode RrtSearchEngine::ProduceNode() const
 {
 	auto newPoint = m_rrtAlgorithm->GenerateSpatialPoint();
 	const auto& nearNodes = m_rrtTree->GetNearNodes(newPoint);

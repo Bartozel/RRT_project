@@ -26,7 +26,7 @@
     <ClInclude Include="Enum\eRrtAlgorithm.h" />
     <ClInclude Include="Enum\eSearchedArea.h" />
     <ClInclude Include="ExportMacro.h" />
-    <ClInclude Include="Interface\IMovementModel.h" />
+    <ClInclude Include="Interface\IMotionModel.h" />
     <ClInclude Include="Interface\IAgent.h" />
     <ClInclude Include="Interface\IRrtAlgorithm.h" />
     <ClInclude Include="Interface\ISpatialDataStructure.h" />

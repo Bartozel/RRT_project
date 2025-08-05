@@ -20,9 +20,11 @@ public:
 	std::shared_ptr<SpatialNode> GetChildOwnership(const SpatialNode& child);
 	unsigned ChildCount();
 
-	const float GetDistanceToParent() { return m_distanceToParent; };
+	const float GetDistanceToParent() const { return m_distanceToParent; };
+	const unsigned GetId() const { return m_id; }
 
 private:
+	unsigned m_id;
 	float m_distanceToParent;
 	SpatialNode* m_parent;
 	std::vector<std::shared_ptr<SpatialNode>> m_children;

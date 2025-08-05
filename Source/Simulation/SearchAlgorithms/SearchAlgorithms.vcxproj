@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="RRT\RrtAlgorithm.cpp" />
     <ClCompile Include="RRT\RrtSearchEngine.cpp" />
+    <ClCompile Include="SearchEngineFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RRT\RrtAlgorithm.h" />

@@ -1,6 +1,4 @@
 ﻿#pragma once
-#include <optional>
-
 #include "Interface/ISpatialDataStructure.h"
 #include "Enum/eRrtAlgorithm.h"
 #include "Data/SpatialNode.h"

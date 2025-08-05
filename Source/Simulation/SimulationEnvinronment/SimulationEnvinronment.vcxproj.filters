@@ -26,5 +26,8 @@
     <ClCompile Include="SpatialNodeMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpatialDataStructureFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

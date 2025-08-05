@@ -28,7 +28,7 @@
     <ClInclude Include="Enum\eSearchedArea.h" />
     <ClInclude Include="ExportMacro.h" />
     <ClInclude Include="Interface\IAgent.h" />
-    <ClInclude Include="Interface\IMovementModel.h" />
+    <ClInclude Include="Interface\IMotionModel.h" />
     <ClInclude Include="Interface\ISearchEngine.h" />
     <ClInclude Include="Data\AgentSetting.h" />
     <ClInclude Include="Data\MotionModelSetting.h" />

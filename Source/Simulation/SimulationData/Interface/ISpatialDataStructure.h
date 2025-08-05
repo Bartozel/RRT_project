@@ -10,6 +10,8 @@ public:
 	virtual std::vector<std::shared_ptr<SpatialNode>> GetNearNodes(const SpatialPoint& node, int searchedAreaSideSize) const  = 0;
 	virtual std::vector<std::shared_ptr<SpatialNode>> GetNearNodes(const SpatialPoint& node) const = 0;
 
+	virtual const SpatialPoint& GetOwnPosition() const = 0;
+	virtual void UpdateOwnPostion(const SpatialPoint& ownPosition) = 0;
 	virtual bool Insert(std::shared_ptr<SpatialNode> node) = 0;
 	virtual bool Delete(std::shared_ptr<SpatialNode> node) = 0;
 	virtual bool Delete(const std::vector<std::shared_ptr<SpatialNode>>& node) = 0;

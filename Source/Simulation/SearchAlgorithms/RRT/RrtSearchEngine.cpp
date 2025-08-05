@@ -27,6 +27,11 @@ void RrtSearchEngine::NodeRewire(SpatialNode& node)
 	m_rrtAlgorithm->UpdateNodeParent(node, nearNodes);
 }
 
+void RrtSearchEngine::RewireAroundPoint(const SpatialPoint& point)
+{
+	//TODO
+}
+
 std::unique_ptr<IRrtAlgorithm> RrtSearchEngine::CreateGenerator(eRrtAlgorithm algorithmType) const
 {
 	switch (algorithmType)

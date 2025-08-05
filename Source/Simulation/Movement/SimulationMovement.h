@@ -1,7 +1,7 @@
 ﻿#pragma once
-#include "Interface\IAgentMovement.h"
+#include "Interface\IMotionModel.h"
 
-class SimulationMovement : public IAgentMovement
+class SimulationMovement : public IMotionModel
 {
 };
 

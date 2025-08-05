@@ -75,5 +75,5 @@ std::shared_ptr<SpatialNode> SpatialNode::GetChildOwnership(const SpatialNode& c
 
 unsigned SpatialNode::ChildCount()
 {
-	m_children.size();
+	return m_children.size();
 }

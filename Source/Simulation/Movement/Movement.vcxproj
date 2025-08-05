@@ -23,6 +23,7 @@
     <ClInclude Include="SimulationMovement.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MotionModelFactory.cpp" />
     <ClCompile Include="SimulationMovement.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +136,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>..\SimulationData\x64\$(Configuration)\;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -154,6 +156,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
+      <AdditionalLibraryDirectories>..\SimulationData\x64\$(Configuration)\;</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

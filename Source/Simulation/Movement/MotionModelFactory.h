@@ -1,7 +1,10 @@
 ﻿#pragma once
-#include <Data/MotionModelSetting.h>
+#include <memory>
+#include "ExportMacro.h"
+#include "Data/MotionModelSetting.h"
+#include "Interface/IMotionModel.h"
 
-class MotionModelFactory
+class DLL_API MotionModelFactory
 {
 public:
 	static std::unique_ptr<IMotionModel> GetMotionModel(const MotionModelSetting& setting);

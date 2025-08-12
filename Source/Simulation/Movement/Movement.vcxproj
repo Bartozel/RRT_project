@@ -20,11 +20,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MotionModelFactory.h" />
-    <ClInclude Include="SimulationMovement.h" />
+    <ClInclude Include="LinearMotionModel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MotionModelFactory.cpp" />
-    <ClCompile Include="SimulationMovement.cpp" />
+    <ClCompile Include="LinearMotionModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\UI\Data\Data.csproj">

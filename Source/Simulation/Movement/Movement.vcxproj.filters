@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SimulationMovement.h">
+    <ClInclude Include="LinearMotionModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MotionModelFactory.h">
@@ -23,7 +23,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SimulationMovement.cpp">
+    <ClCompile Include="LinearMotionModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MotionModelFactory.cpp">

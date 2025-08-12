@@ -19,10 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Data\ArenaSetting.h" />
     <ClInclude Include="Data\AgentSetting.h" />
     <ClInclude Include="Data\MotionModelSetting.h" />
     <ClInclude Include="Data\SearchEngineSetting.h" />
-    <ClInclude Include="Data\SpatialDataStructureSetting.h" />
+    <ClInclude Include="Enum\eMotionType.h" />
     <ClInclude Include="Enum\eRrtAlgorithm.h" />
     <ClInclude Include="Enum\eSearchedArea.h" />
     <ClInclude Include="ExportMacro.h" />
@@ -33,6 +34,7 @@
     <ClInclude Include="Data\SpatialNode.h" />
     <ClInclude Include="Data\SpatialPoint.h" />
     <ClInclude Include="Interface\ISearchEngine.h" />
+    <ClInclude Include="Data\SpatialDataStructureSetting.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data\SpatialNode.cpp" />

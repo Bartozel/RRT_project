@@ -1,5 +1,8 @@
 ﻿#pragma once
 
-struct SpatialDataStructureSetting
+/// <summary>
+/// Sets the parameters for spatil atructure which is created via Agent search
+/// </summary>
+class SpatialDataStructureSetting
 {
 };

@@ -6,7 +6,7 @@
 class RrtAlgorithm : public IRrtAlgorithm
 {
 public:
-	RrtAlgorithm();
+	RrtAlgorithm(unsigned searchDistance);
 
 public:
 	SpatialPoint GenerateSpatialPoint() override;
@@ -16,11 +16,12 @@ public:
 	std::tuple<std::shared_ptr<SpatialNode>, float> GetNearestWithDistance(const SpatialPoint& referencePoint, const std::vector<std::shared_ptr<SpatialNode>> nearNodes) const override;
 
 public:
-	inline static unsigned MaxDistance;
+	void SetMaxDistanceBetweenNodes(size_t size) {
+		m_maxDistanceBetweenNodes = size;
+	}
 
 private:
-
-private:
+	size_t m_maxDistanceBetweenNodes;
 	std::random_device m_rd;
 	std::mt19937 m_engine;
 	std::uniform_int_distribution<int> m_dist;

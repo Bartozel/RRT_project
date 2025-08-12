@@ -33,6 +33,8 @@
     <ClInclude Include="Data\AgentSetting.h" />
     <ClInclude Include="Data\MotionModelSetting.h" />
     <ClInclude Include="Data\SearchEngineSetting.h" />
+    <ClInclude Include="Enum\eMotionType.h" />
+    <ClInclude Include="Data\ArenaSetting.h" />
     <ClInclude Include="Data\SpatialDataStructureSetting.h" />
   </ItemGroup>
   <ItemGroup>

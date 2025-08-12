@@ -31,13 +31,12 @@ const SpatialNode& SpatialNode::Parent()
 		return *m_parent;
 	}
 	else {
-		throw std::runtime_error("Unexpected nullptr: object must be valid."); //TODo it shouldn't happen. Notify in case it do.
+		throw std::runtime_error("SpatialNode.Parent() - Unexpected nullptr: m_parent object can not be null.");
 	}
 }
 
 void SpatialNode::AddChild(std::shared_ptr<SpatialNode> child)
 {
-	//TODO - add check on max number of childs
 	std::lock_guard<std::mutex> lock(m_childrenLock);
 	m_children.emplace_back(child);
 }

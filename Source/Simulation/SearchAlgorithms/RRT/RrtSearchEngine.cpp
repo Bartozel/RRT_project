@@ -13,12 +13,11 @@ SpatialNode RrtSearchEngine::ProduceNode() const
 {
 	auto newPoint = m_rrtAlgorithm->GenerateSpatialPoint();
 	const auto& nearNodes = m_rrtTree->GetNearNodes(newPoint);
-	const auto& parentNode = m_rrtAlgorithm->GetNearestWithDistance(newPoint, nearNodes);
-	float distanceToParent = std::get<1>(parentNode);
+	const auto [parentNode, distanceToParentNode] = m_rrtAlgorithm->GetNearestWithDistance(newPoint, nearNodes);
 
-	m_rrtAlgorithm->SteerToParent(newPoint, distanceToParent);
+	m_rrtAlgorithm->SteerToParent(newPoint, distanceToParentNode);
 
-	return SpatialNode(std::get<0>(parentNode).get(), distanceToParent, newPoint);
+	return SpatialNode(parentNode.get(), distanceToParentNode, newPoint);
 }
 
 void RrtSearchEngine::NodeRewire(SpatialNode& node)

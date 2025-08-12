@@ -20,6 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Messaging\Signal.h" />
+    <ClInclude Include="ThreadPool.h" />
+    <ClInclude Include="TimeSynchronizator.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ThreadPool.cpp" />
+    <ClCompile Include="TimeSynchronizator.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

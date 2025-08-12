@@ -1,12 +1,12 @@
 ﻿#include "../Math/SpatialCalculator.h"
 #include "RrtAlgorithm.h"
 
-RrtAlgorithm::RrtAlgorithm() :
+RrtAlgorithm::RrtAlgorithm(unsigned searchDistance) :
 	m_rd(),
 	m_engine(m_rd()),
-	m_dist(0, 1000) // TODO - make dynamic + canvas size may not be square
+	m_dist(0, searchDistance),
+	m_maxDistanceBetweenNodes(20) //TODO it is env dependent, so it should be set based on that
 {
-	MaxDistance = 20; //TODO it shoudl be settable
 }
 
 SpatialPoint RrtAlgorithm::GenerateSpatialPoint()
@@ -23,8 +23,8 @@ void RrtAlgorithm::SteerToParent(SpatialPoint& steeredNode, const std::shared_pt
 
 void RrtAlgorithm::SteerToParent(SpatialPoint& steeredNode, float parentDistance)
 {
-	if (parentDistance > MaxDistance) {
-		auto ration = MaxDistance / parentDistance;
+	if (parentDistance > m_maxDistanceBetweenNodes) {
+		auto ration = m_maxDistanceBetweenNodes / parentDistance;
 
 		steeredNode.SetX(steeredNode.GetX() * ration);
 		steeredNode.SetY(steeredNode.GetY() * ration);
@@ -52,7 +52,8 @@ bool RrtAlgorithm::UpdateNodeParent(SpatialNode& referenceNode, const std::vecto
 std::tuple<std::shared_ptr<SpatialNode>, float> RrtAlgorithm::GetNearestWithDistance(const SpatialPoint& referencePoint, const std::vector<std::shared_ptr<SpatialNode>> nearNodes) const
 {
 	if (nearNodes.empty()) {
-		throw std::runtime_error("FindNearest - nearNodes collection is empty"); //TODo it shouldn't happen. Notify in case it does, so it is possible to prevent it.
+		//this can happen only when root will try to find other nodes in empty spatial structure
+		throw std::runtime_error("FindNearest - nearNodes collection is empty");
 	}
 
 	auto lowestDistance = std::numeric_limits<float>::max();

@@ -37,6 +37,10 @@ public:
 		return !(X == Y);
 	}
 
+	SpatialPoint operator+(const SpatialPoint& other) const {
+		return SpatialPoint(X + other.GetX(), Y + other.GetY(), Z + other.GetZ());
+	}
+
 protected:
 	unsigned X;
 	unsigned Y;

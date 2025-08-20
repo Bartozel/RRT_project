@@ -30,7 +30,7 @@
     <ClInclude Include="RRT\RrtSearchEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SearchEngineFactory.h">
+    <ClInclude Include="RRT\RrtSpatialTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClCompile Include="RRT\RrtSearchEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SearchEngineFactory.cpp">
+    <ClCompile Include="RRT\RrtSpatialTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

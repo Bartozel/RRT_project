@@ -1,6 +1,9 @@
 ﻿#pragma once
 #include "..\ExportMacro.h"
 
+/// <summary>
+/// Provide an abstraction over different types of rrt algorithms
+/// </summary>
 class DLL_API IRrtAlgorithm
 {
 public:

@@ -1,6 +1,9 @@
 ﻿#pragma once
 #include "..\ExportMacro.h"
 
+/// <summary>
+/// Represents a spatial data, which can be placed in 2D, or 3D space based on the available properties
+/// </summary>
 struct DLL_API SpatialPoint
 {
 public:

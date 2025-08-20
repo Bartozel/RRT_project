@@ -4,6 +4,9 @@
 #include "SpatialPoint.h"
 #include "..\ExportMacro.h"
 
+/// <summary>
+/// Represens a node of spatial structure, which holds an additional information about node and it's soroundings
+/// </summary>
 struct DLL_API SpatialNode : public SpatialPoint
 {
 public:

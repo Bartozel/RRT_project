@@ -3,6 +3,15 @@
 #include <string>
 #include "Data\AgentSetting.h"
 
+/// <summary>
+/// Main entry point which manages all things in arena:
+/// - IAgent behaviour
+/// - arena dynamic behaviour
+/// 
+/// For synchronization uses custom Thread pool and Time synchronizator.
+///
+/// Main goal is to publish thru this class public API which can be used to manage simulation from web, or desctop UI.
+/// </summary>
 class ArenaManager
 {
 public:

@@ -3,6 +3,9 @@
 #include "Interface/IRrtAlgorithm.h"
 #include "Data/SpatialPoint.h"
 
+/// <summary>
+/// Implements standard RRT algorithm.
+/// </summary>
 class RrtAlgorithm : public IRrtAlgorithm
 {
 public:

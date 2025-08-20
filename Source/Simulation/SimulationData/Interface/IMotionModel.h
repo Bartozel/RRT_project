@@ -2,6 +2,9 @@
 #include "..\ExportMacro.h"
 #include "..\Data\SpatialPoint.h"
 
+/// <summary>
+/// Provides a necessary abstraction over agent movement
+/// </summary>
 class DLL_API IMotionModel
 {
 public:

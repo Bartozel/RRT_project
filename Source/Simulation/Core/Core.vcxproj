@@ -20,10 +20,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Messaging\Signal.h" />
+    <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="ThreadPool.h" />
     <ClInclude Include="TimeSynchronizator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="PriorityQueue.cpp" />
     <ClCompile Include="ThreadPool.cpp" />
     <ClCompile Include="TimeSynchronizator.cpp" />
   </ItemGroup>

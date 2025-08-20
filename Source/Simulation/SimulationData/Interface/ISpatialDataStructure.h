@@ -4,12 +4,13 @@
 #include "..\Data\SpatialNode.h"
 #include "..\ExportMacro.h"
 
+/// <summary>
+/// Data structure mapped by the agent. Env is continuously resized, updated with information gained via IAgent sensors.
+/// Contains data about mapped obstacles
+/// </summary>
 class DLL_API ISpatialDataStructure
 {
 public:
-	virtual std::vector<std::shared_ptr<SpatialNode>> GetNearNodes(const SpatialPoint& node, int searchedAreaSideSize) const  = 0;
-	virtual std::vector<std::shared_ptr<SpatialNode>> GetNearNodes(const SpatialPoint& node) const = 0;
-
 	virtual const SpatialPoint& GetOwnPosition() const = 0;
 	virtual void UpdateOwnPostion(const SpatialPoint& ownPosition) = 0;
 	virtual bool Insert(std::shared_ptr<SpatialNode> node) = 0;

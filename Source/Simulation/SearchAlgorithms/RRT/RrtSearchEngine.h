@@ -3,9 +3,11 @@
 #include "Enum/eRrtAlgorithm.h"
 #include "Data/SpatialNode.h"
 #include "Interface/IRrtAlgorithm.h"
-#include "Interface/ISearchEngine.h"
 
-class RrtSearchEngine : public ISearchEngine
+/// <summary>
+/// Interlink data produced by rrt algorithm, with alghorithm calculation when it is needed.
+/// </summary>
+class RrtSearchEngine
 {
 public:
 	/// <summary>
@@ -16,9 +18,9 @@ public:
 	RrtSearchEngine(eRrtAlgorithm algorithmType, std::shared_ptr<ISpatialDataStructure> rrtTree);
 
 public:
-	SpatialNode ProduceNode() const override;
-	void NodeRewire(SpatialNode& node) override;
-	void RewireAroundPoint(const SpatialPoint& point) override;
+	SpatialNode ProduceNode() const;
+	void NodeRewire(SpatialNode& node);
+	void RewireAroundPoint(const SpatialPoint& point);
 
 private:
 	std::unique_ptr<IRrtAlgorithm> CreateGenerator(eRrtAlgorithm algorithmType) const;

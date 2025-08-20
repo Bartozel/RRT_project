@@ -23,6 +23,12 @@
       <Project>{b70aebea-5c31-4441-bf6b-15039e3b8db4}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SpatialDataStructureFactory.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SpatialDataStructureFactory.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

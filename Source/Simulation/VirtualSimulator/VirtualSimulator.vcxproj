@@ -31,9 +31,6 @@
     <ProjectReference Include="..\SimulationData\SimulationData.vcxproj">
       <Project>{b70aebea-5c31-4441-bf6b-15039e3b8db4}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\SimulationEnvinronment\SimulationEnvinronment.vcxproj">
-      <Project>{19ce101a-5b8f-46b4-a2b9-1e9a376b3857}</Project>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

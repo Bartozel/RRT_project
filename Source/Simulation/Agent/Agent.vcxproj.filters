@@ -18,9 +18,15 @@
     <ClInclude Include="RrtAgent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AgentBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RrtAgent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AgentBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

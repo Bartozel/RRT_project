@@ -11,19 +11,19 @@ RrtSearchEngine::RrtSearchEngine(eRrtAlgorithm algorithmType, std::shared_ptr<IS
 
 SpatialNode RrtSearchEngine::ProduceNode() const
 {
-	auto newPoint = m_rrtAlgorithm->GenerateSpatialPoint();
-	const auto& nearNodes = m_rrtTree->GetNearNodes(newPoint);
-	const auto [parentNode, distanceToParentNode] = m_rrtAlgorithm->GetNearestWithDistance(newPoint, nearNodes);
+	//auto newPoint = m_rrtAlgorithm->GenerateSpatialPoint();
+	//const auto& nearNodes = m_rrtTree->GetNearNodes(newPoint);
+	//const auto [parentNode, distanceToParentNode] = m_rrtAlgorithm->GetNearestWithDistance(newPoint, nearNodes);
 
-	m_rrtAlgorithm->SteerToParent(newPoint, distanceToParentNode);
+	//m_rrtAlgorithm->SteerToParent(newPoint, distanceToParentNode);
 
-	return SpatialNode(parentNode.get(), distanceToParentNode, newPoint);
+	//return SpatialNode(parentNode.get(), distanceToParentNode, newPoint);
 }
 
 void RrtSearchEngine::NodeRewire(SpatialNode& node)
 {
-	const auto& nearNodes = m_rrtTree->GetNearNodes(node);
-	m_rrtAlgorithm->UpdateNodeParent(node, nearNodes);
+	//const auto& nearNodes = m_rrtTree->GetNearNodes(node);
+	//m_rrtAlgorithm->UpdateNodeParent(node, nearNodes);
 }
 
 void RrtSearchEngine::RewireAroundPoint(const SpatialPoint& point)

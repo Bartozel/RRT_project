@@ -1,17 +1,23 @@
 ﻿#pragma once
+#include <memory>
 #include "SearchEngineSetting.h"
 #include "MotionModelSetting.h"
 #include "SpatialDataStructureSetting.h"
 
+/// <summary>
+/// Agent setting provide complex object which helps to encapsulate all settings necessary for IAgent. Structure comes from IAgent description.
+/// </summary>
 struct DLL_API AgentSetting
 {
 public:
-	AgentSetting(std::unique_ptr<MotionModelSetting> movementSetting, std::unique_ptr <SearchEngineSetting> searchEngineSetting, std::unique_ptr < SpatialDataStructureSetting> spatialDataSetting) :
-		MotionModelSetting(std::move(movementSetting)), SearchEngineSetting(std::move(searchEngineSetting)), SpatialDataSetting(std::move(spatialDataSetting))
+	AgentSetting(MotionModelSetting&& movementSetting, SearchEngineSetting&& searchEngineSetting, SpatialDataStructureSetting&& spatialDataSetting) :
+		MotionModelSetting(std::move(movementSetting)), 
+		SearchEngineSetting(std::move(searchEngineSetting)), 
+		SpatialDataSetting(std::move(spatialDataSetting))
 	{
 	}
 
-	std::unique_ptr <MotionModelSetting> MotionModelSetting;
-	std::unique_ptr <SearchEngineSetting> SearchEngineSetting;
-	std::unique_ptr <SpatialDataStructureSetting> SpatialDataSetting;
+	MotionModelSetting MotionModelSetting;
+	SearchEngineSetting SearchEngineSetting;
+	SpatialDataStructureSetting SpatialDataSetting;
 };

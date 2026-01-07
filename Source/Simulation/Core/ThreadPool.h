@@ -6,5 +6,9 @@
 /// </summary>
 class ThreadPool
 {
+public:
+	ThreadPool(size_t paralelizationLevel);
+
+
 };
 

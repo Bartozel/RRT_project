@@ -33,6 +33,9 @@
     <ClInclude Include="RRT\RrtSpatialTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SearchAlgorithmFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="RRT\RrtAlgorithm.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="RRT\RrtSpatialTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SearchAlgorithmFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -22,11 +22,13 @@
     <ClCompile Include="RRT\RrtAlgorithm.cpp" />
     <ClCompile Include="RRT\RrtSearchEngine.cpp" />
     <ClCompile Include="RRT\RrtSpatialTree.cpp" />
+    <ClCompile Include="SearchAlgorithmFactory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RRT\RrtAlgorithm.h" />
     <ClInclude Include="RRT\RrtSearchEngine.h" />
     <ClInclude Include="RRT\RrtSpatialTree.h" />
+    <ClInclude Include="SearchAlgorithmFactory.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

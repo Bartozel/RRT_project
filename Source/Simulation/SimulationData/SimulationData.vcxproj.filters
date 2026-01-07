@@ -24,17 +24,27 @@
     <ClInclude Include="Data\SpatialPoint.h">
       <Filter>Data</Filter>
     </ClInclude>
-    <ClInclude Include="Enum\eRrtAlgorithm.h" />
+    <ClInclude Include="Enum\eSearchAlgorithm.h" />
     <ClInclude Include="Enum\eSearchedArea.h" />
     <ClInclude Include="ExportMacro.h" />
     <ClInclude Include="Interface\IAgent.h" />
     <ClInclude Include="Interface\IMotionModel.h" />
     <ClInclude Include="Interface\ISearchEngine.h" />
-    <ClInclude Include="Data\AgentSetting.h" />
-    <ClInclude Include="Data\MotionModelSetting.h" />
+    <ClInclude Include="Data\Setting\AgentSetting.h" />
+    <ClInclude Include="Data\Setting\MotionModelSetting.h" />
     <ClInclude Include="Enum\eMotionType.h" />
-    <ClInclude Include="Data\ArenaSetting.h" />
-    <ClInclude Include="Data\SpatialDataStructureSetting.h" />
+    <ClInclude Include="Data\Setting\ArenaSetting.h" />
+    <ClInclude Include="Data\Setting\SpatialDataStructureSetting.h" />
+    <ClInclude Include="Enum\eState.h" />
+    <ClInclude Include="Data\Setting\SearchEngineSetting.h" />
+    <ClInclude Include="Data\Update\AgentEquipemntUpdate.h" />
+    <ClInclude Include="Data\Update\AgentMovementUpdate.h" />
+    <ClInclude Include="Data\Update\EnvironmentUpdate.h" />
+    <ClInclude Include="Enum\EProcedureStatus.h" />
+    <ClInclude Include="Data\Update\PositionUpdate.h" />
+    <ClInclude Include="ICallable.h" />
+    <ClInclude Include="Interface\ILayer.h" />
+    <ClInclude Include="Data\CustomTypes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Data\SpatialNode.cpp">

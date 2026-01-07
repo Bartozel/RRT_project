@@ -2,10 +2,7 @@
 #include <memory>
 
 #include "AgentBase.h"
-#include "Interface\ISpatialDataStructure.h"
-#include "Interface\IMotionModel.h"
 #include "RRT\RrtSearchEngine.h"
-#include "Enum\eRrtAlgorithm.h"
 #include "Data\AgentSetting.h"
 
 /// <summary>
@@ -15,10 +12,6 @@ class RrtAgent : public AgentBase
 {
 public:
 	RrtAgent(unsigned id, const AgentSetting& agentSetting, const SpatialPoint& startPosition);
-
-public:
-	void SetOwnPosition(const SpatialPoint& newPosition) override;
-	void SetGoal(const SpatialPoint& newPosition) override;
 
 private:
 	void MapEnvironment();

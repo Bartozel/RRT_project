@@ -1,18 +1,19 @@
 ﻿#include "SpatialNode.h"
 
+SpatialNode::SpatialNode(SpatialNode* parent, float distanceToParent, const SpatialPoint& definingPoint) :
+	SpatialNode(parent, distanceToParent, definingPoint.GetX(), definingPoint.GetY(), definingPoint.GetZ()) {
+}
+
 SpatialNode::SpatialNode(SpatialNode* parent, float distanceToParent, unsigned x, unsigned y) :
-	SpatialNode(parent, distanceToParent, x, y, 0.0f) {
+	SpatialNode(parent, distanceToParent, x, y, 0) {
 }
 
 SpatialNode::SpatialNode(SpatialNode* parent, float distanceToParent, unsigned x, unsigned y, unsigned z) :
 	SpatialPoint(x, y, z),
 	m_parent(parent),
-	m_distanceToParent(distanceToParent)
+	m_distanceToParent(distanceToParent),
+	m_id(0)
 {
-}
-
-SpatialNode::SpatialNode(SpatialNode* parent, float distanceToParent, const SpatialPoint& definingPoint) :
-	SpatialNode(parent, distanceToParent, definingPoint.GetX(), definingPoint.GetY()) {
 }
 
 void SpatialNode::SetParent(SpatialNode* parent, float distance)

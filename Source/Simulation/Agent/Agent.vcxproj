@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AgentBase.h" />
+    <ClInclude Include="AgentFactory.h" />
     <ClInclude Include="RrtAgent.h" />
   </ItemGroup>
   <ItemGroup>
@@ -136,7 +137,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Git\RRT_project\Source\Simulation\SimulationData;C:\Git\RRT_project\Source\Simulation\SearchAlgorithms;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Git\RRT_project\Source\Simulation\SimulationData;C:\Git\RRT_project\Source\Simulation\SearchAlgorithms;C:\Git\RRT_project\Source\Simulation\Movement;C:\Git\RRT_project\Source\Simulation\SimulationEnvinronment;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -156,7 +157,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Git\RRT_project\Source\Simulation\SimulationData;C:\Git\RRT_project\Source\Simulation\SearchAlgorithms;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Git\RRT_project\Source\Simulation\SimulationData;C:\Git\RRT_project\Source\Simulation\SearchAlgorithms;C:\Git\RRT_project\Source\Simulation\Movement;C:\Git\RRT_project\Source\Simulation\SimulationEnvinronment;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

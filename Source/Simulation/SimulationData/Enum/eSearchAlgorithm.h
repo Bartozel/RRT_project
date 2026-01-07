@@ -1,4 +1,4 @@
-﻿enum eRrtAlgorithm 
+﻿enum eSearchAlgorithm 
 { 
 	RRT, 
 	RRT_START, 

@@ -1,8 +1,10 @@
 ﻿#pragma once
-#include "Interface/ISpatialDataStructure.h"
-#include "Enum/eRrtAlgorithm.h"
+#include "Enum/eSearchAlgorithm.h"
 #include "Data/SpatialNode.h"
+#include "Data/SearchEngineSetting.h"
 #include "Interface/IRrtAlgorithm.h"
+#include "Interface/ISpatialDataStructure.h"
+
 
 /// <summary>
 /// Interlink data produced by rrt algorithm, with alghorithm calculation when it is needed.
@@ -14,8 +16,8 @@ public:
 	/// 
 	/// </summary>
 	/// <param name="algorithmType">Defines under what algorithm engine produces spatial data.</param>
-	/// <param name="rrtTree">Provides available spatial data.</param>
-	RrtSearchEngine(eRrtAlgorithm algorithmType, std::shared_ptr<ISpatialDataStructure> rrtTree);
+	/// <param name="mappedEnv">Provides available spatial data.</param>
+	RrtSearchEngine(const SearchEngineSetting& algorithmSetting, std::shared_ptr<ISpatialDataStructure> mappedEnv);
 
 public:
 	SpatialNode ProduceNode() const;
@@ -23,9 +25,8 @@ public:
 	void RewireAroundPoint(const SpatialPoint& point);
 
 private:
-	std::unique_ptr<IRrtAlgorithm> CreateGenerator(eRrtAlgorithm algorithmType) const;
 
 private:
 	std::unique_ptr<IRrtAlgorithm> m_rrtAlgorithm;
-	std::shared_ptr<ISpatialDataStructure> m_rrtTree;
+	std::shared_ptr<ISpatialDataStructure> m_mappedEnv;
 };

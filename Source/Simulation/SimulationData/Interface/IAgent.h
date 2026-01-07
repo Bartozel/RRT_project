@@ -12,11 +12,6 @@
 class DLL_API IAgent
 {
 public:
-	IAgent(unsigned id) :
-		m_id(id)
-	{
-
-	}
 	/// <summary>
 	/// Updated regullarly with each IAgent move, or whenever user move agent manually
 	/// </summary>
@@ -27,7 +22,14 @@ public:
 	/// </summary>
 	/// <param name="goal"></param>
 	virtual void SetGoal(const SpatialPoint& goal) = 0;
-
-protected:
-	unsigned m_id;
+	/// <summary>
+	/// Set position on StartCoordinates
+	/// Resets data from simulation
+	/// </summary>
+	virtual void Reset() = 0;
+	/// <summary>
+	/// Returns unique instance identifier
+	/// </summary>
+	/// <returns></returns>
+	virtual AgentId GetId() const;
 };

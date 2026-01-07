@@ -1,6 +1,11 @@
 ﻿#pragma once
 #include <memory>
 #include "Interface\IAgent.h"
+#include "Interface\IMotionModel.h"
+#include "Interface\ISpatialDataStructure.h"
+
+#include "Data\AgentSetting.h"
+
 
 /// <summary>
 /// Create an abstract class which implements base behaviour. Like movement, sensor data gathering.
@@ -8,8 +13,13 @@
 class AgentBase : public  IAgent
 {
 public:
+	AgentBase(unsigned id, const AgentSetting& agentSetting, const SpatialPoint& startPosition);
 
-private:
+public:
+	void SetOwnPosition(const SpatialPoint& newPosition) override;
+	void SetGoal(const SpatialPoint& newPosition) override;
+
+protected:
 	/// <summary>
 	/// position at which agen tries to get
 	/// TODO object is copied, for current atructure it is cheap, revisit at the end
@@ -23,5 +33,8 @@ private:
 	/// It contain mapped envinronment.
 	/// </summary>
 	std::shared_ptr<ISpatialDataStructure> m_mappedEnvinronment;
+
+protected:
+	unsigned m_id;
 };
 

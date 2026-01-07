@@ -3,9 +3,9 @@
 #include "Enum\eSearchedArea.h"
 #include "..\Math\SpatialCalculator.h"
 
-RrtSearchEngine::RrtSearchEngine(eRrtAlgorithm algorithmType, std::shared_ptr<ISpatialDataStructure> rrtTree) :
-	m_rrtAlgorithm(CreateGenerator(algorithmType)),
-	m_rrtTree(rrtTree)
+RrtSearchEngine::RrtSearchEngine(const SearchEngineSetting& algorithmSetting, std::shared_ptr<ISpatialDataStructure> rrtTree) :
+	m_rrtAlgorithm(CreateGenerator(algorithmSetting.AlgorithmType)),
+	m_mappedEnv(rrtTree)
 {
 }
 
@@ -29,19 +29,4 @@ void RrtSearchEngine::NodeRewire(SpatialNode& node)
 void RrtSearchEngine::RewireAroundPoint(const SpatialPoint& point)
 {
 	//TODO
-}
-
-std::unique_ptr<IRrtAlgorithm> RrtSearchEngine::CreateGenerator(eRrtAlgorithm algorithmType) const
-{
-	switch (algorithmType)
-	{
-	case RRT:
-		return std::make_unique<RrtAlgorithm>();
-
-	case RRT_START:
-	case RRT_INFORMED:
-	case RRT_X:
-	default:
-		return std::make_unique<RrtAlgorithm>();
-	}
 }

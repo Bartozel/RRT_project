@@ -25,6 +25,7 @@ public:
 
 	const float GetDistanceToParent() const { return m_distanceToParent; };
 	const unsigned GetId() const { return m_id; }
+	inline void SetId(unsigned id) { m_id = id; }
 
 private:
 	unsigned m_id;

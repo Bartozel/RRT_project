@@ -1,5 +1,6 @@
 ﻿#pragma once
-#include "..\Enum\eMotionType.h"
+#include "..\..\ExportMacro.h"
+#include "..\..\Enum\eMotionType.h"
 
 /// <summary>
 /// Defines which motion model will be used on agent for motion navigation accros the choosen path.

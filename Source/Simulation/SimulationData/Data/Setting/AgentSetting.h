@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include <memory>
-#include "SearchEngineSetting.h"
+#include "..\..\ExportMacro.h"
 #include "MotionModelSetting.h"
 #include "SpatialDataStructureSetting.h"
 
@@ -10,14 +10,13 @@
 struct DLL_API AgentSetting
 {
 public:
-	AgentSetting(MotionModelSetting&& movementSetting, SearchEngineSetting&& searchEngineSetting, SpatialDataStructureSetting&& spatialDataSetting) :
+	AgentSetting(AgentId id, MotionModelSetting&& movementSetting, SpatialDataStructureSetting&& spatialDataSetting) :
 		MotionModelSetting(std::move(movementSetting)), 
-		SearchEngineSetting(std::move(searchEngineSetting)), 
 		SpatialDataSetting(std::move(spatialDataSetting))
-	{
+	{	
 	}
 
+	AgentId Id;
 	MotionModelSetting MotionModelSetting;
-	SearchEngineSetting SearchEngineSetting;
 	SpatialDataStructureSetting SpatialDataSetting;
 };

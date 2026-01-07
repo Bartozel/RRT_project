@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <memory>
 #include "Interface\ISpatialDataStructure.h"
-#include "Data\SpatialDataStructureSetting.h"
+#include "Data\Setting\SpatialDataStructureSetting.h"
 
 class SpatialDataStructureFactory
 {

@@ -19,17 +19,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ArenaManager.h" />
+    <ClInclude Include="SimulationArenaManager.h" />
+    <ClInclude Include="DescriptorDataManger.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ArenaManager.cpp" />
+    <ClCompile Include="SimulationArenaManager.cpp" />
+    <ClCompile Include="DescriptorDataManger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Agent\Agent.vcxproj">
       <Project>{b7aaa517-a67b-4d59-b5d6-bc3a07853c11}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Core\Core.vcxproj">
+      <Project>{ec648852-6b23-4441-9c2f-e8d94d102a5b}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\SimulationData\SimulationData.vcxproj">
       <Project>{b70aebea-5c31-4441-bf6b-15039e3b8db4}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\SimulationEnvinronment\SimulationEnvinronment.vcxproj">
+      <Project>{19ce101a-5b8f-46b4-a2b9-1e9a376b3857}</Project>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -125,7 +133,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);C:\Git\RRT_project\Source\Simulation\SimulationData;C:\Git\RRT_project\Source\Simulation\SimulationEnvironmnet;C:\Git\RRT_project\Source\Simulation\Agent</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);C:\Git\RRT_project\Source\Simulation\SimulationData;C:\Git\RRT_project\Source\Simulation\SimulationEnvinronment;C:\Git\RRT_project\Source\Simulation\Agent;C:\Git\RRT_project\Source\Simulation\Core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -144,7 +152,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);C:\Git\RRT_project\Source\Simulation\SimulationData;C:\Git\RRT_project\Source\Simulation\SimulationEnvironmnet;C:\Git\RRT_project\Source\Simulation\Agent</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);C:\Git\RRT_project\Source\Simulation\SimulationData;C:\Git\RRT_project\Source\Simulation\SimulationEnvinronment;C:\Git\RRT_project\Source\Simulation\Agent;C:\Git\RRT_project\Source\Simulation\Core</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

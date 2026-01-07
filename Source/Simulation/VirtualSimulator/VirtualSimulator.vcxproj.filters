@@ -15,12 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ArenaManager.h">
+    <ClInclude Include="SimulationArenaManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DescriptorDataManger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ArenaManager.cpp">
+    <ClCompile Include="SimulationArenaManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DescriptorDataManger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
